@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="large-12 columns">
+    <% @tweets.each do |tweet| %>
+      <div class="tweet-review row">
+        <div class="large-7 columns">
+          <div class="tweet-text">
+            <%= remove_hashtag_and_rating(tweet.text) %>
+          </div>
+          <% if tweet.review_tweet? %>
+            <div class="review-text">
+              <div class="vertical-line"></div>
+              <div class="horizontal-line"></div>
+              <%= remove_hashtag_and_rating(tweet.review_text) %>
+            </div>
+          <% end %>
+        </div>
+        <div class="reviewer large-2 columns">
+          <img align="left" src="<%= tweet.user.profile_image_uri(:mini) %>" />
+          <%= tweet.user.name %>
+        </div>
+        <div class="rating large-1 columns">
+          <%= tweet.rating %>
+        </div>
+        <div class="reviewed-on large-2 columns">
+          <%= tweet.created_at.to_date.to_formatted_s(:long_ordinal) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
