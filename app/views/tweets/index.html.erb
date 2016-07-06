@@ -4,13 +4,13 @@
       <div class="tweet-review row">
         <div class="large-7 columns">
           <div class="tweet-text">
-            <%= remove_hashtag_and_rating(tweet.text) %>
+            <%= remove_hashtag_and_rating(tweet.text).html_safe %>
           </div>
           <% if tweet.review_tweet? %>
             <div class="review-text">
               <div class="vertical-line"></div>
               <div class="horizontal-line"></div>
-              <%= remove_hashtag_and_rating(tweet.review_text) %>
+              <%= remove_hashtag_and_rating(tweet.review_text).html_safe %>
             </div>
           <% end %>
         </div>
