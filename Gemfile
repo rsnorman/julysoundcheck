@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'twitter'
 
+gem 'omniauth'
+gem 'omniauth-twitter'
+
 gem 'foundation-rails', '~> 6.2', '>= 6.2.3.0'
 
 group :development, :test do

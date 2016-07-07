@@ -9,7 +9,7 @@
           <div class="row">
             <div class="large-10 columns">
               <div class='twitter-name'><%= tweet.user.name %></div>
-              <div class='twitter-username'>@<%= tweet.user.username %></div>
+              <div class='twitter-username'>@<%= tweet.user.screen_name %></div>
             </div>
             <div class="reviewed-on">
               <%= tweet.created_at.to_date.to_formatted_s(:long_ordinal) %>

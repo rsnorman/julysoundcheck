@@ -5,9 +5,27 @@ header {
   width: 100%;
   margin-bottom: 20px;
   color: #fff;
+  padding: 0 18px;
 
   h1 {
     font-family: 'Londrina Solid', cursive;
     font-size: 32px;
+    float: left;
+  }
+}
+
+#twitter_auth {
+  float: right;
+  margin-top: 10px;
+
+  button {
+    font-weight: bold;
+  }
+}
+
+
+@media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
+  header {
+    padding: 5px;
   }
 }

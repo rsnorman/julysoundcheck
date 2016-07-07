@@ -19,21 +19,32 @@
       <div class="row">
         <div class="large-12 columns">
           <h1>JulySoundcheck</h1>
+          <div id="twitter_auth">
+            <% if twitter_user %>
+              <%= form_tag '/signout', method: 'delete' do %>
+                <button  id="sign_out">Sign Out</button>
+              <% end %>
+            <% else %>
+              <%= form_tag '/auth/twitter', method: 'get' do %>
+                <button id="sign_in">Sign In</button>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </header>
 
-    <% if notice %>
-      <div class="row">
-        <div class="large-12 columns">
-          <div class="callout">
-            <p id="notice"><%= notice %></p>
+    <div id="main">
+      <% if notice %>
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="callout">
+              <p id="notice"><%= notice %></p>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
 
-    <div id="main">
       <%= yield %>
     </div>
 
