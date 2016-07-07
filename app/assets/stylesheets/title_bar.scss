@@ -1,0 +1,13 @@
+@import 'variables';
+
+header {
+  background-color: $color-primary-4;
+  width: 100%;
+  margin-bottom: 20px;
+  color: #fff;
+
+  h1 {
+    font-family: 'Londrina Solid', cursive;
+    font-size: 32px;
+  }
+}

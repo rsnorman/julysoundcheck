@@ -1,44 +1,49 @@
-// Place all the styles related to the tweets controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
 
 .tweet-review {
   margin-bottom: 10px;
   padding: 4px 0;
+  border: 1px solid $color-primary-3;
+  border-radius: 3px;
+  position: relative;
 
   &:nth-child(even) {
-    background-color: #ededed;
+    background-color: $color-primary-1;
   }
 }
 
+.twitter-profile-image {
+  border-radius: 3px;
+}
+
 .review-text {
-  margin-top: 10px;
+  margin-top: 5px;
   padding-left: 25px;
   position: relative;
 
   .vertical-line{
     position: absolute;
-    left: 3px;
+    left: 1px;
     top: -5px;
     height: 15px;
     width: 1px;
-    border: 1px solid #acacac;
+    border: 1px solid $color-primary-2;
   }
 
   .horizontal-line{
     position: absolute;
-    left: 3px;
+    left: 1px;
     top: 10px;
     height: 1px;
     width: 15px;
-    border: 1px solid #acacac;
+    border: 1px solid $color-primary-2;
   }
 }
 
-.reviewer {
-  img {
-    float: left;
-    margin-right: 10px;
-    border-radius: 3px;
-  }
+.reviewed-on {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  text-align: right;
+  color: $color-primary-3;
 }

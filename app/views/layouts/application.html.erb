@@ -7,17 +7,21 @@
     <title><%= content_for?(:title) ? yield(:title) : "JulySoundcheck" %></title>
 
     <%= stylesheet_link_tag    "application" %>
+    <link href='https://fonts.googleapis.com/css?family=Londrina+Solid' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
 
-    <div class="row">
-      <div class="large-12 columns">
-        <h1>JulySoundcheck</h1>
+    <header>
+      <div class="row">
+        <div class="large-12 columns">
+          <h1>JulySoundcheck</h1>
+        </div>
       </div>
-    </div>
+    </header>
 
     <% if notice %>
       <div class="row">
@@ -29,7 +33,9 @@
       </div>
     <% end %>
 
-    <%= yield %>
+    <div id="main">
+      <%= yield %>
+    </div>
 
   </body>
 </html>
