@@ -2,3 +2,9 @@
   margin: 33px;
   font-family: 'Roboto', sans-serif;
 }
+
+@media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
+  #main {
+    margin: 20px;
+  }
+}

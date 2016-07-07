@@ -16,6 +16,15 @@
   border-radius: 3px;
 }
 
+.twitter-name {
+  float: left;
+  margin-right: 10px;
+}
+.twitter-username {
+  float: left;
+  color: $color-primary-4;
+}
+
 .review-text {
   margin-top: 5px;
   padding-left: 25px;
@@ -46,4 +55,10 @@
   top: 5px;
   text-align: right;
   color: $color-primary-3;
+}
+
+@media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
+  .twitter-username {
+    clear: left;
+  }
 }
