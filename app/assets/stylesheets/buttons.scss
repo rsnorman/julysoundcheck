@@ -1,0 +1,17 @@
+@import 'variables';
+
+.button {
+  background-color: $color-primary-4;
+
+  &:hover {
+    background-color: $color-primary-3;
+  }
+}
+
+.button[disabled] {
+  background-color: $color-primary-1;
+
+  &:hover {
+    background-color: $color-primary-2;
+  }
+}

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-8 columns">
     <% @tweets.each do |tweet| %>
       <div class="tweet-review row">
         <div class="large-1 medium-2 small-2 columns">
@@ -31,8 +31,16 @@
           </div>
           <div class="row">
             <div class="rating large-12 columns">
-              <strong>Rating:</strong>
-              <%= tweet.rating || 'None' %>
+              <% if tweet.rating %>
+                <strong>Rating:</strong>
+                <%= tweet.rating %>
+                <% if user_tweet?(tweet) %>
+                  <%= link_to 'Edit', edit_tweet_review_path(tweet.tweet_review) %>
+                <% end %>
+
+              <% elsif user_tweet?(tweet) %>
+                <%= link_to 'Edit', new_tweet_review_path(tweet_id: tweet.id) %>
+              <% end %>
             </div>
           </div>
         </div>

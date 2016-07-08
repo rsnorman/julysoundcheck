@@ -17,3 +17,14 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+(function($) {
+  $(function() {
+    var $calloutEl = $('.callout');
+    $calloutEl.each(function() {
+      setTimeout(function() {
+        $calloutEl.slideUp();
+      }, 1500);
+    });
+  });
+})(jQuery);

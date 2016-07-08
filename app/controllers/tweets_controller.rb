@@ -1,42 +1,32 @@
 class TweetsController < ApplicationController
+  before_action :set_tweet_reviews, only: :index
   before_action :set_tweets, only: :index
+
+  cattr_accessor :tweets
 
   private
 
+  def set_tweet_reviews
+    @tweet_reviews = TweetReview.all.inject({}) do |tweet_reviews, tweet_review|
+      tweet_reviews.merge(tweet_review.tweet_id.to_i => tweet_review)
+    end
+  end
+
   def set_tweets
     tweets = {}
-    twitter_client.search("#julysoundcheck -rt").to_a.reverse.each do |tweet|
+    july_soundcheck_tweets.each do |tweet|
       if tweets[tweet.in_reply_to_status_id]
         tweets[tweet.in_reply_to_status_id].review_tweet = tweet
       else
-        tweets[tweet.id] = ReviewTweet.new(tweet)
+        tweets[tweet.id] = JulySoundcheckTweet.new(tweet, @tweet_reviews[tweet.id])
       end
     end
     @tweets = tweets.values.reverse.select { |t| t.created_at > Date.parse('2016/7/1') }
   end
 
-  class ReviewTweet
-    attr_reader :tweet
-    attr_accessor :review_tweet
-
-    delegate :id, :in_reply_to_status_id, :user, :text, :created_at, to: :tweet
-
-    def initialize(tweet)
-      @tweet = tweet
-    end
-
-    def review_tweet?
-      review_tweet
-    end
-
-    def review_text
-      review_tweet? ? review_tweet.text : text
-    end
-
-    def rating
-      /(?:(\d\s*[+|-]?\s*)?#julysoundcheck(\s*\d\s*[+|-]?)?)|(\d\s*[+|-]?)$/i.match(review_text) do |matches|
-        matches.to_a.slice(1..-1).compact.first
-      end
+  def july_soundcheck_tweets
+    Rails.cache.fetch('julysoundcheck_tweets', expires_in: 5.minutes) do
+      twitter_client.search("#julysoundcheck -rt").to_a.reverse
     end
   end
 end

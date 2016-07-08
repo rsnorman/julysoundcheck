@@ -5,4 +5,9 @@ module TweetsHelper
       .gsub(/(\d\s*[+|-]?\s*)?#julysoundcheck$/i, '')
       .gsub(/(\d\s*[+|-]?)$/, '')
   end
+
+  def user_tweet?(tweet)
+    return false unless twitter_user
+    tweet.user.id == twitter_user.id
+  end
 end
