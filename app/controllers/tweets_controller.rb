@@ -2,8 +2,6 @@ class TweetsController < ApplicationController
   before_action :set_tweet_reviews, only: :index
   before_action :set_tweets, only: :index
 
-  cattr_accessor :tweets
-
   private
 
   def set_tweet_reviews

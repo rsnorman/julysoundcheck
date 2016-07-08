@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
 
   def twitter_user
     if session['access_token'] && session['access_token_secret']
-      @user ||= twitter_client.user(include_entities: true)
+      @user ||= Rails.cache.fetch("#{session['access_token']}:#{session['access_token_secret']}") do
+        twitter_client.user(include_entities: true)
+      end
     end
   end
 
