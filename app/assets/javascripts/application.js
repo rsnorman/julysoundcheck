@@ -20,11 +20,11 @@ $(function(){ $(document).foundation(); });
 
 (function($) {
   $(function() {
-    var $calloutEl = $('.callout');
+    var $calloutEl = $('#notice');
     $calloutEl.each(function() {
       setTimeout(function() {
         $calloutEl.slideUp();
-      }, 1500);
+      }, 2000);
     });
   });
 })(jQuery);

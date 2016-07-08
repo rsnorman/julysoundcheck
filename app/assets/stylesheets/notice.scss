@@ -1,0 +1,13 @@
+@import 'variables';
+
+#notice {
+  border: 1px dashed $color-primary-3;
+  padding: 5px;
+  margin-bottom: 10px;
+
+  p {
+    margin: 0;
+    padding: 0;
+    color: $color-primary-0;
+  }
+}

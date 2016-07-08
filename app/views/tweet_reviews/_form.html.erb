@@ -1,5 +1,5 @@
 <div class="unclaimed-tweet row">
-  <div class="large-8 columns">
+  <div class="large-12 columns">
     <div class="tweet-review row">
       <div class="large-1 medium-2 small-2 columns">
         <img class='twitter-profile-image' align="left" src="<%= @tweet.user.profile_image_uri %>" />
@@ -34,7 +34,7 @@
 </div>
 
 <div class="row">
-  <div class="large-8 columns">
+  <div class="large-12 columns">
     <%= simple_form_for @tweet_review do |f| %>
       <%= f.input :tweet_id, as: :hidden %>
       <%= f.input :rating, collection: rating_options, prompt: "Rate the album", selected: @tweet.rating.try(:value) %>
