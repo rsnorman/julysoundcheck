@@ -40,9 +40,9 @@
                     <strong>Rating:</strong>
                     <%= tweet.rating %>
                   </div>
-                  <% if user_tweet?(tweet) %>
-                    <%= link_to 'Edit', edit_tweet_review_path(tweet.tweet_review) %>
-                  <% end %>
+                <% end %>
+                <% if user_tweet?(tweet) %>
+                  <%= link_to 'Edit', edit_tweet_review_path(tweet.tweet_review) %>
                 <% end %>
               </div>
               <% if tweet.listen_source %>
@@ -52,9 +52,22 @@
               <% end %>
             </div>
           <% elsif user_tweet?(tweet) %>
+            <% if tweet.rating %>
+              <div>
+                <strong>Rating:</strong>
+                <%= tweet.rating %>
+              </div>
+            <% end %>
             <div class="large-12 columns">
               <%= link_to 'Add review details', new_tweet_review_path(tweet_id: tweet.id) %>
             </div>
+          <% else %>
+            <% if tweet.rating %>
+              <div class="large-12 columns">
+                <strong>Rating:</strong>
+                <%= tweet.rating %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
