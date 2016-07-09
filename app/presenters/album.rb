@@ -11,8 +11,8 @@ class Album
   end
 
   def release_date
-    return unless @album_hash.release_date
-    Date.parse(@album_hash.release_date)
+    return if @album_hash.release_date.blank?
+    Date.parse(@album_hash.release_date) rescue nil
   end
 
   def image_url

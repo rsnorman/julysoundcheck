@@ -22,11 +22,13 @@
                       <%= album.name %>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="large-12 columns">
-                      <%= album.release_date.year %>
+                  <% if album.release_date %>
+                    <div class="row">
+                      <div class="large-12 columns">
+                        <%= album.release_date.year %>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 </div>
               </div>
             </div>

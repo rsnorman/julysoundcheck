@@ -24,15 +24,9 @@
   }
 
   function searchArtistAlbum(artist, album) {
-    if (artist.length > 3 || album.length > 3) {
-      return findAlbum(artist, album).then(function(albumsHtml) {
-        return albumsHtml;
-      });
-    } else {
-      return {
-        then: function() {}
-      };
-    }
+    return findAlbum(artist, album).then(function(albumsHtml) {
+      return albumsHtml;
+    });
   }
 
   function showAlbums(albumsHtml) {
@@ -65,11 +59,16 @@
     albumUrlInput.value = albumDetails.url;
   }
 
-  document.addEventListener("DOMContentLoaded", function(event) {
-    if (doc.getElementsByClassName('edit_tweet_review').length === 0) {
+  function isInpreciseSearch(artist, album) {
+    return artist.length < 3 && album.length < 3;
+  }
+
+  document.addEventListener('turbolinks:load', function() {
+    console.log('page load');
+
+    if (doc.getElementsByClassName('edit_tweet_review').length === 0 && doc.getElementsByClassName('new_tweet_review').length === 0) {
       return;
     }
-
     var artistInput, albumInput, autofillButton, loadingEl, errorEl;
     artistInput = doc.getElementById('tweet_review_artist');
     albumInput = doc.getElementById('tweet_review_album');
@@ -78,7 +77,6 @@
     errorEl = doc.getElementById('album_loader_error');
 
     function search() {
-      console.log(loadingEl);
       loadingEl.style.display = 'block';
       errorEl.style.display = 'none';
       doc.getElementById('album_results').innerHTML = '';
@@ -93,9 +91,21 @@
       });
     }
 
-    artistInput.addEventListener('keyup', debounce(search, 500));
+    artistInput.addEventListener('keyup', debounce(function() {
+      if (isInpreciseSearch(artistInput.value, albumInput.value)) {
+        return;
+      }
 
-    albumInput.addEventListener('keyup', debounce(search, 500));
+      search();
+    }, 500));
+
+    albumInput.addEventListener('keyup', debounce(function() {
+      if (isInpreciseSearch(artistInput.value, albumInput.value)) {
+        return;
+      }
+
+      search();
+    }, 500));
 
     autofillButton.addEventListener('click', function(event) {
       event.preventDefault();

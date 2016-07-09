@@ -42,6 +42,17 @@
           </div>
         </div>
       <% end %>
+      <% if user_tweet?(tweet) %>
+        <div class="row">
+          <div class="large-12 columns">
+            <% if tweet.review_details? %>
+              <%= link_to 'Edit review details', edit_tweet_review_path(tweet.tweet_review) %>
+            <% else %>
+              <%= link_to 'Add review details', new_tweet_review_path(tweet_id: tweet.id) %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -3,7 +3,7 @@ class JulySoundcheckTweet
   attr_accessor :review_tweet
 
   delegate :id, :in_reply_to_status_id, :user, :text, :created_at, to: :tweet
-  delegate :listen_source, :artist, :album, to: :tweet_review, allow_nil: true
+  delegate :artist, :album, to: :tweet_review, allow_nil: true
 
   def initialize(tweet, tweet_review)
     @tweet = tweet
@@ -22,8 +22,13 @@ class JulySoundcheckTweet
     review_tweet? ? review_tweet.text : text
   end
 
+  def listen_source
+    return if tweet_review.nil? || tweet_review.listen_source.try(:url).blank?
+    tweet_review.listen_source
+  end
+
   def rating
-    return tweet_review.rating if tweet_review
+    return tweet_review.rating if tweet_review && !tweet_review.rating.to_s.blank?
     /(?:(\d\s*[+|-]?\s*)?#julysoundcheck(\s*\d\s*[+|-]?)?)|(\d\s*[+|-]?)$/i.match(review_text) do |matches|
       matches.to_a.slice(1..-1).compact.first
     end
