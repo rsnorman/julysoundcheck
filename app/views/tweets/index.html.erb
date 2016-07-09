@@ -1,75 +1,47 @@
-  <% @tweets.each do |tweet| %>
-    <div class="tweet-review row">
-      <div class="large-1 medium-2 small-2 columns">
-        <img class='twitter-profile-image' align="left" src="<%= tweet.user.profile_image_uri %>" />
-      </div>
-      <div class="large-11 medium-10 small-10 columns">
-        <div class="tweet-title row">
-          <div class="large-10 columns">
-            <div class='twitter-name'><%= tweet.user.name %></div>
-            <div class='twitter-username'>@<%= tweet.user.screen_name %></div>
-          </div>
-          <div class="reviewed-on">
-            <%= tweet.created_at.to_date.to_formatted_s(:long_ordinal) %>
-          </div>
+<% @tweets.each do |tweet| %>
+  <div class="tweet-review row">
+    <div class="large-1 medium-2 small-2 columns">
+      <img class='twitter-profile-image' align="left" src="<%= tweet.user.profile_image_uri %>" />
+    </div>
+    <div class="large-11 medium-10 small-10 columns">
+      <div class="tweet-title row">
+        <div class="large-10 columns">
+          <div class='twitter-name'><%= tweet.user.name %></div>
+          <div class='twitter-username'>@<%= tweet.user.screen_name %></div>
         </div>
-        <div class="row">
-          <div class="large-<%= tweet.review_details? ? 7 : 12 %> columns">
-            <div class="tweet-text">
-              <%= remove_hashtag_and_rating(tweet.text).html_safe %>
-            </div>
-            <% if tweet.review_tweet? %>
-              <div class="review-text">
-                <%= remove_hashtag_and_rating(tweet.review_text).html_safe %>
-              </div>
-            <% end %>
+        <div class="reviewed-on">
+          <%= tweet.created_at.to_date.to_formatted_s(:long_ordinal) %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="tweet-text">
+            <%= remove_hashtag_and_rating(tweet.text).html_safe %>
           </div>
-          <% if tweet.review_details? %>
-            <div class="review-details large-5 columns">
-              <div class="album-details">
-                <% if tweet.artist %>
-                  <div>
-                    <strong><%= tweet.artist %></strong>
-                  </div>
-                <% end %>
-                <% if tweet.album %>
-                  <div><%= tweet.album %></div>
-                <% end %>
-                <% if tweet.rating %>
-                  <div>
-                    <strong>Rating:</strong>
-                    <%= tweet.rating %>
-                  </div>
-                <% end %>
-                <% if user_tweet?(tweet) %>
-                  <%= link_to 'Edit', edit_tweet_review_path(tweet.tweet_review) %>
-                <% end %>
-              </div>
-              <% if tweet.listen_source %>
-                <div class='listen-embed'>
-                  <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= tweet.listen_source.album_id %>&theme=white" width="80" height="80" frameborder="0" allowtransparency="true"></iframe>
-                </div>
-              <% end %>
+          <% if tweet.review_tweet? %>
+            <div class="review-text">
+              <%= remove_hashtag_and_rating(tweet.review_text).html_safe %>
             </div>
-          <% elsif user_tweet?(tweet) %>
-            <% if tweet.rating %>
-              <div>
-                <strong>Rating:</strong>
-                <%= tweet.rating %>
-              </div>
-            <% end %>
-            <div class="large-12 columns">
-              <%= link_to 'Add review details', new_tweet_review_path(tweet_id: tweet.id) %>
-            </div>
-          <% else %>
-            <% if tweet.rating %>
-              <div class="large-12 columns">
-                <strong>Rating:</strong>
-                <%= tweet.rating %>
-              </div>
-            <% end %>
           <% end %>
         </div>
       </div>
+
+      <% if tweet.rating %>
+        <div class="row">
+          <div class="large-12 columns">
+            <strong>Rating:</strong>
+            <%= tweet.rating %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if tweet.listen_source %>
+        <div class="row listen-embed">
+          <div class="large-12 columns">
+            <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= tweet.listen_source.album_id %>&theme=white" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
+<% end %>

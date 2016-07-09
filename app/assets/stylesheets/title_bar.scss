@@ -11,6 +11,16 @@ header {
     font-family: 'Londrina Solid', cursive;
     font-size: 32px;
     float: left;
+
+    a, a:visited, a:active {
+      color: #ffffff;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: $color-primary-2;
+      text-decoration: none;
+    }
   }
 }
 
