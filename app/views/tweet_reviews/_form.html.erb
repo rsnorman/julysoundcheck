@@ -40,7 +40,7 @@
       <%= f.input :rating, collection: rating_options, prompt: "Rate the album", selected: @tweet.rating.try(:value) %>
       <%= f.input :artist %>
       <%= f.input :album %>
-      <%= f.input :listen_url %>
+      <%= f.input :listen_url, value: @tweet_review.listen_url %>
       <%= f.button :submit %>
       <%= link_to 'Back', root_path %>
     <% end %>

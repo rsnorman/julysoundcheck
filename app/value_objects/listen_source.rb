@@ -1,4 +1,4 @@
-class ListenUrl
+class ListenSource
   attr_reader :url
 
   def initialize(url)

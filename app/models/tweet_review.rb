@@ -3,7 +3,8 @@ class TweetReview < ApplicationRecord
     Rating.new(super())
   end
 
-  def listen_url
-    ListenUrl.new(super())
+  def listen_source
+    return unless listen_url
+    ListenSource.new(listen_url)
   end
 end
