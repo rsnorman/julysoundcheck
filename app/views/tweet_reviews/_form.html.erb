@@ -38,6 +38,9 @@
     <%= simple_form_for @tweet_review do |f| %>
       <%= f.input :tweet_id, as: :hidden %>
       <%= f.input :rating, collection: rating_options, prompt: "Rate the album", selected: @tweet.rating.try(:value) %>
+      <%= f.input :artist %>
+      <%= f.input :album %>
+      <%= f.input :listen_url %>
       <%= f.button :submit %>
       <%= link_to 'Back', root_path %>
     <% end %>

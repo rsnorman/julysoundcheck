@@ -33,6 +33,8 @@ class TweetReviewsController < ApplicationController
   end
 
   def tweet_review_params
-    params.require(:tweet_review).permit(:tweet_id, :rating)
+    params
+      .require(:tweet_review)
+      .permit(:tweet_id, :rating, :artist, :album, :listen_url)
   end
 end

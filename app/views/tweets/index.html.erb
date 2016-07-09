@@ -4,7 +4,7 @@
         <img class='twitter-profile-image' align="left" src="<%= tweet.user.profile_image_uri %>" />
       </div>
       <div class="large-11 medium-10 small-10 columns">
-        <div class="row">
+        <div class="tweet-title row">
           <div class="large-10 columns">
             <div class='twitter-name'><%= tweet.user.name %></div>
             <div class='twitter-username'>@<%= tweet.user.screen_name %></div>
@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="large-12 columns">
+          <div class="large-<%= tweet.review_details? ? 7 : 12 %> columns">
             <div class="tweet-text">
               <%= remove_hashtag_and_rating(tweet.text).html_safe %>
             </div>
@@ -26,20 +26,37 @@
               </div>
             <% end %>
           </div>
-        </div>
-        <div class="row">
-          <div class="rating large-12 columns">
-            <% if tweet.rating %>
-              <strong>Rating:</strong>
-              <%= tweet.rating %>
-              <% if user_tweet?(tweet) %>
-                <%= link_to 'Edit', edit_tweet_review_path(tweet.tweet_review) %>
-              <% end %>
+          <% if tweet.review_details? %>
+            <div class="review-details large-5 columns">
+              <div class="album-details">
+                <% if tweet.artist %>
+                  <div>
+                    <strong><%= tweet.artist %></strong>
+                  </div>
+                <% end %>
+                <% if tweet.album %>
+                  <div><%= tweet.album %></div>
+                <% end %>
+                <% if tweet.rating %>
+                  <div>
+                    <strong>Rating:</strong>
+                    <%= tweet.rating %>
+                  </div>
+                  <% if user_tweet?(tweet) %>
+                    <%= link_to 'Edit', edit_tweet_review_path(tweet.tweet_review) %>
+                  <% end %>
 
-            <% elsif user_tweet?(tweet) %>
-              <%= link_to 'Edit', new_tweet_review_path(tweet_id: tweet.id) %>
-            <% end %>
-          </div>
+                <% elsif user_tweet?(tweet) %>
+                  <%= link_to 'Edit', new_tweet_review_path(tweet_id: tweet.id) %>
+                <% end %>
+              </div>
+              <% if tweet.listen_url %>
+                <div class='listen-embed'>
+                  <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= tweet.listen_url.album_id %>&theme=white" width="80" height="80" frameborder="0" allowtransparency="true"></iframe>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

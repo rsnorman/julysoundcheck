@@ -1,5 +1,8 @@
 @import 'variables';
-
+.tweet-title {
+  margin-bottom: 3px;
+  padding-bottom: 3px;
+}
 .tweet-review {
   margin-bottom: 10px;
   padding: 4px 0;
@@ -55,6 +58,17 @@
   top: 5px;
   text-align: right;
   color: $color-primary-3;
+}
+
+.review-details {
+  margin-top: 6px;
+}
+.album-details {
+  float: left;
+  margin-right: 10px;
+}
+.listen-embed {
+  float: left;
 }
 
 @media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
