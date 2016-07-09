@@ -48,7 +48,15 @@
           <a id="listen_auto_fill" class="button" href="javascript:;">Auto-fill</a>
         </div>
       </div>
-      <div id="album_results"></div>
+      <div id="album_results_container">
+        <div id="album_loader">
+          <%= image_tag 'loader.gif' %>
+        </div>
+        <div id="album_loader_error">
+          <strong class="error">There was an error. Please try again.</strong>
+        </div>
+        <div id="album_results"></div>
+      </div>
       <%= f.button :submit %>
       <%= link_to 'Back', root_path %>
     <% end %>

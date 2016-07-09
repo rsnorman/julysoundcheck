@@ -70,16 +70,28 @@
       return;
     }
 
-    var artistInput, albumInput, autofillButton;
+    var artistInput, albumInput, autofillButton, loadingEl, errorEl;
     artistInput = doc.getElementById('tweet_review_artist');
     albumInput = doc.getElementById('tweet_review_album');
     autofillButton = doc.getElementById('listen_auto_fill');
+    loadingEl = doc.getElementById('album_loader');
+    errorEl = doc.getElementById('album_loader_error');
 
     function search() {
+      loadingEl.style = 'display:block';
+      errorEl.style = 'display:none';
+      doc.getElementById('album_results').innerHTML = '';
+
       searchArtistAlbum(artistInput.value, albumInput.value)
       .then(showAlbums)
       .then(function() {
         onAlbumSelect(autofillAlbumDetails);
+      })
+      .then(function() {
+        loadingEl.style = '';
+      })
+      .catch(function() {
+        errorEl.style = 'display:block';
       });
     }
 

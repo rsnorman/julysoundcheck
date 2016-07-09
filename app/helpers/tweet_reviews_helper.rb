@@ -11,6 +11,7 @@ module TweetReviewsHelper
       grouped_albums.last << album
       grouped_albums << [] if grouped_albums.last.size >= 3
     end
+    grouped_albums.delete([])
     grouped_albums
   end
 end
