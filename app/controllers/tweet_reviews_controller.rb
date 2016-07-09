@@ -21,7 +21,13 @@ class TweetReviewsController < ApplicationController
   private
 
   def set_tweet
-    @tweet = JulySoundcheckTweet.new(twitter_client.status(tweet_id), @tweet_review)
+    @tweet = JulySoundcheckTweet.new(tweet, @tweet_review)
+  end
+
+  def tweet
+    Rails.cache.fetch("tweet_#{tweet_id}") do
+      twitter_client.status(tweet_id)
+    end
   end
 
   def set_tweet_review

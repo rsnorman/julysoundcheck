@@ -78,8 +78,9 @@
     errorEl = doc.getElementById('album_loader_error');
 
     function search() {
-      loadingEl.style = 'display:block';
-      errorEl.style = 'display:none';
+      console.log(loadingEl);
+      loadingEl.style.display = 'block';
+      errorEl.style.display = 'none';
       doc.getElementById('album_results').innerHTML = '';
 
       searchArtistAlbum(artistInput.value, albumInput.value)
@@ -88,10 +89,7 @@
         onAlbumSelect(autofillAlbumDetails);
       })
       .then(function() {
-        loadingEl.style = '';
-      })
-      .catch(function() {
-        errorEl.style = 'display:block';
+        loadingEl.style.display = 'none';
       });
     }
 
