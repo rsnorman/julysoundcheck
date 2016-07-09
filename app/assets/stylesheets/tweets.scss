@@ -30,26 +30,9 @@
 
 .review-text {
   margin-top: 5px;
-  padding-left: 25px;
+  padding-top: 5px;
   position: relative;
-
-  .vertical-line{
-    position: absolute;
-    left: 1px;
-    top: -5px;
-    height: 15px;
-    width: 1px;
-    border: 1px solid $color-primary-2;
-  }
-
-  .horizontal-line{
-    position: absolute;
-    left: 1px;
-    top: 10px;
-    height: 1px;
-    width: 15px;
-    border: 1px solid $color-primary-2;
-  }
+  border-top: 1px dotted $color-primary-2
 }
 
 .reviewed-on {

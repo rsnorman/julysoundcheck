@@ -20,8 +20,6 @@
             </div>
             <% if tweet.review_tweet? %>
               <div class="review-text">
-                <div class="vertical-line"></div>
-                <div class="horizontal-line"></div>
                 <%= remove_hashtag_and_rating(tweet.review_text).html_safe %>
               </div>
             <% end %>
