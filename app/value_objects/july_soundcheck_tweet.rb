@@ -11,7 +11,7 @@ class JulySoundcheckTweet
   end
 
   def review_details?
-    tweet_review.try(:listen_url) && artist && album
+    !tweet_review.try(:listen_url).blank? && !artist.blank? && !album.blank?
   end
 
   def review_tweet?
