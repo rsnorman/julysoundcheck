@@ -1,0 +1,34 @@
+<div id="albums" class="row">
+  <div class="large-12 columns">
+    <% group_albums_results(@albums).each do |album_group| %>
+      <div class="album-group row">
+        <% album_group.each do |album| %>
+          <div class="album large-4 medium-4 columns" data-url="<%= album.url %>" data-name="<%= album.name %>" data-artist="<%= album.artist %>">
+            <div class="row">
+              <div class="large-4 medium-4 columns">
+                <%= image_tag album.image_url %>
+              </div>
+              <div class="large-8 medium-8 columns">
+                <div class="row">
+                  <div class="large-12 columns">
+                    <%= album.artist %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="large-12 columns">
+                    <%= album.name %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="large-12 columns">
+                    <%= album.release_date.year %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

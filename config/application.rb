@@ -10,5 +10,6 @@ module Julysoundcheck
   class Application < Rails::Application
     # add custom validators path
     config.autoload_paths += %W["#{config.root}/app/value_objects"]
+    config.autoload_paths += %W["#{config.root}/app/presenters"]
   end
 end

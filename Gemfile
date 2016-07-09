@@ -37,6 +37,8 @@ gem 'omniauth-twitter'
 gem 'foundation-rails', '~> 6.2', '>= 6.2.3.0'
 gem 'simple_form'
 
+gem 'rspotify'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

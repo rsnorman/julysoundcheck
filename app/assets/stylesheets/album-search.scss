@@ -1,0 +1,16 @@
+@import 'variables';
+
+#album_results {
+  margin: 10px 0;
+}
+
+.album-group {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px dotted $color-primary-2;
+}
+
+.album {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
