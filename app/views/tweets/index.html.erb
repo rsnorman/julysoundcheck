@@ -38,7 +38,7 @@
       <% if tweet.listen_source %>
         <div class="row listen-embed">
           <div class="large-12 columns">
-            <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= tweet.listen_source.album_id %>&theme=white" width="250" height="80" frameborder="0" allowtransparency="true"></iframe>
+            <%= render partial: tweet.listen_source.source.to_s, locals: {tweet: tweet} %>
           </div>
         </div>
       <% end %>

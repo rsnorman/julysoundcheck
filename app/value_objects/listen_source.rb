@@ -9,7 +9,15 @@ class ListenSource
     url.split('/').last
   end
 
-  def spotify?
-    url.include?('spotify')
+  def source
+    if url.include?('spotify')
+      :spotify
+    elsif url.include?('bandcamp')
+      :bandcamp
+    elsif url.include?('youtube')
+      :youtube
+    else
+      :link
+    end
   end
 end

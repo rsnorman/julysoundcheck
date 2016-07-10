@@ -27,6 +27,10 @@ class JulySoundcheckTweet
     tweet_review.listen_source
   end
 
+  def album_id
+    tweet_review.album_source_id || listen_source.try(:album_id)
+  end
+
   def rating
     return tweet_review.rating if tweet_review && !tweet_review.rating.to_s.blank?
     /(?:(\d\s*[+|-]?\s*)?#julysoundcheck(\s*\d\s*[+|-]?)?)|(\d\s*[+|-]?)$/i.match(review_text) do |matches|

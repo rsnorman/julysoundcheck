@@ -11,5 +11,6 @@ module Julysoundcheck
     # add custom validators path
     config.autoload_paths += %W["#{config.root}/app/value_objects"]
     config.autoload_paths += %W["#{config.root}/app/presenters"]
+    config.autoload_paths += %W["#{config.root}/app/services"]
   end
 end
