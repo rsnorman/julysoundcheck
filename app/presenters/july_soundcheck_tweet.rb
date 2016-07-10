@@ -3,7 +3,7 @@ class JulySoundcheckTweet
   attr_accessor :review_tweet
 
   delegate :id, :in_reply_to_status_id, :user, :text, :created_at, to: :tweet
-  delegate :artist, :album, to: :tweet_review, allow_nil: true
+  delegate :artist, :album, :listen_url, to: :tweet_review, allow_nil: true
 
   def initialize(tweet, tweet_review)
     @tweet = tweet
