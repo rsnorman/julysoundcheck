@@ -1,0 +1,19 @@
+.listen-embed {
+  margin-top: 5px;
+
+  iframe {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-device-width: 720px), only screen and (max-width: 720px) {
+  .listen-embed iframe {
+      width: 75%;
+  }
+}
+
+@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+  .listen-embed iframe {
+      width: 100%;
+  }
+}
