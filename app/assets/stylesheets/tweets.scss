@@ -23,17 +23,24 @@
 .twitter-name {
   float: left;
   margin-right: 10px;
+  font-weight: bold;
+  font-size: 1.05em;
 }
 .twitter-username {
   float: left;
   color: $color-primary-4;
 }
 
+.tweet-text {
+  color: #636363;
+}
+
 .review-text {
   margin-top: 5px;
   padding-top: 5px;
   position: relative;
-  border-top: 1px dotted $color-primary-2
+  border-top: 1px dotted $color-primary-2;
+  color: #636363;
 }
 
 .reviewed-on {
@@ -44,13 +51,10 @@
   color: $color-primary-3;
 }
 
-.review-details {
-  margin-top: 6px;
+.review-rating {
+  margin-top: 4px;
 }
-.album-details {
-  float: left;
-  margin-right: 10px;
-}
+
 .listen-embed {
   margin-top: 5px;
 }

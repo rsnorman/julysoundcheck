@@ -14,6 +14,9 @@ class TweetsController < ApplicationController
     tweets = {}
     july_soundcheck_tweets.each do |tweet|
       if tweets[tweet.in_reply_to_status_id]
+        if tweets[tweet.in_reply_to_status_id].tweet_review.nil?
+          tweets[tweet.in_reply_to_status_id] = JulySoundcheckTweet.new(tweets[tweet.in_reply_to_status_id].tweet, @tweet_reviews[tweet.id])
+        end
         tweets[tweet.in_reply_to_status_id].review_tweet = tweet
       else
         tweets[tweet.id] = JulySoundcheckTweet.new(tweet, @tweet_reviews[tweet.id])

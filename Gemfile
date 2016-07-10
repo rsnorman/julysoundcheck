@@ -41,6 +41,8 @@ gem 'rspotify'
 
 gem 'nokogiri'
 
+gem 'google_drive'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
