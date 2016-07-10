@@ -9,6 +9,8 @@ class AlbumIdFetcher
       spotify_album_id
     when :bandcamp
       bandcamp_album_id
+    when :youtube
+      youtube_album_id
     else
       nil
     end
@@ -27,6 +29,10 @@ class AlbumIdFetcher
 
   def spotify_album_id
     url.split('/').last
+  end
+
+  def youtube_album_id
+    url.split('/').last.split('=').last
   end
 
   def bandcamp_album_id
