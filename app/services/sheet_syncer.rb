@@ -14,9 +14,19 @@ class SheetSyncer
     recommended_by: 10
   }.freeze
 
-  SHEET_KEY = '1mKhox0CVtxfyzYG_vqDe7wD6EaX0oS6lyZpjVBR9cDk'.freeze
+  SHEET_KEY = ENV['GOOGLE_SHEET_KEY'].freeze
 
   GOOGLE_DRIVE_CREDS_FILEPATH = './config/google_drive.json'.freeze
+
+  GOOGLE_DRIVE_CREDS = {
+    "client_id": ENV['GOOGLE_CLIENT_ID'],
+    "client_secret": ENV['GOOGLE_CLIENT_SECRET'],
+    "scope": [
+      "https://www.googleapis.com/auth/drive",
+      "https://spreadsheets.google.com/feeds/"
+    ],
+    "refresh_token": ENV['GOOGLE_REFRESH_TOKEN']
+  }
 
   def initialize(tweet_reviews = TweetReview.all)
     @tweet_reviews = tweet_reviews
@@ -76,6 +86,15 @@ class SheetSyncer
   end
 
   def session
-    @session ||= GoogleDrive.saved_session(GOOGLE_DRIVE_CREDS_FILEPATH)
+    @session ||= GoogleDrive.saved_session(google_creds_filepath)
+  end
+
+  def google_creds_filepath
+    unless File.exists?(GOOGLE_DRIVE_CREDS_FILEPATH)
+      File.open(GOOGLE_DRIVE_CREDS_FILEPATH, 'wb') do |f|
+        f << GOOGLE_DRIVE_CREDS.to_json
+      end
+    end
+    GOOGLE_DRIVE_CREDS_FILEPATH
   end
 end
