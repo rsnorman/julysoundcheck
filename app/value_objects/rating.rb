@@ -1,5 +1,5 @@
 class Rating
-  RATINGS = {
+  SCORES = {
     '0'  => 0,
     '1-' => 1,
     '1'  => 2,
@@ -27,6 +27,10 @@ class Rating
 
   attr_reader :value
 
+  def self.from_score(score)
+    self.new(SCORES[score])
+  end
+
   def initialize(value)
     @value = value
   end
@@ -36,7 +40,7 @@ class Rating
   end
 
   def short_description
-    RATINGS.key(@value)
+    SCORES.key(@value)
   end
 
   def description
