@@ -1,0 +1,8 @@
+<div id="page_title" class="row">
+  <div class="large-12 columns">
+    <h2>@<%= params[:screen_name] %> Tweets</h2>
+  </div>
+</div>
+<% @tweets.each do |tweet| %>
+  <%= render partial: 'tweets/tweet', locals: {tweet: tweet} %>
+<% end %>

@@ -3,12 +3,12 @@
 header {
   background-color: $color-primary-4;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #fff;
-  padding: 0 18px;
+  padding: 0 33px;
 
   h1 {
-    font-family: 'Londrina Solid', cursive;
+    font-family: 'Londrina Solid', serif;
     font-size: 32px;
     float: left;
 
@@ -31,6 +31,7 @@ header {
   button {
     font-weight: bold;
     padding: 10px;
+    padding-right: 0;
   }
 }
 

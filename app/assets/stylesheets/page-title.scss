@@ -1,0 +1,11 @@
+@import 'variables';
+
+#page_title {
+  margin-bottom: 10px;
+
+  h2 {
+    font-size: 1.8em;
+    font-family: 'Londrina Solid', serif;
+    color: $color-primary-4;
+  }
+}

@@ -10,7 +10,7 @@ a {
     background: none;
   }
 
-  &:visited, &:active {
+  &:visited, &:active, &:focus {
     outline: none;
     color: $color-primary-4;
     background: none;
