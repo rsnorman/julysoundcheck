@@ -21,6 +21,10 @@ module SheetSync
           @worksheet.value(row_index, column_index)
         end
       end
+
+      define_method "#{attr}=" do |value|
+        @worksheet.set_value(row_index, column_index, value)
+      end
     end
 
     attr_reader :row_index

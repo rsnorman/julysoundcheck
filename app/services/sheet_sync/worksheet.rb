@@ -14,6 +14,8 @@ module SheetSync
       "refresh_token": ENV['GOOGLE_REFRESH_TOKEN']
     }
 
+    delegate :save, to: :@sheet
+
     def initialize(sheet_key: SHEET_KEY)
       @sheet_key = sheet_key
     end
@@ -37,10 +39,18 @@ module SheetSync
       @sheet.input_value(row_index, column_index)
     end
 
+    def set_value(row_index, column_index, value)
+      @sheet[row_index, column_index] = value
+    end
+
+    def build_row
+      SheetRow.new(self, sheet.num_rows + 1)
+    end
+
     private
 
     def sheet
-      @sheet ||= session.spreadsheet_by_key(SHEET_KEY).worksheets[0]
+      @sheet ||= session.spreadsheet_by_key(@sheet_key).worksheets[0]
     end
 
     def session
