@@ -13,7 +13,7 @@ module SheetSync
       row.album = tweet_review.album
       row.source = "=HYPERLINK(\"#{tweet_review.listen_url}\",\"#{tweet_review.listen_source.source.to_s.titleize}\")"
       row.tweet = "=HYPERLINK(\"#{tweet_link(tweet_review)}\", \"#{tweet_text(tweet_review)}\")"
-      row.reviewer = reviewer(tweet_review)
+      row.reviewer = reviewer(tweet_review) if row.reviewer.blank?
       row.date_reviewed = tweet_review.created_at.strftime('%b/%e/%Y')
       row.rating = tweet_review.rating.short_description
       worksheet.save
@@ -29,7 +29,7 @@ module SheetSync
     end
 
     def tweet_text(tweet_review)
-      tweet_for(tweet_review.tweet_id).text
+      tweet_for(tweet_review.tweet_id).text.gsub('"', '""')
     end
 
     def tweet_for(tweet_id)
