@@ -2,6 +2,10 @@ module SheetSync
   class Uploader
     attr_reader :worksheet
 
+    def self.upload(tweet_review)
+      new.upload(tweet_review)
+    end
+
     def initialize(worksheet = Worksheet.new)
       @worksheet = worksheet
       @twitter_client = twitter_client

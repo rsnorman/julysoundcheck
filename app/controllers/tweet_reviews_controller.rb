@@ -53,8 +53,7 @@ class TweetReviewsController < ApplicationController
   end
 
   def sync_tweet_review
-    SheetSync::Uploader.new(SheetSync::Worksheet.new(sheet_key: '1R1VPKKe7bAmfP5wk-pjmok2Birfh3p7iiyt1Mmy0aJY'))
-      .upload(@tweet_review)
+    SheetSync::Uploader.upload(@tweet_review)
   end
 
   def sync?
