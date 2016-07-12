@@ -8,7 +8,7 @@ module SheetSync
     end
 
     def upload(tweet_review)
-      row = worksheet.build_row
+      row = review_row_for(tweet_review) || worksheet.build_row
       row.artist = tweet_review.artist
       row.album = tweet_review.album
       row.source = "=HYPERLINK(\"#{tweet_review.listen_url}\",\"#{tweet_review.listen_source.source.to_s.titleize}\")"
@@ -17,6 +17,10 @@ module SheetSync
       row.date_reviewed = tweet_review.created_at.strftime('%b/%e/%Y')
       row.rating = tweet_review.rating.short_description
       worksheet.save
+    end
+
+    def review_row_for(tweet_review)
+      ReviewRowFinder.new(worksheet).find(tweet_review)
     end
 
     def tweet_link(tweet_review)
