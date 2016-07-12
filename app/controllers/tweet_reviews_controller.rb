@@ -8,17 +8,25 @@ class TweetReviewsController < ApplicationController
 
   def create
     @tweet_review = TweetReview.create(tweet_review_params)
+    sync_tweet_review if sync?
     Rails.cache.clear
-    redirect_to root_path, notice: 'Tweet updated with review'
+    redirect_to root_path, notice: notice_message
   end
 
   def update
     @tweet_review.update(tweet_review_params)
+    sync_tweet_review if sync?
     Rails.cache.clear
-    redirect_to root_path, notice: 'Tweet updated with review'
+    redirect_to root_path, notice: notice_message
   end
 
   private
+
+  def notice_message
+    message = 'Tweet updated with review'
+    message += ' and synced to spreadsheet' if sync?
+    message
+  end
 
   def set_tweet
     @tweet = JulySoundcheckTweet.new(tweet, @tweet_review)
@@ -42,5 +50,13 @@ class TweetReviewsController < ApplicationController
     params
       .require(:tweet_review)
       .permit(:tweet_id, :rating, :artist, :album, :listen_url)
+  end
+
+  def sync_tweet_review
+    SheetSync::Uploader.upload(@tweet_review)
+  end
+
+  def sync?
+    params.require(:tweet_review).require(:sync) == 'true'
   end
 end

@@ -63,9 +63,7 @@
     return artist.length < 3 && album.length < 3;
   }
 
-  document.addEventListener('turbolinks:load', function() {
-    console.log('page load');
-
+  doc.addEventListener('turbolinks:load', function() {
     if (doc.getElementsByClassName('edit_tweet_review').length === 0 && doc.getElementsByClassName('new_tweet_review').length === 0) {
       return;
     }
@@ -112,5 +110,4 @@
       search();
     });
   });
-
 })(document);

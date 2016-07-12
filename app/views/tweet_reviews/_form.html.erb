@@ -40,6 +40,7 @@
       <%= f.input :rating, collection: rating_options, prompt: "Rate the album", selected: @tweet.rating.try(:value) %>
       <%= f.input :artist %>
       <%= f.input :album %>
+      <%= hidden_field(:tweet_review, :sync, value: false) %>
       <div class="row">
         <div class="large-9 medium-9 small-7 columns">
           <%= f.input :listen_url, value: @tweet_review.listen_url %>
@@ -57,7 +58,8 @@
         </div>
         <div id="album_results"></div>
       </div>
-      <%= f.button :submit %>
+      <%= f.button :submit, "#{params[:action] == 'new' ? 'Create' : 'Update'} Tweet Review" %>
+      <%= f.button :submit, "#{params[:action] == 'new' ? 'Create' : 'Update'} Tweet Review and Sync", id: 'sync_button' %>
       <%= link_to 'Back', root_path %>
     <% end %>
   </div>
