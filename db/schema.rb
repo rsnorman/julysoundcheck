@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710001758) do
+ActiveRecord::Schema.define(version: 20160714020404) do
 
   create_table "tweet_reviews", force: :cascade do |t|
     t.string   "tweet_id"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20160710001758) do
     t.string   "album"
     t.string   "listen_url"
     t.string   "album_source_id"
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.string   "tweet_id",                    null: false
+    t.string   "screen_name",                 null: false
+    t.string   "name",                        null: false
+    t.text     "text",                        null: false
+    t.boolean  "is_review",   default: false, null: false
+    t.datetime "tweeted_at",                  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end
