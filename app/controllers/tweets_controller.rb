@@ -4,6 +4,6 @@ class TweetsController < ApplicationController
   private
 
   def set_tweets
-    @tweets = JulySoundcheckTweets.new(twitter_client: twitter_client).all
+    @tweets = JulySoundcheckTweets.all.map { |t| JulySoundcheckTweet.new(t) }
   end
 end

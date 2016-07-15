@@ -1,17 +1,17 @@
 <div class="tweet-review row">
   <div class="large-1 medium-2 small-2 columns">
-    <img class='twitter-profile-image' align="left" src="<%= tweet.user.profile_image_uri(:bigger) %>" />
+    <img class='twitter-profile-image' align="left" src="<%= tweet.profile_image_uri %>" />
   </div>
   <div class="large-11 medium-10 small-10 columns">
     <div class="tweet-title row">
       <div class="large-10 columns">
-        <div class='twitter-name'><%= tweet.user.name %></div>
+        <div class='twitter-name'><%= tweet.user_name %></div>
         <div class='twitter-username'>
-          <%= link_to "@#{tweet.user.screen_name}", reviewer_path(tweet.user.screen_name) %>
+          <%= link_to "@#{tweet.screen_name}", reviewer_path(tweet.screen_name) %>
         </div>
       </div>
       <div class="reviewed-on">
-        <%= tweet.created_at.to_date.to_formatted_s(:long_ordinal) %>
+        <%= tweet.tweeted_on.to_formatted_s(:long_ordinal) %>
       </div>
     </div>
     <div class="row">
@@ -19,7 +19,7 @@
         <div class="tweet-text">
           <%= link_recommender(remove_hashtag_and_rating(tweet.text)).html_safe %>
         </div>
-        <% if tweet.review_tweet? %>
+        <% if tweet.two_part? %>
           <div class="review-text">
             <%= link_recommender(remove_hashtag_and_rating(tweet.review_text)).html_safe %>
           </div>
@@ -49,7 +49,7 @@
           <% if tweet.review_details? %>
             <%= link_to 'Edit review details', edit_tweet_review_path(tweet.tweet_review) %>
           <% else %>
-            <%= link_to 'Add review details', new_tweet_review_path(tweet_id: tweet.tweet_id) %>
+            <%= link_to 'Add review details', new_tweet_review_path(tweet_id: tweet.twitter_status_id) %>
           <% end %>
         </div>
       </div>
