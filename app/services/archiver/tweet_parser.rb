@@ -18,7 +18,8 @@ module Archiver
         text: tweet.text,
         tweeted_at: tweet.created_at,
         in_reply_to_status_id: tweet.in_reply_to_status_id,
-        profile_image_uri: tweet.user.profile_image_uri(:bigger)
+        profile_image_uri: tweet.user.profile_image_uri(:bigger),
+        in_reply_to_tweet_id: Tweet.find_by(tweet_id: tweet.id)
       }
     end
   end
