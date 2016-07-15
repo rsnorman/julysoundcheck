@@ -1,29 +1,41 @@
 class JulySoundcheckTweet
-  attr_reader :tweet, :tweet_review
-  attr_accessor :review_tweet
+  attr_reader :tweet, :tweet_review, :reply_tweet
 
-  delegate :in_reply_to_status_id, :user, :text, :created_at, to: :tweet
+  delegate :profile_image_uri, :text, :id, to: :tweet
   delegate :artist, :album, :listen_url, to: :tweet_review, allow_nil: true
 
-  def initialize(tweet, tweet_review)
+  def initialize(tweet)
     @tweet = tweet
-    @tweet_review = tweet_review
+    @reply_tweet = tweet.reply
+    @tweet_review = tweet.tweet_review || @reply_tweet.try(:tweet_review)
   end
 
-  def tweet_id
-    review_tweet? ? review_tweet.id : tweet.id
+  def user_name
+    tweet.name
+  end
+
+  def screen_name
+    tweet.screen_name
+  end
+
+  def tweeted_on
+    tweet.tweeted_at.to_date
+  end
+
+  def tweet_status_id
+    two_part? ? reply_tweet.id : tweet.id
   end
 
   def review_details?
     !tweet_review.try(:listen_url).blank? && !artist.blank? && !album.blank?
   end
 
-  def review_tweet?
-    review_tweet
+  def two_part?
+    !!reply_tweet
   end
 
   def review_text
-    review_tweet? ? review_tweet.text : text
+    two_part? ? reply_tweet.text : text
   end
 
   def listen_source
@@ -38,7 +50,9 @@ class JulySoundcheckTweet
   def rating
     return tweet_review.rating if tweet_review && !tweet_review.rating.to_s.blank?
     /(?:(\d\s*[+|-]?\s*)?#julysoundcheck(\s*\d\s*[+|-]?)?)|(\d\s*[+|-]?)$/i.match(review_text) do |matches|
-      matches.to_a.slice(1..-1).compact.first
+      if (score = matches.to_a.slice(1..-1).compact.first)
+        Rating.from_score(score.strip)
+      end
     end
   end
 end

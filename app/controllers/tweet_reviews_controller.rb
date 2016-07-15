@@ -1,22 +1,23 @@
 class TweetReviewsController < ApplicationController
   before_action :set_tweet_review, only: [:edit, :update]
-  before_action :set_tweet, only: [:new, :edit]
+  before_action :set_tweet, only: :new
+  before_action :set_jsc_tweet, only: [:new, :edit]
 
   def new
-    @tweet_review = TweetReview.new(rating: @tweet.rating, tweet_id: tweet_id)
+    @tweet_review =
+      @tweet.build_tweet_review(rating: @jsc_tweet.rating,
+                                twitter_status_id: @tweet.tweet_id)
   end
 
   def create
     @tweet_review = TweetReview.create(tweet_review_params)
     sync_tweet_review if sync?
-    Rails.cache.clear
     redirect_to root_path, notice: notice_message
   end
 
   def update
     @tweet_review.update(tweet_review_params)
     sync_tweet_review if sync?
-    Rails.cache.clear
     redirect_to root_path, notice: notice_message
   end
 
@@ -29,27 +30,21 @@ class TweetReviewsController < ApplicationController
   end
 
   def set_tweet
-    @tweet = JulySoundcheckTweet.new(tweet, @tweet_review)
+    @tweet = Tweet.find(params[:tweet_id])
   end
 
-  def tweet
-    Rails.cache.fetch("tweet_#{tweet_id}") do
-      twitter_client.status(tweet_id)
-    end
+  def set_jsc_tweet
+    @jsc_tweet = JulySoundcheckTweet.new(@tweet || @tweet_review.tweet)
   end
 
   def set_tweet_review
     @tweet_review = TweetReview.find(params[:id])
   end
 
-  def tweet_id
-    params[:tweet_id] || @tweet_review.tweet_id
-  end
-
   def tweet_review_params
     params
       .require(:tweet_review)
-      .permit(:tweet_id, :rating, :artist, :album, :listen_url)
+      .permit(:tweet_id, :twitter_status_id, :rating, :artist, :album, :listen_url)
   end
 
   def sync_tweet_review

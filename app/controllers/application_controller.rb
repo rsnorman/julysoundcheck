@@ -14,11 +14,9 @@ class ApplicationController < ActionController::Base
   end
 
   def twitter_client
-    @tclient ||= client = Twitter::REST::Client.new do |config|
-      config.consumer_key    = ENV['TWITTER_CONSUMER_KEY']
-      config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
-      config.access_token = session['access_token']
-      config.access_token_secret = session['access_token_secret']
-    end
+    @twitter_client ||= TwitterClient.instance(
+      access_token:  session['access_token'],
+      access_secret: session['access_token_secret']
+    )
   end
 end

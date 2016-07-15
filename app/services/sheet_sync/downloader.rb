@@ -7,7 +7,7 @@ module SheetSync
     end
 
     def initialize(tweet_reviews: TweetReview.all, worksheet: Worksheet.new)
-      @tweet_reviews = tweet_reviews
+      @tweet_reviews = tweet_reviews.includes(:tweet)
       @worksheet = worksheet
       @existing_reviews ||= {}
     end
@@ -34,8 +34,7 @@ module SheetSync
     end
 
     def tweet_review_for(review_attributes)
-      @existing_reviews[review_attributes[:tweet_id]] ||=
-        @tweet_reviews.find_by(tweet_id: review_attributes[:tweet_id])
+      review_attributes[:tweet].tweet_review
     end
 
     def syncable?(row)
@@ -43,12 +42,14 @@ module SheetSync
     end
 
     def parse_review(row)
+      tweet_id = parse_tweet_id(row.tweet(with_formula: true))
       {
         artist: row.artist,
         album: row.album,
         listen_url: parse_link(row.source(with_formula: true)),
-        tweet_id: parse_tweet_id(row.tweet(with_formula: true)),
-        rating: Rating.from_score(row.rating).value
+        twitter_status_id: tweet_id,
+        rating: Rating.from_score(row.rating).value,
+        tweet: Tweet.find_by(tweet_id: tweet_id)
       }
     end
 
@@ -57,7 +58,7 @@ module SheetSync
     end
 
     def parse_tweet_id(cell_formula)
-      parse_link(cell_formula).split('/').last
+      parse_link(cell_formula).split('/').last.split('?').first
     end
   end
 end
