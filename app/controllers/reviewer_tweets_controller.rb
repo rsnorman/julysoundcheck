@@ -1,6 +1,7 @@
 class ReviewerTweetsController < ApplicationController
   before_action :set_screen_name, only: :index
   before_action :set_tweets, only: :index
+  before_action :set_jsc_tweets, only: :index
 
   private
 
@@ -10,8 +11,10 @@ class ReviewerTweetsController < ApplicationController
 
   def set_tweets
     @tweets = JulySoundcheckTweets
-      .new(Tweet.where(screen_name: @screen_name))
-      .all
-      .map { |t| JulySoundcheckTweet.new(t) }
+      .new(Tweet.where(screen_name: @screen_name).page(params[:page])).all
+  end
+
+  def set_jsc_tweets
+    @jsc_tweets = @tweets.map { |t| JulySoundcheckTweet.new(t) }
   end
 end

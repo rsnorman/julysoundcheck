@@ -1,0 +1,16 @@
+@import 'variables';
+
+.pagination {
+  a {
+    transition: background-color 0.2s;
+  }
+  .current {
+    background-color: $color-primary-4;
+  }
+  a {
+    &:hover {
+      text-decoration: none;
+      background-color: $color-primary-2;
+    }
+  }
+}
