@@ -6,8 +6,8 @@ class JulySoundcheckTweet
 
   def initialize(tweet)
     @tweet = tweet
-    @tweet_review = tweet.tweet_review
     @reply_tweet = tweet.reply
+    @tweet_review = tweet.tweet_review || @reply_tweet.try(:tweet_review)
   end
 
   def user_name

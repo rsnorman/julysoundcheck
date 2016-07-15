@@ -10,7 +10,7 @@ module Archiver
     end
 
     def archive
-      client.search('#julysoundcheck', since_id: since_id).map do |tweet|
+      client.search('#julysoundcheck', since_id: since_id).to_a.reverse.map do |tweet|
         Tweet.create(@parser.parse(tweet))
       end
     end

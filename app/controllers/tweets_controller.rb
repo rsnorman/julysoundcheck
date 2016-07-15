@@ -6,7 +6,9 @@ class TweetsController < ApplicationController
 
   def archive_new_tweets
     Rails.cache.fetch 'tweet-archiver', expires_in: 5.minutes do
-      Archiver::TweetArchiver.archive
+      if Archiver::TweetArchiver.archive.any?
+        SheetSync::Downloader.download
+      end
     end
   end
 
