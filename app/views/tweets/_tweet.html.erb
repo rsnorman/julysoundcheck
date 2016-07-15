@@ -49,7 +49,7 @@
           <% if tweet.review_details? %>
             <%= link_to 'Edit review details', edit_tweet_review_path(tweet.tweet_review) %>
           <% else %>
-            <%= link_to 'Add review details', new_tweet_review_path(tweet_id: tweet.twitter_status_id) %>
+            <%= link_to 'Add review details', new_tweet_tweet_review_path(tweet.id) %>
           <% end %>
         </div>
       </div>

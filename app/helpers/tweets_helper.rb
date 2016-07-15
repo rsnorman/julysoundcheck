@@ -8,7 +8,7 @@ module TweetsHelper
 
   def user_tweet?(tweet)
     return false unless twitter_user
-    tweet.user.id == twitter_user.id
+    tweet.screen_name == twitter_user.screen_name
   end
 
   def link_recommender(tweet_text)

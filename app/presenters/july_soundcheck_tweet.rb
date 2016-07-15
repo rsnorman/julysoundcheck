@@ -1,7 +1,7 @@
 class JulySoundcheckTweet
   attr_reader :tweet, :tweet_review, :reply_tweet
 
-  delegate :profile_image_uri, :text, to: :tweet
+  delegate :profile_image_uri, :text, :id, to: :tweet
   delegate :artist, :album, :listen_url, to: :tweet_review, allow_nil: true
 
   def initialize(tweet)
@@ -50,7 +50,9 @@ class JulySoundcheckTweet
   def rating
     return tweet_review.rating if tweet_review && !tweet_review.rating.to_s.blank?
     /(?:(\d\s*[+|-]?\s*)?#julysoundcheck(\s*\d\s*[+|-]?)?)|(\d\s*[+|-]?)$/i.match(review_text) do |matches|
-      matches.to_a.slice(1..-1).compact.first
+      if (score = matches.to_a.slice(1..-1).compact.first)
+        Rating.from_score(score.strip)
+      end
     end
   end
 end
