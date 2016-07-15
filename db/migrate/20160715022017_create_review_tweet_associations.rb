@@ -26,7 +26,6 @@ class CreateReviewTweetAssociations < ActiveRecord::Migration[5.0]
     end
 
     add_foreign_key :tweet_reviews, :tweets
-    add_foreign_key :tweets, :in_reply_to_tweets
     add_index :tweet_reviews, :tweet_id
     add_index :tweets, :in_reply_to_tweet_id
   end
