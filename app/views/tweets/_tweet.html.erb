@@ -15,26 +15,33 @@
       </div>
     </div>
     <div class="row">
-      <div class="large-12 columns">
-        <div class="tweet-text">
-          <%= link_recommender(remove_hashtag_and_rating(tweet.text)).html_safe %>
+      <div class="review large-12 columns">
+        <div class="review-text-container <%= 'no-embed' unless tweet.listen_source %>">
+          <% if tweet.two_part? %>
+            <p class="tweet-text">
+              <%= link_recommender(remove_hashtag_and_rating(tweet.text)).html_safe %>
+            </p>
+            <% if tweet.rating %>
+              <div class='review-rating'>
+                <%= tweet.rating %>
+              </div>
+            <% end %>
+            <p class="tweet-reply">
+              <%= link_recommender(remove_hashtag_and_rating(tweet.review_text)).html_safe %>
+            </p>
+          <% else %>
+          <% if tweet.rating %>
+            <div class='review-rating'>
+              <%= tweet.rating %>
+            </div>
+          <% end %>
+            <p class="tweet-text">
+              <%= link_recommender(remove_hashtag_and_rating(tweet.text)).html_safe %>
+            </p>
+          <% end %>
         </div>
-        <% if tweet.two_part? %>
-          <div class="review-text">
-            <%= link_recommender(remove_hashtag_and_rating(tweet.review_text)).html_safe %>
-          </div>
-        <% end %>
       </div>
     </div>
-
-    <% if tweet.rating %>
-      <div class="review-rating row">
-        <div class="large-12 columns">
-          <strong>Rating:</strong>
-          <%= tweet.rating %>
-        </div>
-      </div>
-    <% end %>
 
     <% if tweet.listen_source %>
       <div class="row listen-embed">
