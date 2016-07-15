@@ -1,4 +1,9 @@
 <% @jsc_tweets.each do |tweet| %>
   <%= render partial: 'tweet', locals: {tweet: tweet} %>
 <% end %>
-<%= paginate @tweets %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= paginate @tweets %>
+  </div>
+</div>
