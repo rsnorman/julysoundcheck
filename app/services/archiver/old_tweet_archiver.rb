@@ -2,6 +2,10 @@ module Archiver
   class OldTweetArchiver
     DEFAULT_TWEETS_FILEPATH = './db/old_tweets.txt'.freeze
 
+    def self.archive
+      new.archive
+    end
+
     def initialize(archived_tweets: Tweet.all,
                    repo_filepath: DEFAULT_TWEETS_FILEPATH,
                    parser: TweetParser)
