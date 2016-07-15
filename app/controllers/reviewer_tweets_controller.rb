@@ -9,7 +9,9 @@ class ReviewerTweetsController < ApplicationController
   end
 
   def set_tweets
-    @tweets = JulySoundcheckTweets.new(reviewer: params[:screen_name],
-                                       twitter_client: twitter_client).all
+    @tweets = JulySoundcheckTweets
+      .new(Tweet.where(screen_name: @screen_name))
+      .all
+      .map { |t| JulySoundcheckTweet.new(t) }
   end
 end
