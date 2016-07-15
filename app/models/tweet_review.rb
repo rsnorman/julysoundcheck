@@ -1,4 +1,6 @@
 class TweetReview < ApplicationRecord
+  belongs_to :tweet
+
   before_save :set_album_id
 
   def rating
