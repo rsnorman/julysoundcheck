@@ -35,24 +35,12 @@
   color: #636363;
 }
 
-.review-text {
-  margin-top: 5px;
-  padding-top: 5px;
-  position: relative;
-  border-top: 1px dotted $color-primary-2;
-  color: #636363;
-}
-
 .reviewed-on {
   position: absolute;
   right: 10px;
   top: 5px;
   text-align: right;
   color: $color-primary-3;
-}
-
-.review-rating {
-  margin-top: 4px;
 }
 
 @media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
