@@ -53,7 +53,7 @@ module SheetSync
         twitter_status_id: tweet_id,
         rating: Rating.from_score(row.rating).value,
         tweet: Tweet.find_by(tweet_id: tweet_id)
-      }
+      }.keep_if { |_attr_name, attr_value| !attr_value.blank? }
     end
 
     def parse_link(cell_formula)
