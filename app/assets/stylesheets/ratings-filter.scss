@@ -1,0 +1,12 @@
+@import 'variables';
+
+#ratings_filter {
+  margin-bottom: 15px;
+
+  .button {
+    margin-right: 0;
+  }
+}
+.dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+  border-color: $color-primary-2 transparent transparent;;
+}

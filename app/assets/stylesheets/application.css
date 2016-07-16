@@ -11,7 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
- *= require foundation_and_overrides
+ *= require foundation.min
  *= require scaffolds
  *= require main
  *= require_tree .

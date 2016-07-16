@@ -16,6 +16,7 @@ class TweetsController < ApplicationController
   def set_tweets
     @tweets = JulySoundcheckTweets
       .new(Tweet.page(params[:page]))
+      .rated(params[:rating])
       .all
   end
 
