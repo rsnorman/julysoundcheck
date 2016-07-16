@@ -1,32 +1,30 @@
-<div class="unclaimed-tweet row">
-  <div class="large-12 columns">
-    <div class="tweet-review row">
-      <div class="large-1 medium-2 small-2 columns">
-        <img class='twitter-profile-image' align="left" src="<%= @jsc_tweet.profile_image_uri %>" />
-      </div>
-      <div class="large-11 medium-10 small-10 columns">
-        <div class="row">
-          <div class="large-10 columns">
-            <div class='twitter-name'><%= @jsc_tweet.user_name %></div>
-            <div class='twitter-username'>@<%= @jsc_tweet.screen_name %></div>
-          </div>
-          <div class="reviewed-on">
-            <%= @jsc_tweet.tweeted_on.to_formatted_s(:long_ordinal) %>
-          </div>
+<div class="tweet-review row">
+  <div class="large-1 medium-2 small-2 columns">
+    <img class='twitter-profile-image' align="left" src="<%= @jsc_tweet.profile_image_uri %>" />
+  </div>
+  <div class="large-11 medium-10 small-10 columns">
+    <div class="tweet-title row">
+      <div class="large-10 columns">
+        <div class='twitter-name'><%= @jsc_tweet.user_name %></div>
+        <div class='twitter-username'>
+          <%= link_to "@#{@jsc_tweet.screen_name}", reviewer_path(@jsc_tweet.screen_name) %>
         </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <div class="tweet-text">
-              <%= remove_hashtag_and_rating(@jsc_tweet.text).html_safe %>
-            </div>
+      </div>
+      <div class="reviewed-on">
+        <%= @jsc_tweet.tweeted_on.to_formatted_s(:long_ordinal) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="review large-12 columns">
+        <div class="review-text-container <%= 'no-embed' unless @jsc_tweet.listen_source %>">
+            <p class="tweet-text">
+              <%= link_recommender(remove_hashtag_and_rating(@jsc_tweet.text)).html_safe %>
+            </p>
             <% if @jsc_tweet.two_part? %>
-              <div class="review-text">
-                <div class="vertical-line"></div>
-                <div class="horizontal-line"></div>
-                <%= remove_hashtag_and_rating(@jsc_tweet.review_text).html_safe %>
-              </div>
+              <p class="tweet-reply">
+                <%= link_recommender(remove_hashtag_and_rating(@jsc_tweet.review_text)).html_safe %>
+              </p>
             <% end %>
-          </div>
         </div>
       </div>
     </div>
