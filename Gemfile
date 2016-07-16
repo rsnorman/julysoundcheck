@@ -34,7 +34,6 @@ gem 'twitter'
 gem 'omniauth'
 gem 'omniauth-twitter'
 
-gem 'foundation-rails', '~> 6.2', '>= 6.2.3.0'
 gem 'simple_form'
 
 gem 'rspotify'

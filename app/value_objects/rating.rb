@@ -10,7 +10,7 @@ class Rating
     '3-' => 7,
     '3'  => 8,
     '3+' => 9
-  }
+  }.freeze
 
   DESCRIPTIONS = {
     0 => 'Unlistenable',
@@ -23,12 +23,23 @@ class Rating
     7 => 'Almost essential',
     8 => 'Essential',
     9 => 'AOTM contender'
+  }.freeze
+
+  SCORE_GROUPS = {
+    0 => 'Unlistenable',
+    1 => 'Listen Once',
+    2 => 'Multiple Listens',
+    3 => 'Essential'
   }
 
   attr_reader :value
 
   def self.from_score(score)
     self.new(SCORES[score])
+  end
+
+  def self.values_from_score(score_group)
+    SCORES.dup.keep_if { |score, value| score[0] == score_group }.values
   end
 
   def initialize(value)
