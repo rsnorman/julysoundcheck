@@ -50,7 +50,7 @@
         </div>
       </div>
     <% end %>
-    <% if user_tweet?(tweet) %>
+    <% if can_edit?(tweet) %>
       <div class="row">
         <div class="large-12 columns">
           <% if tweet.review_details? %>
