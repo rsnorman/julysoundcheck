@@ -6,8 +6,9 @@ module TweetsHelper
       .gsub(/(\d\s*[+|-]?)$/, '')
   end
 
-  def user_tweet?(tweet)
+  def can_edit?(tweet)
     return false unless twitter_user
+    return true if twitter_user.screen_name == ENV['ADMIN_TWITTER_SCREEN_NAME']
     tweet.screen_name == twitter_user.screen_name
   end
 
