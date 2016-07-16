@@ -30,7 +30,9 @@ module SheetSync
 
     def resync_review?(review_attributes)
       tweet_review = tweet_review_for(review_attributes)
-      tweet_review.nil? || tweet_review.rating.value != review_attributes[:rating]
+      tweet_review.nil? ||
+        tweet_review.rating.value != review_attributes[:rating] ||
+        tweet_review.genre.blank?
     end
 
     def tweet_review_for(review_attributes)
@@ -46,6 +48,7 @@ module SheetSync
       {
         artist: row.artist,
         album: row.album,
+        genre: row.genre,
         listen_url: parse_link(row.source(with_formula: true)),
         twitter_status_id: tweet_id,
         rating: Rating.from_score(row.rating).value,

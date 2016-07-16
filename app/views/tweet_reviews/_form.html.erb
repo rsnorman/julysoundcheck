@@ -41,6 +41,7 @@
       <%= f.input :rating, collection: rating_options, prompt: "Rate the album", selected: @jsc_tweet.rating.try(:value) %>
       <%= f.input :artist %>
       <%= f.input :album %>
+      <%= f.input :genre %>
       <%= hidden_field(:tweet_review, :sync, value: false) %>
       <div class="row">
         <div class="large-9 medium-9 small-7 columns">
