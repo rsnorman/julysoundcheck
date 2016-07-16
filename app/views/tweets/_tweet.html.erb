@@ -43,6 +43,14 @@
       </div>
     </div>
 
+    <% if tweet.genre %>
+      <div class="row genre">
+        <div class="large-12 columns">
+          <em><%= tweet.genre %></em>
+        </div>
+      </div>
+    <% end %>
+
     <% if tweet.listen_source %>
       <div class="row listen-embed">
         <div class="large-12 columns">
