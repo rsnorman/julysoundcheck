@@ -29,6 +29,10 @@ class AlbumIdFetcher
     @listen_source.url
   end
 
+  def spotify_album_id
+    url.split('/').last
+  end
+
   def youtube_album_id
     if playlist?
       url.split('v=').last.gsub('&list=', '?list=')
