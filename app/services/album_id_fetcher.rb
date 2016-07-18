@@ -11,6 +11,8 @@ class AlbumIdFetcher
       bandcamp_album_id
     when :youtube
       youtube_album_id
+    when :soundcloud
+      soundcloud_album_id
     else
       nil
     end
@@ -27,10 +29,6 @@ class AlbumIdFetcher
     @listen_source.url
   end
 
-  def spotify_album_id
-    url.split('/').last
-  end
-
   def youtube_album_id
     if playlist?
       url.split('v=').last.gsub('&list=', '?list=')
@@ -42,6 +40,11 @@ class AlbumIdFetcher
   def bandcamp_album_id
     page = Nokogiri::HTML(open(url))
     page.children.last.text.strip.split(' ').last
+  end
+
+  def soundcloud_album_id
+    page = Nokogiri::HTML(open(url))
+    page.css('[property="twitter:app:url:googleplay"]').attr('content').text.split(':').last
   end
 
   def playlist?

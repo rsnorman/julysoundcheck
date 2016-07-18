@@ -16,6 +16,8 @@ class ListenSource
       :bandcamp
     elsif url.include?('youtube')
       :youtube
+    elsif url.include?('soundcloud')
+      :soundcloud
     else
       :link
     end
