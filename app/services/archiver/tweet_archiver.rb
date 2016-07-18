@@ -11,7 +11,7 @@ module Archiver
 
     def archive
       client.search('#julysoundcheck', since_id: since_id).to_a.reverse.map do |tweet|
-        Tweet.create(@parser.parse(tweet))
+        Tweet.create(@parser.parse(tweet)) unless tweet.retweet?
       end
     end
 
