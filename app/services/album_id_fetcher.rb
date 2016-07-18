@@ -32,11 +32,19 @@ class AlbumIdFetcher
   end
 
   def youtube_album_id
-    url.split('/').last.split('=').last
+    if playlist?
+      url.split('v=').last.gsub('&list=', '?list=')
+    else
+      url.split('/').last.split('=').last
+    end
   end
 
   def bandcamp_album_id
     page = Nokogiri::HTML(open(url))
     page.children.last.text.strip.split(' ').last
+  end
+
+  def playlist?
+    url.include?('playlist') || url.include?('&list=')
   end
 end

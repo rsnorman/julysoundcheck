@@ -5,13 +5,13 @@ class ListenSource
     @url = url
   end
 
-  def album_id
-    url.split('/').last
-  end
-
   def source
     if url.include?('spotify')
-      :spotify
+      if playlist?
+        :link
+      else
+        :spotify
+      end
     elsif url.include?('bandcamp')
       :bandcamp
     elsif url.include?('youtube')
@@ -19,5 +19,9 @@ class ListenSource
     else
       :link
     end
+  end
+
+  def playlist?
+    url.include?('playlist') || url.include?('&list=')
   end
 end
