@@ -1,28 +1,32 @@
 class Rating
   SCORES = {
-    '0'  => 0,
-    '1-' => 1,
-    '1'  => 2,
-    '1+' => 3,
-    '2-' => 4,
-    '2'  => 5,
-    '2+' => 6,
-    '3-' => 7,
-    '3'  => 8,
-    '3+' => 9
+    '0-' => 0,
+    '0'  => 1,
+    '0+' => 2,
+    '1-' => 3,
+    '1'  => 4,
+    '1+' => 5,
+    '2-' => 6,
+    '2'  => 7,
+    '2+' => 8,
+    '3-' => 9,
+    '3'  => 10,
+    '3+' => 11
   }.freeze
 
   DESCRIPTIONS = {
-    0 => 'Unlistenable',
-    1 => 'Barely listenable',
-    2 => 'Only worth a listen',
-    3 => 'Probably listen only once',
-    4 => 'Probably listen more than once',
-    5 => 'Listen multiple times',
-    6 => 'Definitely listen multiple times',
-    7 => 'Almost essential',
-    8 => 'Essential',
-    9 => 'AOTM contender'
+    0  => 'Painful',
+    1  => 'Unlistenable',
+    2  => 'Almost unlistenable',
+    3  => 'Barely listenable',
+    4  => 'Only worth a listen',
+    5  => 'Probably listen only once',
+    6  => 'Probably listen more than once',
+    7  => 'Listen multiple times',
+    8  => 'Definitely listen multiple times',
+    9  => 'Almost essential',
+    10 => 'Essential',
+    11 => 'AOTM contender'
   }.freeze
 
   SCORE_GROUPS = {
