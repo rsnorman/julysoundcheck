@@ -32,6 +32,7 @@ module SheetSync
       tweet_review = tweet_review_for(review_attributes)
       tweet_review.nil? ||
         tweet_review.rating.value != review_attributes[:rating] ||
+        tweet_review.listen_url.blank? ||
         tweet_review.genre.blank?
     end
 
