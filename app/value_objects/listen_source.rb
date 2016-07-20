@@ -23,6 +23,8 @@ class ListenSource
     end
   end
 
+  private
+
   def playlist?
     url.include?('playlist') || url.include?('&list=')
   end

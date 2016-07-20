@@ -34,7 +34,7 @@ class Rating
     1 => 'Listen Once',
     2 => 'Multiple Listens',
     3 => 'Essential'
-  }
+  }.freeze
 
   attr_reader :value
 
