@@ -33,7 +33,9 @@ module SheetSync
     end
 
     def tweet_text(tweet_review)
-      tweet_review.tweet.text.gsub('"', '""')
+      tweet = tweet_review.tweet
+      tweet = tweet.reply if tweet.reply
+      tweet.text.gsub('"', '""')
     end
 
     def reviewer(tweet_review)
