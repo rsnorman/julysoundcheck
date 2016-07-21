@@ -12,6 +12,7 @@ module Julysoundcheck
     config.autoload_paths += %W["#{config.root}/app/value_objects"]
     config.autoload_paths += %W["#{config.root}/app/presenters"]
     config.autoload_paths += %W["#{config.root}/app/services"]
+    config.autoload_paths += %W["#{config.root}/app/form_objects"]
 
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   get '/auth/twitter/callback', to: 'sessions#create', as: 'callback'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
+  get '/profile', to: 'users#edit'
+
+  resources :users, only: :update
 
   resources :albums, only: :index
 

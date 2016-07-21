@@ -17,18 +17,33 @@
 
     <header>
       <div class="row">
-        <div class="large-8 medium-10 columns">
-          <h1><a href="/">JulySoundcheck</a></h1>
-          <div id="twitter_auth">
-            <% if twitter_user %>
-              <%= form_tag '/signout', method: 'delete' do %>
-                <button  id="sign_out">Sign Out</button>
-              <% end %>
-            <% else %>
-              <%= form_tag '/auth/twitter', method: 'get' do %>
-                <button id="sign_in">Sign In</button>
-              <% end %>
-            <% end %>
+        <div class="large-8 medium-10 columns top-bar">
+          <div class="top-bar-title">
+            <h1><a href="/">JulySoundcheck</a></h1>
+          </div>
+          <div id="title_bar_menu">
+            <div class="top-bar-right">
+              <ul class="dropdown menu" data-dropdown-menu>
+                <% if twitter_user %>
+                  <li>
+                    <a href="/profile">Profile</a>
+                    <ul class="menu vertical">
+                      <li>
+                        <%= form_tag '/signout', method: 'delete' do %>
+                          <button  id="sign_out">Sign Out</button>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= form_tag '/auth/twitter', method: 'get' do %>
+                      <button id="sign_in">Sign In</button>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

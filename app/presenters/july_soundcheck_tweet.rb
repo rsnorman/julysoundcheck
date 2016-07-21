@@ -11,7 +11,7 @@ class JulySoundcheckTweet
   end
 
   def user_name
-    tweet.name
+    tweet_review.try(:user) ? tweet_review.user.name : tweet.name
   end
 
   def screen_name

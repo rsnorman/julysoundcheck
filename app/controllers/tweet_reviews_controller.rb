@@ -44,7 +44,9 @@ class TweetReviewsController < ApplicationController
   def tweet_review_params
     params
       .require(:tweet_review)
-      .permit(:tweet_id, :twitter_status_id, :rating, :artist, :album, :listen_url, :genre)
+      .permit(:tweet_id, :twitter_status_id, :rating, :artist, :album, :listen_url, :genre).tap do |p|
+        p[:user] = current_user
+      end
   end
 
   def sync_tweet_review

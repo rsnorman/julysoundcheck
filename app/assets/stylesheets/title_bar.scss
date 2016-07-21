@@ -12,7 +12,7 @@ header {
     font-size: 32px;
     float: left;
 
-    a, a:visited, a:active {
+    a, a:visited, a:active, a:focus {
       color: #ffffff;
       transition: color 0.2s;
     }
@@ -24,14 +24,27 @@ header {
   }
 }
 
-#twitter_auth {
+.top-bar, .top-bar ul {
+  background-color: $color-primary-4;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#title_bar_menu {
   float: right;
   margin-top: 10px;
 
-  button {
+  .is-dropdown-submenu {
+    min-width: 120px;
+    padding: 5px;
+    padding-right: 23px;
+    text-align: right;
+    background-color: $color-primary-3;
+  }
+
+  a, button {
+    color: #ffffff;
     font-weight: bold;
-    padding: 10px;
-    padding-right: 0;
   }
 }
 
