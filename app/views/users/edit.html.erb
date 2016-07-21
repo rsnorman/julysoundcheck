@@ -1,0 +1,15 @@
+<div  class="row">
+  <div id="page_title" class="large-12 columns">
+    <h2>Update Your Profile</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :name %>
+      <%= f.button :submit, "Update" %>
+      <%= link_to 'Back', root_path %>
+    <% end %>
+  </div>
+</div>
