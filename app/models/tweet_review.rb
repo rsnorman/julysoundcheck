@@ -1,6 +1,6 @@
 class TweetReview < ApplicationRecord
   belongs_to :tweet
-  belongs_to :user
+  belongs_to :user, required: false
 
   before_save :set_album_id
 

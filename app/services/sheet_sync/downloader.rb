@@ -37,7 +37,7 @@ module SheetSync
     end
 
     def tweet_review_for(review_attributes)
-      review_attributes[:tweet].tweet_review
+      review_attributes[:tweet].try(:tweet_review)
     end
 
     def syncable?(row)
