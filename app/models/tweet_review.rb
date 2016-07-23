@@ -1,6 +1,6 @@
 class TweetReview < ApplicationRecord
-  belongs_to :tweet
-  belongs_to :user
+  belongs_to :tweet, required: false
+  belongs_to :user, required: false
   has_one :feed_item, as: :feedable
 
   before_save :set_album_id

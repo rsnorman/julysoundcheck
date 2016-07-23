@@ -13,22 +13,22 @@ module SheetSync
 
       private
 
-      def sync(review_attributes)
+      def sync
         if tweet_review
           tweet_review.update(review_attributes)
         else
-          TweetReview.create(review_attributes)
+          user.tweet_reviews.create(review_attributes)
         end
       end
 
       def tweet_review
-        user.tweet_reviews.find(artist: review_attributes[:artist],
+        user.tweet_reviews.find_by(artist: review_attributes[:artist],
                                 album: review_attributes[:album])
       end
 
       def user
         @user ||=
-          User.find_by(name: row.reviewer) || User.new(name: row.reviewer)
+          User.find_by(name: row.reviewer) || User.create(name: row.reviewer)
       end
 
       def review_attributes
@@ -38,7 +38,8 @@ module SheetSync
           genre: row.genre,
           listen_url: parse_link(row.source(with_formula: true)),
           rating: Rating.from_score(row.rating).value,
-          text: row.review
+          text: row.review,
+          reviewed_on: Date.strptime(row.date_reviewed, '%m/%d/%Y')
         }.keep_if { |_attr_name, attr_value| !attr_value.blank? }
       end
 
