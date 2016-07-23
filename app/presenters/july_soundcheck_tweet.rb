@@ -11,11 +11,11 @@ class JulySoundcheckTweet
   end
 
   def user_name
-    tweet_review.try(:user) ? tweet_review.user.name : tweet.name
+    tweet_review.try(:user) ? tweet_review.user.name : tweet.user.name
   end
 
   def screen_name
-    tweet.screen_name
+    tweet.user.twitter_screen_name
   end
 
   def tweeted_on
