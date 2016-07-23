@@ -3,4 +3,9 @@ namespace :tweets do
   task download_old: :environment do
     Archiver::OldTweetArchiver.archive
   end
+
+  desc "Create users from tweets"
+  task create_users: :environment do
+    Archiver::TweetUserCreator.create
+  end
 end
