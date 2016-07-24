@@ -27,7 +27,7 @@ module Archiver
     end
 
     def new_tweets
-      Tweet.where("tweet_id > #{since_id}")
+      Tweet.where("tweet_id > '#{since_id}'")
     end
   end
 end
