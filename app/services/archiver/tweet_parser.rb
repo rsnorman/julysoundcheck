@@ -13,8 +13,6 @@ module Archiver
     def to_hash
       {
         tweet_id: tweet.id,
-        name: tweet.user.name,
-        screen_name: tweet.user.screen_name,
         text: tweet.text,
         tweeted_at: tweet.created_at,
         in_reply_to_status_id: tweet.in_reply_to_status_id,
