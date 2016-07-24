@@ -1,5 +1,7 @@
 module Archiver
   class TweetUserCreator
+    attr_reader :tweets
+
     def self.create
       new.create
     end
@@ -9,47 +11,20 @@ module Archiver
     end
 
     def create
-      tweet_users.each do |tweet|
-        User.create(twitter_name: tweet.name,
-                    twitter_screen_name: tweet.screen_name,
-                    twitter_id: twitter_id_for_screen_name(tweet.screen_name))
+      tweets.each do |tweet|
+        user = user_for_tweet_id(tweet.tweet_id)
+        next if User.find_by(twitter_id: user.id)
+        User.create(twitter_name: user.name,
+                    twitter_screen_name: user.screen_name,
+                    twitter_id: user.id,
+                    profile_image_uri: user.profile_image_uri)
       end
-
-      update_tweet_users
-      update_tweet_review_users
     end
 
     private
 
-    def update_tweet_users
-      @tweets.each do |tweet|
-        user = User.find_by(twitter_screen_name: tweet.screen_name)
-        tweet.update(user: user)
-      end
-    end
-
-    def update_tweet_review_users
-      TweetReview.all.each do |tweet_review|
-        next if tweet_review.tweet.nil?
-        user = User.find_by(twitter_screen_name: tweet_review.tweet.screen_name)
-        tweet_review.update(user: user)
-      end
-    end
-
-    def tweet_users
-      @tweets
-        .reject do |tweet|
-          User.exists?(twitter_screen_name: tweet.screen_name)
-        end
-        .map do |tweet|
-          {name: tweet.name, screen_name: tweet.screen_name}
-        end
-        .uniq
-        .map { |tweet_hash| OpenStruct.new(tweet_hash) }
-    end
-
-    def twitter_id_for_screen_name(screen_name)
-      TwitterClient.instance.user(screen_name).id
+    def user_for_tweet_id(twitter_id)
+      TwitterClient.instance.status(twitter_id).user
     end
   end
 end

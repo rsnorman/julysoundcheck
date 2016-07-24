@@ -15,8 +15,10 @@ module Archiver
     end
 
     def archive
-      tweets.each do |tweet|
+      tweets.map do |tweet|
         Tweet.create(@parser.parse(tweet))
+      end.tap do |new_tweets|
+        TweetUserCreator.new(new_tweets).create
       end
     end
 

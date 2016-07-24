@@ -1,21 +1,23 @@
 class JulySoundcheckTweet
-  attr_reader :tweet, :tweet_review, :reply_tweet
+  attr_reader :tweet, :tweet_review, :reply_tweet, :user
 
   delegate :profile_image_uri, :text, :id, to: :tweet
+  delegate :profile_image_uri, to: :user
   delegate :artist, :album, :listen_url, :genre, to: :tweet_review, allow_nil: true
 
   def initialize(tweet)
     @tweet = tweet
     @reply_tweet = tweet.reply
     @tweet_review = tweet.tweet_review || @reply_tweet.try(:tweet_review)
+    @user = @tweet_review ? @tweet_review.user : @tweet.user
   end
 
   def user_name
-    tweet_review.try(:user) ? tweet_review.user.name : tweet.user.name
+    user.twitter_name
   end
 
   def screen_name
-    tweet.user.twitter_screen_name
+    user.twitter_screen_name
   end
 
   def tweeted_on
