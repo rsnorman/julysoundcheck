@@ -12,18 +12,22 @@ module Archiver
 
     def create
       tweets.each do |tweet|
-        user = user_for_tweet_id(tweet.tweet_id)
-        next if User.find_by(twitter_id: user.id)
-        User.create(twitter_name: user.name,
-                    twitter_screen_name: user.screen_name,
-                    twitter_id: user.id,
-                    profile_image_uri: user.profile_image_uri)
+        tweet.update(user: user_for_tweet(tweet))
       end
     end
 
     private
 
-    def user_for_tweet_id(twitter_id)
+    def user_for_tweet(tweet)
+      twitter_user = twitter_user_for_tweet_id(tweet.tweet_id)
+      user = User.find_by(twitter_id: twitter_user.id)
+      user ||= User.create(twitter_name: twitter_user.name,
+                           twitter_screen_name: twitter_user.screen_name,
+                           twitter_id: twitter_user.id,
+                           profile_image_uri: twitter_user.profile_image_uri)
+    end
+
+    def twitter_user_for_tweet_id(twitter_id)
       TwitterClient.instance.status(twitter_id).user
     end
   end

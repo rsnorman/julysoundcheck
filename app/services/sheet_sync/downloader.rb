@@ -54,7 +54,8 @@ module SheetSync
         listen_url: parse_link(row.source(with_formula: true)),
         twitter_status_id: tweet_id,
         rating: Rating.from_score(row.rating).value,
-        tweet: tweet.try(:in_reply_to_tweet) || tweet
+        tweet: tweet.try(:in_reply_to_tweet) || tweet,
+        user: tweet.user
       }.keep_if { |_attr_name, attr_value| !attr_value.blank? }
     end
 
