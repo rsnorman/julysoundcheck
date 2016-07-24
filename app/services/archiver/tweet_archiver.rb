@@ -13,6 +13,7 @@ module Archiver
       client.search('#julysoundcheck', since_id: since_id).to_a.reverse.map do |tweet|
         Tweet.create(@parser.parse(tweet)) unless tweet.retweet?
       end
+      TweetUserCreator.new(new_tweets).create
     end
 
     private
@@ -23,6 +24,10 @@ module Archiver
 
     def client
       TwitterClient.instance
+    end
+
+    def new_tweets
+      Tweet.where("tweet_id > #{since_id}")
     end
   end
 end

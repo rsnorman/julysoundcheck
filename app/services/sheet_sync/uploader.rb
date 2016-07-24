@@ -29,7 +29,7 @@ module SheetSync
 
     def tweet_link(tweet_review)
       tweet = tweet_review.tweet
-      "https://www.twitter.com/#{tweet.screen_name}/status/#{tweet.tweet_id}"
+      "https://www.twitter.com/#{tweet.user.twitter_screen_name}/status/#{tweet.tweet_id}"
     end
 
     def tweet_text(tweet_review)
@@ -39,7 +39,7 @@ module SheetSync
     end
 
     def reviewer(tweet_review)
-      tweet_review.user ? tweet_review.user.name : tweet_review.tweet.name
+      tweet_review.user.name || tweet_review.user.twitter_name
     end
   end
 end

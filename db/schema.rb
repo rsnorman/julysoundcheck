@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723150755) do
+ActiveRecord::Schema.define(version: 20160724143210) do
 
   create_table "tweet_reviews", force: :cascade do |t|
     t.string   "twitter_status_id"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20160723150755) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "in_reply_to_status_id"
-    t.string   "profile_image_uri"
     t.integer  "in_reply_to_tweet_id"
     t.integer  "user_id"
     t.index ["in_reply_to_tweet_id"], name: "index_tweets_on_in_reply_to_tweet_id"
@@ -51,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160723150755) do
     t.integer  "sign_ins",            default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "profile_image_uri"
   end
 
 end
