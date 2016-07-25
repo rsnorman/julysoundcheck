@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :tweets, only: :index do
+  resources :tweets, only: nil do
     resources :tweet_reviews, only: :new
   end
+
   resources :tweet_reviews, only: [:new, :edit, :create, :update]
 
   get '/reviewers/:screen_name/tweets', to: 'reviewer_tweets#index', as: :reviewer
@@ -16,5 +17,5 @@ Rails.application.routes.draw do
 
   resources :albums, only: :index
 
-  root 'tweets#index'
+  root 'feed_items#index'
 end
