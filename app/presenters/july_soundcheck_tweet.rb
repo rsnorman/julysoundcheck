@@ -4,7 +4,7 @@ class JulySoundcheckTweet
   delegate :text, :id, to: :tweet
   delegate :profile_image_uri, to: :user
 
-  def initialize(tweet, feed_item)
+  def initialize(tweet, feed_item = nil)
     @tweet = tweet
     @reply_tweet = tweet.reply
     @user = @tweet.user
@@ -20,7 +20,7 @@ class JulySoundcheckTweet
   end
 
   def tweeted_on
-    feed_item.created_at.to_date
+    (feed_item ? feed_item.created_at : tweet.tweeted_at).to_date
   end
 
   def tweet_status_id
