@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724143210) do
+ActiveRecord::Schema.define(version: 20160724212312) do
+
+  create_table "feed_items", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "feedable_type"
+    t.integer  "feedable_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["feedable_type", "feedable_id"], name: "index_feed_items_on_feedable_type_and_feedable_id"
+    t.index ["user_id"], name: "index_feed_items_on_user_id"
+  end
 
   create_table "tweet_reviews", force: :cascade do |t|
     t.string   "twitter_status_id"

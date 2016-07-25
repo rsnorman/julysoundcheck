@@ -9,21 +9,21 @@
   </div>
 </div>
 
-<% @jsc_tweets.each do |tweet| %>
-  <%= render partial: 'tweets/tweet', locals: {tweet: tweet} %>
+<% @feed_items.each do |feed_item| %>
+  <%= render partial: "/feed_items/#{feed_item.feedable_type.underscore}_item", locals: feed_item_locals(feed_item) %>
 <% end %>
 
 <div class="row">
   <div class="large-12 columns">
-    <%= paginate @tweets %>
+    <%= paginate @feed_items %>
   </div>
 </div>
 
 
-<% if @tweets.empty? %>
+<% if @feed_items.empty? %>
   <div class="row">
     <div class="large-12 columns">
-      <em>No JulySoundcheck tweets yet</em>
+      <em>No JulySoundcheck reviews yet</em>
     </div>
   </div>
 <% end %>

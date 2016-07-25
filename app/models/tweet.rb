@@ -7,4 +7,8 @@ class Tweet < ApplicationRecord
   validates :tweet_id, uniqueness: true
 
   default_scope -> { order(tweeted_at: :desc) }
+
+  def reply?
+    in_reply_to_tweet_id.present?
+  end
 end

@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  resources :tweets, only: :index do
+  resources :tweets, only: nil do
     resources :tweet_reviews, only: :new
   end
+
   resources :tweet_reviews, only: [:new, :edit, :create, :update]
 
-  get '/reviewers/:screen_name/tweets', to: 'reviewer_tweets#index', as: :reviewer
+  get '/reviewers/:screen_name/feed', to: 'reviewer_feed_items#index', as: :reviewer
 
-  get '/ratings/:rating/tweets', to: 'tweets#index', as: :ratings
+  get '/ratings/:rating/reviews', to: 'reviews#index', as: :ratings
 
   get '/auth/twitter/callback', to: 'sessions#create', as: 'callback'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
@@ -16,5 +17,5 @@ Rails.application.routes.draw do
 
   resources :albums, only: :index
 
-  root 'tweets#index'
+  root 'feed_items#index'
 end

@@ -11,6 +11,7 @@ class TweetReviewsController < ApplicationController
 
   def create
     @tweet_review = TweetReview.create(tweet_review_params)
+    FeedItemCreator.new(@tweet_review).create
     sync_tweet_review if sync?
     redirect_to root_path, notice: notice_message
   end
@@ -45,7 +46,7 @@ class TweetReviewsController < ApplicationController
     params
       .require(:tweet_review)
       .permit(:tweet_id, :twitter_status_id, :rating, :artist, :album, :listen_url, :genre).tap do |p|
-        p[:user] = current_user
+        p[:user] = Tweet.find(p[:tweet_id]).user
       end
   end
 

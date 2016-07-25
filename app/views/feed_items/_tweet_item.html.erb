@@ -16,7 +16,7 @@
     </div>
     <div class="row">
       <div class="review large-12 columns">
-        <div class="review-text-container <%= 'no-embed' unless tweet.listen_source %>">
+        <div class="review-text-container no-embed">
           <% if tweet.two_part? %>
             <p class="tweet-text">
               <%= link_recommender(remove_hashtag_and_rating(tweet.text)).html_safe %>
@@ -43,29 +43,10 @@
       </div>
     </div>
 
-    <% if tweet.genre %>
-      <div class="row genre">
-        <div class="large-12 columns">
-          <em><%= tweet.genre %></em>
-        </div>
-      </div>
-    <% end %>
-
-    <% if tweet.listen_source %>
-      <div class="row listen-embed">
-        <div class="large-12 columns">
-          <%= render partial: "tweets/#{tweet.listen_source.source}", locals: {tweet: tweet} %>
-        </div>
-      </div>
-    <% end %>
     <% if can_edit?(tweet) %>
       <div class="row">
         <div class="large-12 columns">
-          <% if tweet.review_details? %>
-            <%= link_to 'Edit review details', edit_tweet_review_path(tweet.tweet_review) %>
-          <% else %>
-            <%= link_to 'Add review details', new_tweet_tweet_review_path(tweet.id) %>
-          <% end %>
+          <%= link_to 'Add review details', new_tweet_tweet_review_path(tweet.id) %>
         </div>
       </div>
     <% end %>

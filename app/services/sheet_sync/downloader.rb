@@ -15,17 +15,28 @@ module SheetSync
     def download
       worksheet.each_row do |row|
         next unless syncable?(row)
-        review_attributes = parse_review(row)
-        sync_review(review_attributes) if resync_review?(review_attributes)
+        begin
+          review_attributes = parse_review(row)
+          sync_review(review_attributes) if resync_review?(review_attributes)
+        rescue Exception => exception
+          Rollbar.error(exception, artist: row.artist, album: row.album)
+        end
       end
     end
+
+    private
 
     def sync_review(review_attributes)
       if (tweet_review = tweet_review_for(review_attributes))
         tweet_review.update(review_attributes)
       else
-        TweetReview.create(review_attributes)
+        create_tweet_review_feed_item(review_attributes)
       end
+    end
+
+    def create_tweet_review_feed_item(review_attributes)
+      tweet_review = TweetReview.create(review_attributes)
+      FeedItemCreator.new(tweet_review).create
     end
 
     def resync_review?(review_attributes)

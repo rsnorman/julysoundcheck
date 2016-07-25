@@ -1,0 +1,30 @@
+<div class="row">
+  <div id="page_title" class="large-9 medium-8 small-8 columns">
+    <% if params[:rating] %>
+      <h2>
+        <%= rating_group_description(params[:rating]) %>
+      </h2>
+    <% end %>
+  </div>
+  <div id="ratings_filter" class="columns large-3 medium-4 small-4">
+    <ul class="dropdown menu float-right" data-dropdown-menu>
+      <li>
+        <a class="small button float-right" href="javascript:;">Filter</a>
+        <ul class="menu">
+          <li><%= link_to 'None', tweets_path %></li>
+          <%= rating_group_links %>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<% @feed_items.each do |feed_item| %>
+  <%= render partial: "#{feed_item.feedable_type.underscore}_item", locals: feed_item_locals(feed_item) %>
+<% end %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= paginate @feed_items %>
+  </div>
+</div>

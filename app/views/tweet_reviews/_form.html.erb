@@ -16,7 +16,7 @@
     </div>
     <div class="row">
       <div class="review large-12 columns">
-        <div class="review-text-container <%= 'no-embed' unless @jsc_tweet.listen_source %>">
+        <div class="review-text-container">
             <p class="tweet-text">
               <%= link_recommender(remove_hashtag_and_rating(@jsc_tweet.text)).html_safe %>
             </p>

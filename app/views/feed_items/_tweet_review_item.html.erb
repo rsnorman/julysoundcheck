@@ -1,0 +1,70 @@
+<div class="tweet-review row">
+  <div class="large-1 medium-2 small-2 columns">
+    <img class='twitter-profile-image' align="left" src="<%= tweet_review.profile_image_uri %>" />
+  </div>
+  <div class="large-11 medium-10 small-10 columns">
+    <div class="tweet-title row">
+      <div class="large-10 columns">
+        <div class='twitter-name'><%= tweet_review.user_name %></div>
+        <div class='twitter-username'>
+          <%= link_to "@#{tweet_review.screen_name}", reviewer_path(tweet_review.screen_name) %>
+        </div>
+      </div>
+      <div class="reviewed-on">
+        <%= tweet_review.reviewed_on.to_formatted_s(:long_ordinal) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="review large-12 columns">
+        <div class="review-text-container <%= 'no-embed' unless tweet_review.listen_source %>">
+          <% if tweet_review.two_part? %>
+            <p class="tweet-text">
+              <%= link_recommender(remove_hashtag_and_rating(tweet_review.text)).html_safe %>
+            </p>
+            <% if tweet_review.rating %>
+              <div class='review-rating' title="<%= tweet_review.rating.description %>">
+                <%= tweet_review.rating %>
+              </div>
+            <% end %>
+            <p class="tweet-reply">
+              <%= link_recommender(remove_hashtag_and_rating(tweet_review.review_text)).html_safe %>
+            </p>
+          <% else %>
+          <% if tweet_review.rating %>
+            <div class='review-rating' title="<%= tweet_review.rating_description %>">
+              <%= tweet_review.rating %>
+            </div>
+          <% end %>
+            <p class="tweet-text">
+              <%= link_recommender(remove_hashtag_and_rating(tweet_review.text)).html_safe %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% if tweet_review.genre %>
+      <div class="row genre">
+        <div class="large-12 columns">
+          <em><%= tweet_review.genre %></em>
+        </div>
+      </div>
+    <% end %>
+
+    <% if tweet_review.listen_source %>
+      <div class="row listen-embed">
+        <div class="large-12 columns">
+          <%= render partial: "/feed_items/embeds/#{tweet_review.listen_source.source}", locals: {review: tweet_review} %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if can_edit?(tweet_review) %>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= link_to 'Edit review details', edit_tweet_review_path(tweet_review.tweet_review) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
