@@ -1,0 +1,45 @@
+<div class="tweet-review row">
+  <div class="large-1 medium-2 small-2 columns">
+    <%= image_tag 'logo-medium.png', align: 'left', class: 'twitter-profile-image' %>
+  </div>
+  <div class="large-11 medium-10 small-10 columns">
+    <div class="tweet-title row">
+      <div class="large-10 columns">
+        <div class='twitter-name'><%= review.user_name %></div>
+      </div>
+      <div class="reviewed-on">
+        <%= review.reviewed_on.to_formatted_s(:long_ordinal) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="review large-12 columns">
+        <div class="review-text-container <%= 'no-embed' unless review.listen_source %>">
+          <% if review.rating %>
+            <div class='review-rating' title="<%= review.rating_description %>">
+              <%= review.rating %>
+            </div>
+          <% end %>
+          <p class="tweet-text">
+            <%= review.text.to_s.html_safe %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <% if review.genre %>
+      <div class="row genre">
+        <div class="large-12 columns">
+          <em><%= review.genre %></em>
+        </div>
+      </div>
+    <% end %>
+
+    <% if review.listen_source %>
+      <div class="row listen-embed">
+        <div class="large-12 columns">
+          <%= render partial: "/feed_items/embeds/#{review.listen_source.source}", locals: {review: review} %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

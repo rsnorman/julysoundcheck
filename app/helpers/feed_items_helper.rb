@@ -9,6 +9,8 @@ module FeedItemsHelper
   def july_soundcheck_presenter_for(feedable_type)
     if feedable_type == 'Tweet'
       JulySoundcheckTweet
+    elsif feedable_type == 'Review'
+      JulySoundcheckReview
     else
       JulySoundcheckTweetReview
     end

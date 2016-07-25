@@ -15,7 +15,7 @@ class JulySoundcheckTweetReview
   end
 
   def user_name
-    user.twitter_name
+    user.name.blank? ? user.twitter_name : user.name
   end
 
   def screen_name
