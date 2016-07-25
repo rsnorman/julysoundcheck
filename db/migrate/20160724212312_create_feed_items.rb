@@ -16,6 +16,7 @@ class CreateFeedItems < ActiveRecord::Migration[5.0]
 
   def up
     create_table :feed_items do |t|
+      t.references :user, index: true
       t.references :feedable, polymorphic: true, index: true
       t.timestamps
     end
@@ -26,10 +27,12 @@ class CreateFeedItems < ActiveRecord::Migration[5.0]
         if tweet.tweet_review
           MigrateFeedItem.create(feedable_type: 'TweetReview',
                                  feedable_id: tweet.tweet_review.id,
+                                 user_id: tweet.user_id,
                                  created_at: tweet.reply.try(:tweeted_at) || tweet.tweeted_at)
         else
           MigrateFeedItem.create(feedable_type: 'Tweet',
                                  feedable_id: tweet.id,
+                                 user_id: tweet.user_id,
                                  created_at: tweet.tweeted_at)
         end
       end

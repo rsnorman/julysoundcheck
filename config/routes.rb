@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :tweet_reviews, only: [:new, :edit, :create, :update]
 
-  get '/reviewers/:screen_name/tweets', to: 'reviewer_tweets#index', as: :reviewer
+  get '/reviewers/:screen_name/feed', to: 'reviewer_feed_items#index', as: :reviewer
 
   get '/ratings/:rating/tweets', to: 'tweets#index', as: :ratings
 
