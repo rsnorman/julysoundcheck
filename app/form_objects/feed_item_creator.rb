@@ -9,6 +9,17 @@ class FeedItemCreator
     public_send("create_#{feedable.class.to_s.underscore}_feed_item")
   end
 
+  def create_review_feed_item
+    created_at = if feedable.created_at.to_date == feedable.reviewed_on
+      feedable.created_at
+    else
+      feedable.reviewed_on
+    end
+    FeedItem.create(feedable: feedable,
+                    created_at: created_at,
+                    user: feedable.user)
+  end
+
   def create_tweet_review_feed_item
     feed_item = FeedItem.find_by(feedable: feedable.tweet)
     feed_item ||= FeedItem.find_by(feedable: feedable.tweet.reply)

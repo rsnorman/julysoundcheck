@@ -14,15 +14,16 @@ module SheetSync
       private
 
       def sync
-        if tweet_review
-          tweet_review.update(review_attributes)
+        if review
+          review.update(review_attributes)
         else
-          user.tweet_reviews.create(review_attributes)
+          review = user.reviews.create(review_attributes)
+          FeedItemCreator.new(review).create
         end
       end
 
-      def tweet_review
-        user.tweet_reviews.find_by(artist: review_attributes[:artist],
+      def review
+        user.reviews.find_by(artist: review_attributes[:artist],
                                 album: review_attributes[:album])
       end
 
