@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get '/reviewers/:screen_name/feed', to: 'reviewer_feed_items#index', as: :reviewer
 
-  get '/ratings/:rating/tweets', to: 'tweets#index', as: :ratings
+  get '/ratings/:rating/reviews', to: 'reviews#index', as: :ratings
 
   get '/auth/twitter/callback', to: 'sessions#create', as: 'callback'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
