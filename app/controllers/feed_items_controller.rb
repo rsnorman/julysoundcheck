@@ -18,7 +18,7 @@ class FeedItemsController < ApplicationController
         SheetSync::Downloader.download
       end
     end
-  rescue StandardError => exception
-    # Capture rollbar error
+  rescue Exception => exception
+    Rollbar.error(exception)
   end
 end

@@ -18,8 +18,8 @@ module SheetSync
         begin
           review_attributes = parse_review(row)
           sync_review(review_attributes) if resync_review?(review_attributes)
-        rescue StandardError => exception
-          # Save rollbar error
+        rescue Exception => exception
+          Rollbar.error(exception, artist: row.artist, album: row.album)
         end
       end
     end
