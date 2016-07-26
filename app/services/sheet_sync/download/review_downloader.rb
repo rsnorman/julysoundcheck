@@ -14,11 +14,9 @@ module SheetSync
       private
 
       def sync
-        puts "Sync with review"
         if review
           review.update!(review_attributes)
         else
-          puts "create new review\n"
           review = user.tweet_reviews.create!(review_attributes)
           FeedItemCreator.new(review, :review).create
         end
