@@ -15,16 +15,16 @@ module SheetSync
 
       def sync
         if review
-          review.update(review_attributes)
+          review.update!(review_attributes)
         else
-          review = user.reviews.create(review_attributes)
-          FeedItemCreator.new(review).create
+          review = user.reviews.create!(review_attributes)
+          FeedItemCreator.new(review).create!
         end
       end
 
       def review
         user.reviews.find_by(artist: review_attributes[:artist],
-                                album: review_attributes[:album])
+                             album: review_attributes[:album])
       end
 
       def user
