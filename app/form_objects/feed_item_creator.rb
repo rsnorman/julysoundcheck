@@ -1,22 +1,18 @@
 class FeedItemCreator
   attr_reader :feedable
 
-  def initialize(feedable)
+  def initialize(feedable, type = nil)
     @feedable = feedable
+    @type = type || feedable.class.to_s.underscore
   end
 
   def create
-    public_send("create_#{feedable.class.to_s.underscore}_feed_item")
+    public_send("create_#{@type}_feed_item")
   end
 
   def create_review_feed_item
-    created_at = if feedable.created_at.to_date == feedable.reviewed_on
-      feedable.created_at
-    else
-      feedable.reviewed_on
-    end
     FeedItem.create(feedable: feedable,
-                    created_at: created_at,
+                    created_at: feedable.reviewed_at,
                     user: feedable.user)
   end
 

@@ -22,21 +22,6 @@ ActiveRecord::Schema.define(version: 20160725035354) do
     t.index ["user_id"], name: "index_feed_items_on_user_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.string   "artist"
-    t.string   "album"
-    t.integer  "user_id"
-    t.integer  "rating"
-    t.string   "genre"
-    t.string   "listen_url"
-    t.string   "album_source_id"
-    t.text     "text"
-    t.date     "reviewed_on"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
   create_table "tweet_reviews", force: :cascade do |t|
     t.string   "twitter_status_id"
     t.integer  "rating"
@@ -49,6 +34,8 @@ ActiveRecord::Schema.define(version: 20160725035354) do
     t.integer  "tweet_id"
     t.string   "genre"
     t.integer  "user_id"
+    t.text     "text"
+    t.datetime "reviewed_at"
     t.index ["tweet_id"], name: "index_tweet_reviews_on_tweet_id"
   end
 

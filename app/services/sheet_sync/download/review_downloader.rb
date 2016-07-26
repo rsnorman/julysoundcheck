@@ -14,17 +14,19 @@ module SheetSync
       private
 
       def sync
+        puts "Sync with review"
         if review
           review.update!(review_attributes)
         else
-          review = user.reviews.create!(review_attributes)
-          FeedItemCreator.new(review).create!
+          puts "create new review\n"
+          review = user.tweet_reviews.create!(review_attributes)
+          FeedItemCreator.new(review, :review).create
         end
       end
 
       def review
-        user.reviews.find_by(artist: review_attributes[:artist],
-                             album: review_attributes[:album])
+        user.tweet_reviews.find_by(artist: review_attributes[:artist],
+                                   album: review_attributes[:album])
       end
 
       def user
@@ -33,6 +35,9 @@ module SheetSync
       end
 
       def review_attributes
+        reviewed_at = Date.strptime(row.date_reviewed, '%m/%d/%Y')
+        reviewed_at = Time.current if Date.today == reviewed_at
+
         @review_attributes ||= {
           artist: row.artist,
           album: row.album,
@@ -40,7 +45,7 @@ module SheetSync
           listen_url: parse_link(row.source(with_formula: true)),
           rating: Rating.from_score(row.rating).value,
           text: row.review,
-          reviewed_on: Date.strptime(row.date_reviewed, '%m/%d/%Y')
+          reviewed_at: reviewed_at
         }.keep_if { |_attr_name, attr_value| !attr_value.blank? }
       end
 
