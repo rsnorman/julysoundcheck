@@ -13,7 +13,7 @@ module Archiver
       client.search('#julysoundcheck', since_id: since_id).to_a.reverse.map do |tweet|
         begin
           unless tweet.retweet?
-            tweet = Tweet.create(@parser.parse(tweet))
+            tweet = Tweet.create!(@parser.parse(tweet))
             FeedItemCreator.new(tweet).create
           end
         rescue Exception => exception
