@@ -26,18 +26,28 @@
       </div>
     </div>
 
-    <% if review.genre %>
+    <% if review.listen_source %>
+      <% if review.genre %>
+        <div class="row genre">
+          <div class="large-12 columns">
+            <em><%= review.genre %></em>
+          </div>
+        </div>
+      <% end %>
+
+        <div class="row listen-embed">
+          <div class="large-12 columns">
+            <%= render partial: "/feed_items/embeds/#{review.listen_source.source}", locals: {review: review} %>
+          </div>
+        </div>
+    <% else %>
       <div class="row genre">
         <div class="large-12 columns">
+          <strong><%= review.artist %></strong>
+          &mdash;
+          <span>"<%= review.album %>"</span>
+          &mdash;
           <em><%= review.genre %></em>
-        </div>
-      </div>
-    <% end %>
-
-    <% if review.listen_source %>
-      <div class="row listen-embed">
-        <div class="large-12 columns">
-          <%= render partial: "/feed_items/embeds/#{review.listen_source.source}", locals: {review: review} %>
         </div>
       </div>
     <% end %>

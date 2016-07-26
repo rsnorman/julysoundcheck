@@ -43,18 +43,28 @@
       </div>
     </div>
 
-    <% if tweet_review.genre %>
+    <% if tweet_review.listen_source %>
+      <% if tweet_review.genre %>
+        <div class="row genre">
+          <div class="large-12 columns">
+            <em><%= tweet_review.genre %></em>
+          </div>
+        </div>
+      <% end %>
+
+        <div class="row listen-embed">
+          <div class="large-12 columns">
+            <%= render partial: "/feed_items/embeds/#{tweet_review.listen_source.source}", locals: {review: tweet_review} %>
+          </div>
+        </div>
+    <% else %>
       <div class="row genre">
         <div class="large-12 columns">
+          <strong><%= tweet_review.artist %></strong>
+          &mdash;
+          <span>"<%= tweet_review.album %>"</span>
+          &mdash;
           <em><%= tweet_review.genre %></em>
-        </div>
-      </div>
-    <% end %>
-
-    <% if tweet_review.listen_source %>
-      <div class="row listen-embed">
-        <div class="large-12 columns">
-          <%= render partial: "/feed_items/embeds/#{tweet_review.listen_source.source}", locals: {review: tweet_review} %>
         </div>
       </div>
     <% end %>
