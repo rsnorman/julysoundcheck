@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724212312) do
+ActiveRecord::Schema.define(version: 20160725035354) do
 
   create_table "feed_items", force: :cascade do |t|
     t.integer  "user_id"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20160724212312) do
     t.integer  "tweet_id"
     t.string   "genre"
     t.integer  "user_id"
+    t.text     "text"
+    t.datetime "reviewed_at"
     t.index ["tweet_id"], name: "index_tweet_reviews_on_tweet_id"
   end
 

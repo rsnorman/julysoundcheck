@@ -1,5 +1,5 @@
 class TweetReview < ApplicationRecord
-  belongs_to :tweet
+  belongs_to :tweet, required: false
   belongs_to :user
   has_one :feed_item, as: :feedable
 

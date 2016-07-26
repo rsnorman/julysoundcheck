@@ -1,14 +1,29 @@
 module FeedItemsHelper
+  def feed_item_partial(feed_item)
+    "/feed_items/#{feedable_type(feed_item).underscore}_item"
+  end
+
   def feed_item_locals(feed_item)
-    presenter = july_soundcheck_presenter_for(feed_item.feedable_type)
-    {feed_item.feedable_type.underscore.to_sym => presenter.new(feed_item.feedable, feed_item)}
+    presenter = july_soundcheck_presenter_for(feed_item)
+    {feedable_type(feed_item).underscore.to_sym => presenter.new(feed_item.feedable, feed_item)}
   end
 
   private
 
-  def july_soundcheck_presenter_for(feedable_type)
-    if feedable_type == 'Tweet'
+  def feedable_type(feed_item)
+    feedable_type = feed_item.feedable_type
+    if feedable_type == 'TweetReview' && feed_item.feedable.tweet.nil?
+      feedable_type = 'Review'
+    end
+    feedable_type
+  end
+
+  def july_soundcheck_presenter_for(feed_item)
+    type = feedable_type(feed_item)
+    if type == 'Tweet'
       JulySoundcheckTweet
+    elsif type == 'Review'
+      JulySoundcheckReview
     else
       JulySoundcheckTweetReview
     end

@@ -20,7 +20,7 @@
 </div>
 
 <% @feed_items.each do |feed_item| %>
-  <%= render partial: "/feed_items/#{feed_item.feedable_type.underscore}_item", locals: feed_item_locals(feed_item) %>
+  <%= render partial: feed_item_partial(feed_item), locals: feed_item_locals(feed_item) %>
 <% end %>
 
 <div class="row">

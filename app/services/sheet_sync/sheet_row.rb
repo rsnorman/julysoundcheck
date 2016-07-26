@@ -5,7 +5,7 @@ module SheetSync
       album: 2,
       genre: 3,
       source: 4,
-      tweet: 5,
+      review: 5,
       reviewer: 6,
       date_reviewed: 7,
       rating: 8,
@@ -26,6 +26,8 @@ module SheetSync
         @worksheet.set_value(row_index, column_index, value)
       end
     end
+
+    alias_method :tweet, :review
 
     attr_reader :row_index
 
