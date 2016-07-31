@@ -2,7 +2,7 @@ class ReviewStats
   attr_reader :reviews
 
   def initialize(reviews = TweetReview.all)
-    @reviews = reviews
+    @reviews = reviews.includes(tweet: :reply)
   end
 
   def total_reviews
@@ -35,6 +35,6 @@ class ReviewStats
         tr.tweet.try(:tweeted_at) ||
         tr.reviewed_at ||
         tr.created_at
-    end.collect(&:day)
+    end.collect(&:day).sort
   end
 end
