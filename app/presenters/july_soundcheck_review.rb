@@ -20,7 +20,7 @@ class JulySoundcheckReview
   end
 
   def screen_name
-    user.name.underscore
+    user.slug
   end
 
   def reviewed_on
