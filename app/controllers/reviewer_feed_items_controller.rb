@@ -1,6 +1,7 @@
 class ReviewerFeedItemsController < ApplicationController
   before_action :set_user, only: :index
   before_action :set_feed_items, only: :index
+  before_action :set_review_stats, only: :index
 
   private
 
@@ -16,5 +17,9 @@ class ReviewerFeedItemsController < ApplicationController
       .where(user: @user)
       .order(created_at: :desc)
       .page(params[:page])
+  end
+
+  def set_review_stats
+    @stats = ReviewStats.new(TweetReview.where(user: @user))
   end
 end
