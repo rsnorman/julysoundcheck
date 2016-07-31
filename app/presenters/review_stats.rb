@@ -35,6 +35,6 @@ class ReviewStats
         tr.tweet.try(:tweeted_at) ||
         tr.reviewed_at ||
         tr.created_at
-    end.collect(&:day).sort
+    end.collect(&:day).sort.uniq
   end
 end
