@@ -10,6 +10,7 @@ class ReviewStats
   end
 
   def average_rating
+    return 'N/A' if total_reviews.zero?
     Rating.new(reviews.average(:rating).round)
   end
 
