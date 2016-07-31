@@ -24,7 +24,7 @@ class JulySoundcheckReview
   end
 
   def reviewed_on
-    feed_item.created_at.to_date
+    feed_item.created_at.in_time_zone.to_date
   end
 
   def listen_source

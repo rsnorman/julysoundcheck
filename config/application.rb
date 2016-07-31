@@ -14,6 +14,8 @@ module Julysoundcheck
     config.autoload_paths += %W["#{config.root}/app/services"]
     config.autoload_paths += %W["#{config.root}/app/form_objects"]
 
+    config.time_zone = 'Eastern Time (US & Canada)'
+
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')
       YAML.load(File.open(env_file)).each_pair do |key, value|

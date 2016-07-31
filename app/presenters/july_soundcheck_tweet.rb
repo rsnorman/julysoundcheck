@@ -20,7 +20,7 @@ class JulySoundcheckTweet
   end
 
   def tweeted_on
-    (feed_item ? feed_item.created_at : tweet.tweeted_at).to_date
+    (feed_item ? feed_item.created_at : tweet.tweeted_at).in_time_zone.to_date
   end
 
   def tweet_status_id
