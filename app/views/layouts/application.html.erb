@@ -62,9 +62,21 @@
 
           <%= yield %>
         </div>
-        <div id="logo-sidebar" class="large-4 medium-2 columns">
-          <%= image_tag 'logo.png' %>
+        <div id="sidebar" class="large-4 medium-2 columns">
+          <% if content_for?(:sidebar) %>
+            <div class="row">
+              <div class="large-12 columns">
+                <%= yield :sidebar %>
+              </div>
+            </div>
+          <% end %>
+          <div class="row">
+            <div id="logo-sidebar" class="large-12 columns">
+              <%= image_tag 'logo.png' %>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
