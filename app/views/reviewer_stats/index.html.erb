@@ -1,0 +1,17 @@
+<div id="page_title" class="row">
+  <div class="large-12 columns">
+    <h2>
+      <%= user_name %> Tweets
+    </h2>
+    <% if twitter_profile? %>
+      <div id="secondary_page_title">
+        <%= link_to 'Twitter Profile', "https://www.twitter.com/#{@screen_name}", id: 'twitter_profile_link', target: '_blank' %>
+      </div>
+    <% end %>
+      <div id="secondary_page_title">
+        <%= link_to 'Reviews', reviewer_path(@screen_name) %>
+      </div>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>

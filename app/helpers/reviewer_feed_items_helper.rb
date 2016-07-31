@@ -7,4 +7,8 @@ module ReviewerFeedItemsHelper
   def twitter_profile?
     @user.twitter_id
   end
+
+  def available_stats?
+    @feed_items.detect { |fi| fi.feedable_type == 'TweetReview' }
+  end
 end
