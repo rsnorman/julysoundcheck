@@ -36,7 +36,7 @@
     <%= simple_form_for @tweet_review do |f| %>
       <%= f.input :tweet_id, as: :hidden %>
       <%= f.input :twitter_status_id, as: :hidden %>
-      <%= f.input :rating, collection: rating_options, prompt: "Rate the album", selected: @jsc_tweet.rating.try(:value) %>
+      <%= f.input :rating, collection: rating_options, prompt: "Rate the album", selected: @tweet_review.rating.value %>
       <%= f.input :artist %>
       <%= f.input :album %>
       <%= f.input :genre %>
