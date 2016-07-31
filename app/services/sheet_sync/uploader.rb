@@ -15,7 +15,7 @@ module SheetSync
       row.artist = tweet_review.artist
       row.album = tweet_review.album
       row.source = "=HYPERLINK(\"#{tweet_review.listen_url}\",\"#{tweet_review.listen_source.source.to_s.titleize}\")"
-      row.tweet = "=HYPERLINK(\"#{tweet_link(tweet_review)}\", \"#{tweet_text(tweet_review)}\")"
+      row.review = "=HYPERLINK(\"#{tweet_link(tweet_review)}\", \"#{tweet_text(tweet_review)}\")"
       row.reviewer = reviewer(tweet_review)
       row.date_reviewed = tweet_review.tweet.tweeted_at.strftime('%b/%e/%Y')
       row.rating = tweet_review.rating.short_description
