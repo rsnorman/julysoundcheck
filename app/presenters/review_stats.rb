@@ -22,7 +22,7 @@ class ReviewStats
       if day - 1 == last_day
         streak += 1
       else
-        streak = 0
+        streak = 1
       end
       longest_streak = streak if streak >= longest_streak
       last_day = day
