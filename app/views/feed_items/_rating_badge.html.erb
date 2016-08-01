@@ -1,0 +1,12 @@
+<% if tweet_review.album_of_the_month? %>
+  <div class='review-rating album-of-the-month' title="Album Of The Month">
+    <span>A</span>
+    <span>O</span>
+    <span>T</span>
+    <span>M</span>
+  </div>
+<% else %>
+  <div class='review-rating' title="<%= tweet_review.rating_description %>">
+    <%= tweet_review.rating %>
+  </div>
+<% end %>

@@ -26,18 +26,14 @@
               <%= link_recommender(remove_hashtag_and_rating(tweet_review.text)).html_safe %>
             </p>
             <% if tweet_review.rating %>
-              <div class='review-rating' title="<%= tweet_review.rating.description %>">
-                <%= tweet_review.rating %>
-              </div>
+              <%= render partial: 'feed_items/rating_badge', locals: {tweet_review: tweet_review} %>
             <% end %>
             <p class="tweet-reply">
               <%= link_recommender(remove_hashtag_and_rating(tweet_review.review_text)).html_safe %>
             </p>
           <% else %>
           <% if tweet_review.rating %>
-            <div class='review-rating' title="<%= tweet_review.rating_description %>">
-              <%= tweet_review.rating %>
-            </div>
+            <%= render partial: 'feed_items/rating_badge', locals: {tweet_review: tweet_review} %>
           <% end %>
             <p class="tweet-text">
               <%= link_recommender(remove_hashtag_and_rating(tweet_review.text)).html_safe %>

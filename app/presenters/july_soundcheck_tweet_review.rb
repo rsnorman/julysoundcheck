@@ -3,7 +3,7 @@ class JulySoundcheckTweetReview
 
   delegate :text, :id, to: :tweet
   delegate :profile_image_uri, to: :user
-  delegate :rating, :artist, :album, :listen_url, :genre, to: :tweet_review
+  delegate :rating, :artist, :album, :listen_url, :genre, :album_of_the_month, to: :tweet_review
   delegate :description, to: :rating, prefix: true
 
   def initialize(tweet_review, feed_item)
@@ -49,5 +49,9 @@ class JulySoundcheckTweetReview
 
   def album_id
     tweet_review.album_source_id
+  end
+
+  def album_of_the_month?
+    album_of_the_month
   end
 end
