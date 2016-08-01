@@ -1,0 +1,17 @@
+<div class="row">
+  <h4 class="sidebar-title columns">Your Recent Tweets</h4>
+</div>
+<div id="twitter_sign_in" class="row">
+  <div class="columns">
+    <em>
+      Sign in with your Twitter account to view recent tweets,
+      update reviews, and mark music as Album Of The Month&trade;
+    </em>
+    <%= form_tag '/auth/twitter', method: 'get' do %>
+      <button class="button">
+        <%= image_tag "twitter-logo.png" %>
+        Sign In
+      </button>
+    <% end %>
+  </div>
+</div>
