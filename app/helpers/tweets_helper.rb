@@ -17,4 +17,15 @@ module TweetsHelper
       link_to screen_name, reviewer_path(screen_name.gsub('@', ''))
     end
   end
+
+  def recent_tweets
+    return [] unless current_user
+    Tweet
+      .where(user: current_user, in_reply_to_tweet_id: nil)
+      .includes(:reply)
+      .limit(3)
+      .map do |tweet|
+        JulySoundcheckTweet.new(tweet)
+      end
+  end
 end
