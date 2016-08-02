@@ -1,7 +1,11 @@
 <div class="tweet-review row">
   <div class="large-1 medium-2 small-2 columns">
     <%= link_to reviewer_path(review.screen_name) do %>
-      <%= image_tag 'logo-medium.png', align: 'left', class: 'user-profile-image' %>
+      <% if review.twitter_account? %>
+        <img class='user-profile-image' src="<%= review.profile_image_uri %>" />
+      <% else %>
+        <%= image_tag 'logo-medium.png', align: 'left', class: 'user-profile-image' %>
+      <% end %>
     <% end %>
   </div>
   <div class="large-11 medium-10 small-10 columns">
