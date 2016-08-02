@@ -20,6 +20,7 @@ module SheetSync
       row.date_reviewed = tweet_review.tweet.tweeted_at.strftime('%b/%e/%Y')
       row.rating = tweet_review.rating.short_description
       row.genre = tweet_review.genre
+      row.aotm = tweet_review.album_of_the_month ? '*******' : nil
       worksheet.save
     end
 
