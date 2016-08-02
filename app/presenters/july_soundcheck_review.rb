@@ -1,7 +1,6 @@
 class JulySoundcheckReview
   attr_reader :review, :user, :feed_item
 
-  delegate :profile_image_uri, to: :user
   delegate :rating, :artist, :album, :listen_url, :genre, :album_of_the_month, to: :review
   delegate :description, to: :rating, prefix: true
 
@@ -9,6 +8,10 @@ class JulySoundcheckReview
     @review = review
     @user = @review.user
     @feed_item = feed_item
+  end
+
+  def profile_image_uri
+    user.profile_image_uri || 'logo-medium.png'
   end
 
   def text
@@ -20,7 +23,11 @@ class JulySoundcheckReview
   end
 
   def screen_name
-    user.slug
+    user.twitter_screen_name || user.slug
+  end
+
+  def twitter_account?
+    user.twitter_id
   end
 
   def reviewed_on

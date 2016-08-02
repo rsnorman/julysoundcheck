@@ -10,6 +10,11 @@
         <div class='user-name'>
           <%= link_to review.user_name, reviewer_path(review.screen_name) %>
         </div>
+        <% if review.twitter_account? %>
+          <div class='twitter-username'>
+            <%= link_to "@#{review.screen_name}", reviewer_path(review.screen_name) %>
+          </div>
+        <% end %>
       </div>
       <div class="reviewed-on">
         <%= review.reviewed_on.to_formatted_s(:long_ordinal) %>
