@@ -31,7 +31,7 @@ module SheetSync
       end
 
       def tweet_review
-        review_tweet.tweet_review
+        review_tweet.tweet_review || review_tweet.in_reply_to_tweet.try(:tweet_review)
       end
 
       def review_attributes
@@ -50,6 +50,7 @@ module SheetSync
 
       def review_tweet
         @review_tweet ||= Tweet.find_by(tweet_id: review_tweet_id)
+        @review_tweet ||= Archiver::TweetCreator.new(twitter_client.status(review_tweet_id)).create
       end
 
       def review_tweet_id
@@ -62,6 +63,10 @@ module SheetSync
 
       def parse_link(cell_formula)
         cell_formula.split('"').second
+      end
+
+      def twitter_client
+        TwitterClient.instance
       end
     end
   end

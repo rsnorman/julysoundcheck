@@ -19,7 +19,14 @@ class FeedItemCreator
   def create_tweet_review_feed_item
     feed_item = FeedItem.find_by(feedable: feedable.tweet)
     feed_item ||= FeedItem.find_by(feedable: feedable.tweet.reply)
-    feed_item.update(feedable: feedable)
+    if feed_item
+      feed_item.update(feedable: feedable)
+    else
+      tweet = feedable.tweet.try(:reply) || feedable.tweet
+      FeedItem.create(feedable: feedable,
+                      created_at: tweet.tweeted_at,
+                      user: feedable.user)
+    end
   end
 
   def create_tweet_feed_item
