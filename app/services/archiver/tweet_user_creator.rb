@@ -1,19 +1,17 @@
 module Archiver
   class TweetUserCreator
-    attr_reader :tweets
+    attr_reader :tweet
 
     def self.create
       new.create
     end
 
-    def initialize(tweets = Tweet.all)
-      @tweets = tweets
+    def initialize(tweet)
+      @tweet = tweet
     end
 
     def create
-      tweets.each do |tweet|
-        tweet.update(user: user_for_tweet(tweet))
-      end
+      tweet.update(user: user_for_tweet(tweet))
     end
 
     private
