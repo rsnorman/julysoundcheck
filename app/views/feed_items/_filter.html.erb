@@ -1,0 +1,12 @@
+<div id="ratings_filter" class="columns large-3 medium-4 small-4">
+  <ul class="dropdown menu float-right" data-dropdown-menu>
+    <li>
+      <a class="small button float-right" href="javascript:;">Filter</a>
+      <ul class="menu">
+        <li><%= link_to 'None', tweets_path %></li>
+        <li><%= link_to 'AOTM', aotm_path %></li>
+        <%= rating_group_links %>
+      </ul>
+    </li>
+  </ul>
+</div>
