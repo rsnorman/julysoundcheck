@@ -43,7 +43,8 @@ module SheetSync
           listen_url: parse_link(row.source(with_formula: true)),
           rating: Rating.from_score(row.rating).value,
           text: row.review,
-          reviewed_at: reviewed_at
+          reviewed_at: reviewed_at,
+          album_of_the_month: !row.aotm.blank?
         }.keep_if { |_attr_name, attr_value| !attr_value.blank? }
       end
 

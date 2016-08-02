@@ -16,8 +16,10 @@ module SheetSync
       def download
         worksheet.each_row do |row|
           begin
+            puts "Download row: #{row.artist}"
             downloader_for(row).download
           rescue Exception => exception
+            puts "Failed on #{row.artist} - #{row.album} #{exception}"
             Rollbar.error(exception, artist: row.artist, album: row.album)
           end
         end

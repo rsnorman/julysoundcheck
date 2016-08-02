@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731050805) do
+ActiveRecord::Schema.define(version: 20160801034512) do
 
   create_table "feed_items", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20160731050805) do
   create_table "tweet_reviews", force: :cascade do |t|
     t.string   "twitter_status_id"
     t.integer  "rating"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "artist"
     t.string   "album"
     t.string   "listen_url"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160731050805) do
     t.integer  "user_id"
     t.text     "text"
     t.datetime "reviewed_at"
+    t.boolean  "album_of_the_month", default: false
     t.index ["tweet_id"], name: "index_tweet_reviews_on_tweet_id"
   end
 

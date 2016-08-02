@@ -2,7 +2,7 @@ class JulySoundcheckReview
   attr_reader :review, :user, :feed_item
 
   delegate :profile_image_uri, to: :user
-  delegate :rating, :artist, :album, :listen_url, :genre, to: :review
+  delegate :rating, :artist, :album, :listen_url, :genre, :album_of_the_month, to: :review
   delegate :description, to: :rating, prefix: true
 
   def initialize(review, feed_item)
@@ -34,5 +34,9 @@ class JulySoundcheckReview
 
   def album_id
     review.album_source_id
+  end
+
+  def album_of_the_month?
+    album_of_the_month
   end
 end

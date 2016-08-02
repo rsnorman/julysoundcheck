@@ -13,7 +13,7 @@ module SheetSync
 
       private
 
-      def sync(review_attributes)
+      def sync
         if tweet_review
           tweet_review.update(review_attributes)
         else
@@ -22,11 +22,12 @@ module SheetSync
         end
       end
 
-      def sync?(review_attributes)
+      def sync?
         tweet_review.nil? ||
           tweet_review.rating.value != review_attributes[:rating] ||
           tweet_review.listen_url.blank? ||
-          tweet_review.genre.blank?
+          tweet_review.genre.blank? ||
+          tweet_review.album_of_the_month != review_attributes[:album_of_the_month]
       end
 
       def tweet_review
@@ -39,10 +40,11 @@ module SheetSync
           album: row.album,
           genre: row.genre,
           listen_url: parse_link(row.source(with_formula: true)),
-          twitter_status_id: tweet_id,
+          twitter_status_id: review_tweet_id,
           rating: Rating.from_score(row.rating).value,
           tweet: review_tweet.in_reply_to_tweet || review_tweet,
-          user: review_tweet.user
+          user: review_tweet.user,
+          album_of_the_month: !row.aotm.blank?
         }.keep_if { |_attr_name, attr_value| !attr_value.blank? }
       end
 
@@ -51,7 +53,7 @@ module SheetSync
       end
 
       def review_tweet_id
-        tweet_id = parse_tweet_id(row.tweet(with_formula: true))
+        parse_tweet_id(row.tweet(with_formula: true))
       end
 
       def parse_tweet_id(cell_formula)
