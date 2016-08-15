@@ -10,7 +10,7 @@ RSpec.describe Rating do
     end
   end
 
-  describe '.values_fomr_score' do
+  describe '.values_from_score' do
     subject { described_class.values_from_score('1') }
 
     it 'returns all values with same score number' do

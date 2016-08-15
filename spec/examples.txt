@@ -1,13 +1,20 @@
-example_id                                            | status | run_time        |
------------------------------------------------------ | ------ | --------------- |
-./spec/value_objects/listen_source_spec.rb[1:1:1:1]   | passed | 0.00007 seconds |
-./spec/value_objects/listen_source_spec.rb[1:1:1:2:1] | passed | 0.00007 seconds |
-./spec/value_objects/listen_source_spec.rb[1:1:2:1]   | passed | 0.00011 seconds |
-./spec/value_objects/listen_source_spec.rb[1:1:3:1]   | passed | 0.00049 seconds |
-./spec/value_objects/listen_source_spec.rb[1:1:4:1]   | passed | 0.00021 seconds |
-./spec/value_objects/listen_source_spec.rb[1:1:5:1]   | passed | 0.00017 seconds |
-./spec/value_objects/rating_spec.rb[1:1:1]            | passed | 0.00007 seconds |
-./spec/value_objects/rating_spec.rb[1:2:1]            | passed | 0.00049 seconds |
-./spec/value_objects/rating_spec.rb[1:3:1]            | passed | 0.00007 seconds |
-./spec/value_objects/rating_spec.rb[1:4:1]            | passed | 0.00008 seconds |
-./spec/value_objects/rating_spec.rb[1:5:1]            | passed | 0.00007 seconds |
+example_id                                               | status | run_time        |
+-------------------------------------------------------- | ------ | --------------- |
+./spec/form_objects/feed_item_creator_spec.rb[1:1:1:1]   | passed | 0.01036 seconds |
+./spec/form_objects/feed_item_creator_spec.rb[1:1:2:1:1] | passed | 0.00074 seconds |
+./spec/form_objects/feed_item_creator_spec.rb[1:1:2:2:1] | passed | 0.00084 seconds |
+./spec/form_objects/feed_item_creator_spec.rb[1:1:2:3:1] | passed | 0.00078 seconds |
+./spec/form_objects/feed_item_creator_spec.rb[1:1:2:4:1] | passed | 0.00084 seconds |
+./spec/form_objects/feed_item_creator_spec.rb[1:1:3:1:1] | passed | 0.00071 seconds |
+./spec/form_objects/feed_item_creator_spec.rb[1:1:3:2:1] | passed | 0.00067 seconds |
+./spec/value_objects/listen_source_spec.rb[1:1:1:1]      | passed | 0.00076 seconds |
+./spec/value_objects/listen_source_spec.rb[1:1:1:2:1]    | passed | 0.00012 seconds |
+./spec/value_objects/listen_source_spec.rb[1:1:2:1]      | passed | 0.00008 seconds |
+./spec/value_objects/listen_source_spec.rb[1:1:3:1]      | passed | 0.00025 seconds |
+./spec/value_objects/listen_source_spec.rb[1:1:4:1]      | passed | 0.00009 seconds |
+./spec/value_objects/listen_source_spec.rb[1:1:5:1]      | passed | 0.00009 seconds |
+./spec/value_objects/rating_spec.rb[1:1:1]               | passed | 0.0002 seconds  |
+./spec/value_objects/rating_spec.rb[1:2:1]               | passed | 0.00008 seconds |
+./spec/value_objects/rating_spec.rb[1:3:1]               | passed | 0.00006 seconds |
+./spec/value_objects/rating_spec.rb[1:4:1]               | passed | 0.00008 seconds |
+./spec/value_objects/rating_spec.rb[1:5:1]               | passed | 0.00046 seconds |

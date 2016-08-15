@@ -7,8 +7,10 @@ class FeedItemCreator
   end
 
   def create
-    public_send("create_#{@type}_feed_item")
+    send("create_#{@type}_feed_item")
   end
+
+  private
 
   def create_review_feed_item
     FeedItem.create(feedable: feedable,
@@ -22,7 +24,7 @@ class FeedItemCreator
     if feed_item
       feed_item.update(feedable: feedable)
     else
-      tweet = feedable.tweet.try(:reply) || feedable.tweet
+      tweet = feedable.tweet.reply || feedable.tweet
       FeedItem.create(feedable: feedable,
                       created_at: tweet.tweeted_at,
                       user: feedable.user)
