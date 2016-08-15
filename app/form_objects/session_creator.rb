@@ -1,8 +1,9 @@
 class SessionCreator
   attr_reader :twitter_user
 
-  def initialize(twitter_user)
+  def initialize(twitter_user, user_assigner: Archiver::UserAdder)
     @twitter_user = twitter_user
+    @user_assigner = user_assigner
   end
 
   def create
@@ -23,6 +24,6 @@ class SessionCreator
   end
 
   def user_adder(user)
-    @user_adder ||= Archiver::UserAdder.new(user)
+    @user_adder ||= @user_assigner.new(user)
   end
 end
