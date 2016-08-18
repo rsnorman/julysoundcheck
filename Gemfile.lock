@@ -217,6 +217,14 @@ GEM
     rspec-mocks (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.5.0)
+    rspec-rails (3.5.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+      rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     rspotify (1.10.0)
       omniauth-oauth2 (~> 1.1)
@@ -304,6 +312,7 @@ DEPENDENCIES
   rails_12factor
   rollbar
   rspec
+  rspec-rails
   rspotify
   sass-rails (~> 5.0)
   simple_form
