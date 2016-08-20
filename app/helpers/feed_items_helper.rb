@@ -11,11 +11,11 @@ module FeedItemsHelper
   private
 
   def feedable_type(feed_item)
-    feedable_type = feed_item.feedable_type
-    if feedable_type == 'TweetReview' && feed_item.feedable.tweet.nil?
-      feedable_type = 'Review'
+    type = feed_item.feedable_type
+    if type == 'TweetReview' && feed_item.feedable.tweet.nil?
+      type = 'Review'
     end
-    feedable_type
+    type
   end
 
   def july_soundcheck_presenter_for(feed_item)
