@@ -11,8 +11,9 @@ module TweetReviewsHelper
     end.reverse.join.html_safe
   end
 
-  def rating_group_description(rating_group)
-    Rating::SCORE_GROUPS[rating_group.to_i]
+  def rating_group_description(rating_value)
+    rating_group_value = rating_value.to_i
+    Rating::SCORE_GROUPS[rating_group_value]
   end
 
   def group_albums_results(albums)
