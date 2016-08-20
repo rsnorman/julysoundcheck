@@ -236,6 +236,12 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    shoulda (3.5.0)
+      shoulda-context (~> 1.0, >= 1.0.1)
+      shoulda-matchers (>= 1.4.1, < 3.0)
+    shoulda-context (1.2.1)
+    shoulda-matchers (2.8.0)
+      activesupport (>= 3.0.0)
     signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -315,6 +321,7 @@ DEPENDENCIES
   rspec-rails
   rspotify
   sass-rails (~> 5.0)
+  shoulda
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
