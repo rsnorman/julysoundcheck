@@ -53,4 +53,26 @@ RSpec.describe ListenSource do
       end
     end
   end
+
+  describe '#==' do
+    subject { described_class.new('spotify.com') }
+
+    let(:other_listen_source) { described_class.new(other_url) }
+
+    context 'with url the same' do
+      let(:other_url) { subject.url }
+
+      it 'is equal to other listen source' do
+        expect(subject).to eq other_listen_source
+      end
+    end
+
+    context 'with url different' do
+      let(:other_url) { 'different_url.com' }
+
+      it 'is not equal to other listen source' do
+        expect(subject).to_not eq other_listen_source
+      end
+    end
+  end
 end

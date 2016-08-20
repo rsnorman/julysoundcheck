@@ -23,6 +23,10 @@ class ListenSource
     end
   end
 
+  def ==(other_listen_source)
+    url == other_listen_source.url
+  end
+
   private
 
   def playlist?

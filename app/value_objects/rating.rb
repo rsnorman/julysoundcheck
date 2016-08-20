@@ -61,4 +61,8 @@ class Rating
   def description
     DESCRIPTIONS[@value]
   end
+
+  def ==(other_rating)
+    value == other_rating.value
+  end
 end

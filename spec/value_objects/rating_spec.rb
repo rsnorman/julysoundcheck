@@ -45,4 +45,26 @@ RSpec.describe Rating do
       expect(subject.description).to eq 'Barely listenable'
     end
   end
+
+  describe '#==' do
+    subject { described_class.new(3) }
+
+    let(:other_rating) { described_class.new(other_rating_value) }
+
+    context 'with value the same' do
+      let(:other_rating_value) { subject.value }
+
+      it 'is equal to other rating' do
+        expect(subject).to eq other_rating
+      end
+    end
+
+    context 'with value different' do
+      let(:other_rating_value) { 4 }
+
+      it 'is not equal to other rating' do
+        expect(subject).to_not eq other_rating
+      end
+    end
+  end
 end
