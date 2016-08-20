@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ReviewerFeedItemsHelper do
-  let(:user) { instance_double('User', name: 'Scott Weiland') }
+  let(:user) { double('User', name: 'Scott Weiland') }
 
   before do
     assign(:user, user)

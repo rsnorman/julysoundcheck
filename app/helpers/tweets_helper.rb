@@ -4,6 +4,7 @@ module TweetsHelper
       .strip
       .gsub(/(\d\s*[+|-]?\s*)?#julysoundcheck$/i, '')
       .gsub(/(\d\s*[+|-]?)$/, '')
+      .strip
   end
 
   def can_edit?(tweet)
