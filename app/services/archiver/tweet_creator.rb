@@ -1,6 +1,5 @@
 module Archiver
   class TweetCreator
-
     def initialize(twitter_tweet, parser: TweetParser)
       @twitter_tweet = twitter_tweet
       @parser = parser
