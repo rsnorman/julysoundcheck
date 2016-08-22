@@ -29,9 +29,5 @@ module Archiver
     def client
       TwitterClient.instance
     end
-
-    def new_tweets
-      Tweet.where("tweet_id > '#{since_id}'")
-    end
   end
 end
