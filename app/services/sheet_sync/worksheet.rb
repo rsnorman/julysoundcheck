@@ -14,7 +14,7 @@ module SheetSync
       "refresh_token": ENV['GOOGLE_REFRESH_TOKEN']
     }
 
-    delegate :save, to: :@sheet
+    delegate :save, to: :sheet
 
     def initialize(sheet_key: SHEET_KEY)
       @sheet_key = sheet_key
@@ -32,15 +32,15 @@ module SheetSync
     end
 
     def value(row_index, column_index)
-      @sheet[row_index, column_index]
+      sheet[row_index, column_index]
     end
 
     def formula_value(row_index, column_index)
-      @sheet.input_value(row_index, column_index)
+      sheet.input_value(row_index, column_index)
     end
 
     def set_value(row_index, column_index, value)
-      @sheet[row_index, column_index] = value
+      sheet[row_index, column_index] = value
     end
 
     def build_row
@@ -57,6 +57,9 @@ module SheetSync
       @session ||= GoogleDrive.saved_session(google_creds_filepath)
     end
 
+    # TODO: Test that file is created successfully, most likely by
+    # encapsulating in its own object since this class should know nothing
+    # about creating google credential files
     def google_creds_filepath
       unless File.exists?(GOOGLE_DRIVE_CREDS_FILEPATH)
         File.open(GOOGLE_DRIVE_CREDS_FILEPATH, 'wb') do |f|
