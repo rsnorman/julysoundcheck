@@ -23,6 +23,14 @@ module SheetSync
       def review_tweet_id
         parse_tweet_id(row.tweet(with_formula: true))
       end
+
+      def parse_tweet_id(cell_formula)
+        parse_link(cell_formula).split('/').last.split('?').first
+      end
+
+      def parse_link(cell_formula)
+        cell_formula.split('"').second
+      end
     end
   end
 end
