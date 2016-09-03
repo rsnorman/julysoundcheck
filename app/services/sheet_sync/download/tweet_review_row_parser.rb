@@ -9,7 +9,7 @@ module SheetSync
         @rating_score_convertor = rating_score_convertor
       end
 
-      def review_attributes
+      def parse
         @review_attributes ||= {
           artist: row.artist,
           album: row.album,
@@ -20,16 +20,12 @@ module SheetSync
           tweet: review_tweet.in_reply_to_tweet || review_tweet,
           user: review_tweet.user,
           album_of_the_month: !row.aotm.blank?
-        }.keep_if { |_attr_name, attr_value| !attr_value.blank? }
+        }.keep_if { |_attr_name, attr_value| !attr_value.nil? && attr_value != '' }
       end
 
       private
 
       attr_reader :row, :review_tweet
-
-      def parse_tweet_id(cell_formula)
-        parse_link(cell_formula).split('/').last.split('?').first
-      end
 
       def parse_link(cell_formula)
         cell_formula.split('"').second
