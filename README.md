@@ -1,5 +1,7 @@
 # JulySouncheck
 
+{<img src='https://snap-ci.com/rsnorman/julysoundcheck/branch/master/build_image' alt='Build Status' />}[https://snap-ci.com/rsnorman/julysoundcheck/branch/master]
+
 ## Rules
 1. Every day in July you need to listen to an album by an artist you’ve never heard. This means that a review you read somewhere but you never got around to listening to is fair game.
 2. After you listen to that album, write a tweet-length (160 characters or less) review of it. If you do tweet it, include #JulySoundcheck.
