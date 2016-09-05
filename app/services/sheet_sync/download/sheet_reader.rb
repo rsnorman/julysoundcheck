@@ -7,17 +7,18 @@ module SheetSync
         new.download
       end
 
-      def initialize(worksheet: Worksheet.new)
+      def initialize(worksheet: Worksheet.new, verbose: false)
         @worksheet = worksheet
+        @verbose = verbose
       end
 
       def download
         worksheet.each_row do |row|
           begin
-            puts "Download row: #{row.artist}"
+            puts "Download row: #{row.artist}" if @verbose
             downloader_for(row).download
           rescue Exception => exception
-            puts "Failed on #{row.artist} - #{row.album} #{exception}"
+            puts "Failed on #{row.artist} - #{row.album} #{exception}" if @verbose
             Rollbar.error(exception, artist: row.artist, album: row.album)
           end
         end
