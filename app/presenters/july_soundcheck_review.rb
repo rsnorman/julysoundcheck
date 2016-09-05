@@ -2,6 +2,7 @@ class JulySoundcheckReview
   attr_reader :review, :user, :feed_item
 
   delegate :profile_image_uri, to: :user
+  delegate :name, to: :user, prefix: true
   delegate :rating, :artist, :album, :listen_url, :genre, :album_of_the_month, to: :review
   delegate :description, to: :rating, prefix: true
 
@@ -13,10 +14,6 @@ class JulySoundcheckReview
 
   def text
     review.text || '<em>No review</em>'
-  end
-
-  def user_name
-    user.name
   end
 
   def screen_name

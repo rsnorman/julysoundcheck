@@ -30,10 +30,6 @@ class JulySoundcheckTweetReview
     two_part? ? reply_tweet.id : tweet.id
   end
 
-  def review_details?
-    !tweet_review.listen_url.blank? && !artist.blank? && !album.blank?
-  end
-
   def two_part?
     !!reply_tweet
   end

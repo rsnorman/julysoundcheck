@@ -7,23 +7,24 @@ module SheetSync
         new.download
       end
 
-      def initialize(tweet_reviews: TweetReview.all, worksheet: Worksheet.new)
-        @tweet_reviews = tweet_reviews.includes(:tweet)
+      def initialize(worksheet: Worksheet.new, verbose: false)
         @worksheet = worksheet
-        @existing_reviews ||= {}
+        @verbose = verbose
       end
 
       def download
         worksheet.each_row do |row|
           begin
-            puts "Download row: #{row.artist}"
+            puts "Download row: #{row.artist}" if @verbose
             downloader_for(row).download
           rescue Exception => exception
-            puts "Failed on #{row.artist} - #{row.album} #{exception}"
+            puts "Failed on #{row.artist} - #{row.album} #{exception}" if @verbose
             Rollbar.error(exception, artist: row.artist, album: row.album)
           end
         end
       end
+
+      private
 
       def downloader_for(row)
         if row.tweet(with_formula: true).starts_with?('=HYPERLINK')

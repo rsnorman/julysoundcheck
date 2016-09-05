@@ -6,8 +6,9 @@ module SheetSync
       new.upload(tweet_review)
     end
 
-    def initialize(worksheet = Worksheet.new)
+    def initialize(worksheet: Worksheet.new, review_row_finder: ReviewRowFinder)
       @worksheet = worksheet
+      @review_row_finder = review_row_finder
     end
 
     def upload(tweet_review)
@@ -25,12 +26,13 @@ module SheetSync
     end
 
     def review_row_for(tweet_review)
-      ReviewRowFinder.new(worksheet).find(tweet_review)
+      @review_row_finder.new(worksheet).find(tweet_review)
     end
 
     def tweet_link(tweet_review)
       tweet = tweet_review.tweet
-      "https://www.twitter.com/#{tweet.user.twitter_screen_name}/status/#{tweet.tweet_id}"
+      tweet_id = tweet.reply ? tweet.reply.tweet_id : tweet.tweet_id
+      "https://www.twitter.com/#{tweet.user.twitter_screen_name}/status/#{tweet_id}"
     end
 
     def tweet_text(tweet_review)

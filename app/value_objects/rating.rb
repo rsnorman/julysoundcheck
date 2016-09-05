@@ -34,7 +34,7 @@ class Rating
     1 => 'Listen Once',
     2 => 'Multiple Listens',
     3 => 'Essential'
-  }
+  }.freeze
 
   attr_reader :value
 
@@ -60,5 +60,9 @@ class Rating
 
   def description
     DESCRIPTIONS[@value]
+  end
+
+  def ==(other_rating)
+    value == other_rating.value
   end
 end

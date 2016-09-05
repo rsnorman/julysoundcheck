@@ -25,8 +25,8 @@ module Archiver
                            profile_image_uri: twitter_user.profile_image_uri)
     end
 
-    def twitter_user_for_tweet_id(twitter_id)
-      TwitterClient.instance.status(twitter_id).user
+    def twitter_user_for_tweet_id(tweet_id)
+      TwitterClient.instance.status(tweet_id).user
     end
   end
 end
