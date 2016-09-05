@@ -7,10 +7,8 @@ module SheetSync
         new.download
       end
 
-      def initialize(tweet_reviews: TweetReview.all, worksheet: Worksheet.new)
-        @tweet_reviews = tweet_reviews.includes(:tweet)
+      def initialize(worksheet: Worksheet.new)
         @worksheet = worksheet
-        @existing_reviews ||= {}
       end
 
       def download
@@ -24,6 +22,8 @@ module SheetSync
           end
         end
       end
+
+      private
 
       def downloader_for(row)
         if row.tweet(with_formula: true).starts_with?('=HYPERLINK')
