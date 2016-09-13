@@ -59,6 +59,8 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'site_prism'
+  gem 'factory_girl'
+  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -74,7 +76,7 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'shoulda'
-  gem 'webmock'
+  gem 'webmock', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
