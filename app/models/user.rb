@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :tweet_reviews
   has_many :feed_items
 
+  validates :twitter_screen_name, uniqueness: true
+
   before_save :set_slug
 
   def name

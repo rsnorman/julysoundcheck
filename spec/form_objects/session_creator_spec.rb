@@ -9,18 +9,12 @@ RSpec.describe SessionCreator do
     end
 
     let(:user) { double('User', sign_ins: 1) }
-    let(:user_assigner_class) do
-      double('UserAssignerClass', new: user_assigner)
-    end
-    let(:user_assigner) { double('UserAssigner') }
 
     subject do
-      described_class.new(twitter_user, user_assigner: user_assigner_class)
+      described_class.new(twitter_user)
     end
 
     before do
-      allow(user_assigner).to receive(:add_to_all_tweet_reviews)
-      allow(user_assigner).to receive(:add_to_all_tweets)
       allow(Time).to receive(:current).and_return(Time.current)
       allow(User)
         .to receive(:find_by)
@@ -56,16 +50,6 @@ RSpec.describe SessionCreator do
                 twitter_name: twitter_user.name,
                 twitter_screen_name: twitter_user.screen_name)
           .and_return(user)
-        subject.create
-      end
-
-      it 'assigns all tweet reviews to user' do
-        expect(user_assigner).to receive(:add_to_all_tweet_reviews)
-        subject.create
-      end
-
-      it 'assigns all tweets to user' do
-        expect(user_assigner).to receive(:add_to_all_tweets)
         subject.create
       end
     end

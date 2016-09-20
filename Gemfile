@@ -61,6 +61,8 @@ group :test do
   gem 'site_prism'
   gem 'factory_girl'
   gem 'selenium-webdriver'
+  gem 'capybara-mechanize'
+  gem 'vcr', require: false
 end
 
 group :development do

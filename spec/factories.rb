@@ -91,7 +91,11 @@ FactoryGirl.define do
       [
         'Album Of The Month (AOTM) for me definitely has to be Camp Cope… no surprise since Hop Along is one of my favorite bands. #julysoundcheck',
         'Tomorrow, the fourth iteration of #JulySoundcheck begins. As usual, we listen to an album from an unknown artist, and tweet a review daily.',
-      ][n % 2]
+        "The funky-ness of NAO's \"For All We Know\" elevates it above many recent R&B acts. Lovers of slow jams rejoice.",
+        "Finish #JulySoundcheck with Amesoeurs s/t: sprinkling clean vox with atmospheric screaming was confusing but liked the strain of alt v metal",
+        "If I had any Euro-trash friends, I’d play ZHU’s “Generationwhy” for them… fortunately I don’t know anyone from Europe. #JulySoundcheck",
+        "Checking out Locrian's \"Return To Annihilation\" per @mathyoumore's Blackgaze recommendation #JulySoundcheck"
+      ][n % 6]
     end
     tweeted_at { Time.current }
     association :user, factory: [:user, :twitter_user, :unsaved]
