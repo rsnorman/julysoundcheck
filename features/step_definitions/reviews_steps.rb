@@ -111,3 +111,17 @@ Then(/^I see the tweet with a reply$/) do
   expect(tweet_section).to have_reply_text @tweet_with_reply
   expect(tweet_section).to_not have_rating
 end
+
+Given(/^a second page of reviews exist$/) do
+  26.times do
+    FactoryGirl.create(:review)
+  end
+end
+
+When(/^I click "([^"]*)" in the pagination links$/) do |page|
+  @home_page.pagination.go_to_page(page)
+end
+
+Then(/^I see the second page of tweets$/) do
+  expect(@home_page.reviews.first).to have_review_text Tweet.first
+end

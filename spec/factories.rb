@@ -3,7 +3,7 @@ FactoryGirl.define do
     name "Ryan Norman"
 
     trait :twitter_user do
-      twitter_screen_name 'rogerguelph'
+      sequence(:twitter_screen_name) { |n| "rogerguelph#{n}" }
       twitter_name 'Mayor Guelph'
       twitter_id '16950200'
     end
