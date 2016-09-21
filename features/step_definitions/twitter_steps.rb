@@ -24,3 +24,10 @@ Then(/^I see my recent tweets$/) do
   expect(@home_page.recent_tweets).to have_tweet @tweets.second
   expect(@home_page.recent_tweets).not_to have_tweet @tweets.first
 end
+
+Given(/^I am signed in through Twitter$/) do
+  @user = FactoryGirl.create(:user, twitter_screen_name: ENV['TEST_TWITTER_SCREEN_NAME'],
+                                    twitter_id: ENV['TEST_TWITTER_ID'])
+  page.set_rack_session(access_token: ENV['TEST_TWITTER_ACCESS_TOKEN'],
+                        access_token_secret: ENV['TEST_TWITTER_ACCESS_TOKEN_SECRET'])
+end

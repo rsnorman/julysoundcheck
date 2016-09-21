@@ -25,4 +25,9 @@ class TweetSection < SitePrism::Section
   def has_reply_text?(tweet)
     reply_text.has_content? remove_hashtag_and_rating(tweet.reply.text)
   end
+
+  def create_review
+    click_link 'Add review details'
+    NewReview.new
+  end
 end

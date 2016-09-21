@@ -63,6 +63,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'capybara-mechanize'
   gem 'vcr', require: false
+  gem 'rack_session_access'
 end
 
 group :development do
