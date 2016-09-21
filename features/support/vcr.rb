@@ -3,7 +3,7 @@ require 'vcr'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
-VCR.config do |c|
+VCR.configure do |c|
   c.cassette_library_dir = 'features/fixtures/vcr_cassettes'
   c.ignore_localhost = true
   c.hook_into :webmock

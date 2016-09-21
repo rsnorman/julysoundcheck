@@ -14,4 +14,9 @@ class Home < SitePrism::Page
   section :twitter_sidebar, TwitterSidebarSection, '#twitter_sign_in'
   section :recent_tweets, RecentTweetsSection, '#recent_tweets'
   section :pagination, PaginationSection, '.pagination'
+  element :flash_message, '#notice'
+
+  def has_flash_message?(message)
+    flash_message.has_content? message
+  end
 end

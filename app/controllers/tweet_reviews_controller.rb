@@ -55,6 +55,6 @@ class TweetReviewsController < ApplicationController
   end
 
   def sync?
-    params.require(:tweet_review).require(:sync) == 'true'
+    params[:commit].end_with?('Sync')
   end
 end

@@ -1,5 +1,5 @@
-class NewReview < SitePrism::Page
-  set_url "tweets/{tweet_id}/tweet_reviews/new"
+class EditReview < SitePrism::Page
+  set_url 'tweet_reviews/{tweet_review_id}/edit'
 
   def set_artist(artist)
     fill_in 'Artist', with: artist
@@ -21,11 +21,11 @@ class NewReview < SitePrism::Page
     check 'Album of the month'
   end
 
-  def create
-    click_button 'Create Tweet Review'
+  def update
+    click_button 'Update Tweet Review'
   end
 
-  def create_and_sync
-    click_button 'Create Tweet Review and Sync'
+  def update_and_sync
+    click_button 'Update Tweet Review and Sync'
   end
 end
