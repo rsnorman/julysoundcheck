@@ -4,6 +4,7 @@ require_relative 'tweet_section'
 require_relative 'twitter_sidebar_section'
 require_relative 'recent_tweets_section'
 require_relative 'pagination_section'
+require_relative 'filter_section'
 
 class Home < SitePrism::Page
   set_url '/'
@@ -14,6 +15,7 @@ class Home < SitePrism::Page
   section :twitter_sidebar, TwitterSidebarSection, '#twitter_sign_in'
   section :recent_tweets, RecentTweetsSection, '#recent_tweets'
   section :pagination, PaginationSection, '.pagination'
+  section :filter, FilterSection, '#ratings_filter'
   element :flash_message, '#notice'
 
   def has_flash_message?(message)

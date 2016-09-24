@@ -1,4 +1,4 @@
-<div class="tweet-review tweet-review-item row">
+<div id="tweet_review_<%= tweet_review.id %>" class="tweet-review tweet-review-item row">
   <div class="large-1 medium-2 small-2 columns">
     <%= link_to reviewer_path(tweet_review.screen_name) do %>
       <img class='user-profile-image' src="<%= tweet_review.profile_image_uri %>" />

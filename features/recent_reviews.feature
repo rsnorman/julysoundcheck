@@ -21,14 +21,6 @@ Feature: View JulySoundcheck Reviews
     And I see the tweet with a review
     And I see the tweet with a reply
 
-  @vcr @mechanize
-  Scenario: Logging in through Twitter
-    Given I have 4 recent tweets
-    When I visit the home page
-    And I click the Twitter Sign In button
-    And I login with my Twitter credentials
-    Then I see my recent tweets
-
   Scenario: Viewing second page
     Given a second page of reviews exist
     When I visit the home page

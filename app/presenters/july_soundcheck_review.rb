@@ -3,7 +3,7 @@ class JulySoundcheckReview
 
   delegate :profile_image_uri, to: :user
   delegate :name, to: :user, prefix: true
-  delegate :rating, :artist, :album, :listen_url, :genre, :album_of_the_month, to: :review
+  delegate :id, :rating, :artist, :album, :listen_url, :genre, :album_of_the_month, to: :review
   delegate :description, to: :rating, prefix: true
 
   def initialize(review, feed_item)

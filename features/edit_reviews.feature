@@ -42,5 +42,3 @@ Feature: Edit JulySoundcheck Reviews
     Then I see the tweet review with a genre "Indie Rock/Noise Pop"
     And I see the review was updated and synced
     And the tweet review was updated to the spreadsheet
-
-  Scenario: Admin review edit
