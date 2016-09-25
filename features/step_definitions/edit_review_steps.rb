@@ -24,6 +24,10 @@ When(/^I save and sync the tweet review$/) do
   @edit_review_page.update_and_sync
 end
 
+Then(/^I see the review was updated$/) do
+  expect(@home_page).to have_flash_message 'Tweet updated with review'
+end
+
 Then(/^I see the review was updated and synced$/) do
   expect(@home_page).to have_flash_message 'Tweet updated with review and synced to spreadsheet'
 end

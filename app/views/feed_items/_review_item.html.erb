@@ -28,9 +28,7 @@
       <div class="review large-12 columns">
         <div class="review-text-container <%= 'no-embed' unless review.listen_source %>">
           <% if review.rating %>
-            <div class='review-rating' title="<%= review.rating_description %>">
-              <%= review.rating %>
-            </div>
+            <%= render partial: 'feed_items/rating_badge', locals: {tweet_review: review} %>
           <% end %>
           <p class="tweet-text">
             <%= review.text.to_s.html_safe %>
