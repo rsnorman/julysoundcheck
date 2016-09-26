@@ -118,8 +118,8 @@ Given(/^a second page of reviews exist$/) do
   end
 end
 
-When(/^I click "([^"]*)" in the pagination links$/) do |page|
-  @home_page.pagination.go_to_page(page)
+When(/^I click "([^"]*)" in the pagination links$/) do |page_number|
+  @home_page.pagination.go_to_page(page_number)
 end
 
 Then(/^I see the second page of tweets$/) do

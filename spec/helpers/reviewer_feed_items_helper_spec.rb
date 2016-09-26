@@ -52,5 +52,13 @@ RSpec.describe ReviewerFeedItemsHelper do
         expect(helper.twitter_profile?).to be_falsy
       end
     end
+
+    context 'with no user' do
+      let(:user) { nil }
+
+      it 'returns false' do
+        expect(helper.twitter_profile?).to be_falsy
+      end
+    end
   end
 end
