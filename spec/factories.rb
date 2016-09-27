@@ -39,6 +39,40 @@ FactoryGirl.define do
       FactoryGirl.create(:feed_item, feedable: review,
                                      user: review.user)
     end
+
+    trait :bandcamp do
+      artist 'G.L.O.S.S.'
+      album 'Trans Day Of Revenge'
+      genre 'Hardcore Punk'
+      listen_url 'https://girlslivingoutsidesocietysshit.bandcamp.com/album/trans-day-of-revenge'
+      album_source_id '1947465492'
+    end
+
+    trait :soundcloud do
+      artist 'Ai Weiwei'
+      album 'The Divine Comedy'
+      genre 'Rock'
+      listen_url 'https://soundcloud.com/aiww/sets/the-divine-comedy'
+      album_source_id '6822079'
+    end
+
+    trait :spotify do
+      # Use default factory attributes
+    end
+
+    trait :youtube do
+      artist 'Radiation 4'
+      album 'Wonderland'
+      genre 'Avant-garde Metal'
+      listen_url 'https://www.youtube.com/watch?v=ccHNTriMSrE&list=PL851BD6D1D5E73A79'
+    end
+
+    trait :no_embed do
+      artist 'Sheena Ringo'
+      album 'Karuki Zamen Kuri no Hana'
+      genre 'Art pop'
+      listen_url 'https://drive.google.com/open?id=0B_LBOggfuZzfOVZFaS1DNTR3b1E'
+    end
   end
 
   factory :feed_item do
