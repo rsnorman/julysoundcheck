@@ -31,7 +31,7 @@
             <%= render partial: 'feed_items/rating_badge', locals: {tweet_review: review} %>
           <% end %>
           <p class="tweet-text">
-            <%= review.text.to_s.html_safe %>
+            <%= link_recommender(review.text.to_s).html_safe %>
           </p>
         </div>
       </div>

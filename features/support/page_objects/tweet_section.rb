@@ -9,6 +9,7 @@ class TweetSection < SitePrism::Section
   element :rating, '.review-rating'
   element :review_text, '.tweet-text'
   element :reply_text, '.tweet-reply'
+  element :recommender, '.recommender'
 
   def tweeted_on?(datetime)
     tweeted_on.has_content? datetime.to_date.to_formatted_s(:long_ordinal)

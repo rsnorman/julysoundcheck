@@ -12,6 +12,7 @@ class TweetReviewSection < SitePrism::Section
   element :review_text, '.tweet-text'
   element :reply_text, '.tweet-reply'
   element :aotm_badge, '.album-of-the-month'
+  element :recommender, '.recommender'
   section :album_details, AlbumDetailsSection, '.genre'
   section :album_player, AlbumPlayerSection, '.listen-embed'
 

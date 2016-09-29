@@ -15,7 +15,9 @@ module TweetsHelper
 
   def link_recommender(tweet_text)
     tweet_text.gsub(/@\w+/) do |screen_name|
-      link_to screen_name, reviewer_path(screen_name.gsub('@', ''))
+      link_to(screen_name,
+              reviewer_path(screen_name.gsub('@', '')),
+              class: 'recommender')
     end
   end
 

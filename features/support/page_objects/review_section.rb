@@ -7,6 +7,7 @@ class ReviewSection < SitePrism::Section
   element :rating, '.review-rating'
   element :review_text, '.tweet-text'
   element :aotm_badge, '.album-of-the-month'
+  element :recommender, '.recommender'
   section :album_details, AlbumDetailsSection, '.genre'
   section :album_player, AlbumPlayerSection, '.listen-embed'
 
