@@ -87,7 +87,7 @@ Then(/^I see the tweet$/) do
   expect(tweet_section.twitter_user_name).to have_content @tweet.user.twitter_screen_name
   expect(tweet_section).to have_profile_link_to @tweet.user
   expect(tweet_section).to be_tweeted_on @tweet.created_at
-  expect(tweet_section).to have_text @tweet.text
+  expect(tweet_section).to have_tweet_text @tweet
   expect(tweet_section).to_not have_rating
 end
 
