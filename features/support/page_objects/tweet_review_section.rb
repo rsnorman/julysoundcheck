@@ -32,6 +32,10 @@ class TweetReviewSection < SitePrism::Section
     reply_text.has_content? remove_hashtag_and_rating(tweet_review.tweet.reply.text)
   end
 
+  def has_user?(user)
+    user_name.has_content? user.name
+  end
+
   def edit_review
     click_link 'Edit review details'
     EditReview.new

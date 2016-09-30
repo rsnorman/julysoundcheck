@@ -1,3 +1,4 @@
+@twitter_user
 Feature: Filtering reviews
 
   Background:

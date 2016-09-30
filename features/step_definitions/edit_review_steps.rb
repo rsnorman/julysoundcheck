@@ -1,5 +1,5 @@
 Given(/^I have a JulySoundcheck tweet review$/) do
-  tweet = FactoryGirl.create(:tweet, tweet_id: '987654321')
+  tweet = FactoryGirl.create(:tweet, tweet_id: '987654321', user: @user)
   @tweet_review = FactoryGirl.create(:tweet_review, user: @user, tweet: tweet)
 end
 

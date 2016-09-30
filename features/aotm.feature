@@ -1,3 +1,4 @@
+@twitter_user
 Feature: Album Of The Month
 
   Background:

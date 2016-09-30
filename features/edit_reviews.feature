@@ -1,3 +1,4 @@
+@twitter_user
 Feature: Edit JulySoundcheck Reviews
   Background:
     Given I am signed in through Twitter
