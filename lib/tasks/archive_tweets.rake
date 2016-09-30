@@ -1,4 +1,9 @@
 namespace :tweets do
+  desc "Archive new tweets"
+  task archive: :environment do
+    Archiver::TweetArchiver.archive
+  end
+
   desc "Downloads old tweets"
   task download_old: :environment do
     Archiver::OldTweetArchiver.archive
