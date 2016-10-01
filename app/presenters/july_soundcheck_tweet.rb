@@ -35,8 +35,11 @@ class JulySoundcheckTweet
     two_part? ? reply_tweet.text : text
   end
 
+  RATING_REGEX =
+    /(?:(\d\s*[+|-]?\s*)?#julysoundcheck(\s*\d\s*[+|-]?)?)|(\d\s*[+|-]?)$/i
+
   def rating
-    /(?:(\d\s*[+|-]?\s*)?#julysoundcheck(\s*\d\s*[+|-]?)?)|(\d\s*[+|-]?)$/i.match(review_text) do |matches|
+    RATING_REGEX.match(review_text) do |matches|
       if (score = matches.to_a.slice(1..-1).compact.first)
         Rating.from_score(score.strip)
       end

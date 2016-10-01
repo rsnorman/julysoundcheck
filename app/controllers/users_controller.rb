@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    redirect_to reviewer_path(@user.twitter_screen_name), notice: 'You profile was updated successfully'
+    redirect_to reviewer_path(@user.twitter_screen_name),
+                notice: 'You profile was updated successfully'
   end
 
   private

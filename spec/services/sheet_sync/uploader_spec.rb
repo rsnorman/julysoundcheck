@@ -60,7 +60,9 @@ RSpec.describe SheetSync::Uploader do
     end
 
     it 'sets the album listen URL' do
-      expect(new_row).to receive(:source=).with('=HYPERLINK("http://spotify.com/wowzowee","Spotify")')
+      expect(new_row)
+        .to receive(:source=)
+        .with('=HYPERLINK("http://spotify.com/wowzowee","Spotify")')
       subject.upload(tweet_review)
     end
 

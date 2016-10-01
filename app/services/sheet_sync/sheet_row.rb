@@ -36,7 +36,7 @@ module SheetSync
       @row_index = row_index
     end
 
-    def delete
+    def delete(*_args)
       ATTRIBUTE_COLUMNS.each_pair do |_attr, column_index|
         @worksheet.set_value(row_index, column_index, nil)
       end

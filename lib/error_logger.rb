@@ -11,6 +11,6 @@ class ErrorLogger
   end
 
   def initialize(error_client = Rollbar)
-    @error_client = Rollbar
+    @error_client = error_client
   end
 end
