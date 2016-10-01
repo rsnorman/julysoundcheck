@@ -22,7 +22,11 @@ class CreateReviewTweetAssociations < ActiveRecord::Migration[5.0]
 
     MigrateTweet.where.not(in_reply_to_status_id: nil).each do |tweet|
       parent_tweet = MigrateTweet.find_by(tweet_id: tweet.in_reply_to_status_id)
-      tweet.update(in_reply_to_tweet_id: parent_tweet.id) rescue nil
+      begin
+        tweet.update(in_reply_to_tweet_id: parent_tweet.id)
+      rescue
+        nil
+      end
     end
 
     add_foreign_key :tweet_reviews, :tweets

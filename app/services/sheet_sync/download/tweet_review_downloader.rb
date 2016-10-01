@@ -4,10 +4,10 @@ module SheetSync
       attr_reader :row
 
       def initialize(row, row_parser: TweetReviewRowParser,
-                          review_syncer: ReviewSyncer,
-                          sync_policy: TweetReviewSyncPolicy,
-                          review_tweet_finder: ReviewTweetFinder,
-                          reviewer_finder: ReviewerFinder)
+                     review_syncer: ReviewSyncer,
+                     sync_policy: TweetReviewSyncPolicy,
+                     review_tweet_finder: ReviewTweetFinder,
+                     reviewer_finder: ReviewerFinder)
 
         @review_tweet_finder = review_tweet_finder.new(row)
         @row_parser = row_parser.new(row, review_tweet: review_tweet)

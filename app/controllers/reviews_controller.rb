@@ -6,9 +6,9 @@ class ReviewsController < ApplicationController
 
   def set_reviews
     @reviews = TweetReview
-      .where(rating: Rating.values_from_score(params[:rating]))
-      .page(params[:page])
-      .order('tweet_reviews.rating DESC, tweet_reviews.created_at DESC')
+               .where(rating: Rating.values_from_score(params[:rating]))
+               .page(params[:page])
+               .order('tweet_reviews.rating DESC, tweet_reviews.created_at DESC')
   end
 
   def set_review_feed_items

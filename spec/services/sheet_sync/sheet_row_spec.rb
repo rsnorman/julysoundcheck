@@ -8,7 +8,6 @@ RSpec.describe SheetSync::SheetRow do
   subject { described_class.new(worksheet, row_index) }
 
   described_class::ATTRIBUTE_COLUMNS.each_pair do |name, col_index|
-
     describe '#artist' do
       it 'retrieves value from sheet' do
         expect(worksheet).to receive(:value).with(row_index, col_index)

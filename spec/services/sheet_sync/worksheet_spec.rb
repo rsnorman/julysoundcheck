@@ -18,7 +18,7 @@ RSpec.describe SheetSync::Worksheet do
     allow(spreadsheet).to receive(:worksheets).and_return([sheet])
     allow(sheet)
       .to receive(:[])
-      .with(2,1)
+      .with(2, 1)
       .and_return('International Noise Conspiracy')
   end
 
@@ -63,7 +63,7 @@ RSpec.describe SheetSync::Worksheet do
     before do
       allow(sheet)
         .to receive(:[])
-        .with(2,1)
+        .with(2, 1)
         .and_return('International Noise Conspiracy')
     end
 
@@ -79,7 +79,7 @@ RSpec.describe SheetSync::Worksheet do
     before do
       allow(sheet)
         .to receive(:input_value)
-        .with(3,1)
+        .with(3, 1)
         .and_return('LINK_TO=http://spotify.com/2asfa325')
     end
 

@@ -52,7 +52,7 @@ RSpec.describe Album do
     before do
       allow(album_hash)
         .to receive(:images)
-        .and_return([{'url' => 'large.jpg'}, {'url' => 'thumb.jpg'}])
+        .and_return([{ 'url' => 'large.jpg' }, { 'url' => 'thumb.jpg' }])
     end
 
     it 'returns thumbnail url' do

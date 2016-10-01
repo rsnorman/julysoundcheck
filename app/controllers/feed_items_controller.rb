@@ -9,9 +9,9 @@ class FeedItemsController < ApplicationController
   def set_feed_items
     @feed_items =
       FeedItem
-        .includes(:feedable)
-        .order(created_at: :desc)
-        .page(params[:page])
+      .includes(:feedable)
+      .order(created_at: :desc)
+      .page(params[:page])
   end
 
   def create_new_feed_items

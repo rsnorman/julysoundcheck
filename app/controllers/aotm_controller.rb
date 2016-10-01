@@ -6,9 +6,9 @@ class AotmController < ApplicationController
 
   def set_reviews
     @reviews = TweetReview
-      .where(album_of_the_month: true)
-      .page(params[:page])
-      .order('tweet_reviews.rating DESC, tweet_reviews.created_at DESC')
+               .where(album_of_the_month: true)
+               .page(params[:page])
+               .order('tweet_reviews.rating DESC, tweet_reviews.created_at DESC')
   end
 
   def set_review_feed_items

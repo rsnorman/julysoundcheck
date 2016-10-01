@@ -8,7 +8,7 @@ VCR.configure do |c|
   c.ignore_localhost = true
   c.hook_into :webmock
   c.default_cassette_options = {
-    :match_requests_on => [:method, :host, :path]
+    match_requests_on: [:method, :host, :path]
   }
   # :re_record_interval => 0,
 end

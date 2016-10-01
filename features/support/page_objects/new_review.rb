@@ -1,5 +1,5 @@
 class NewReview < SitePrism::Page
-  set_url "tweets/{tweet_id}/tweet_reviews/new"
+  set_url 'tweets/{tweet_id}/tweet_reviews/new'
 
   def set_artist(artist)
     fill_in 'Artist', with: artist

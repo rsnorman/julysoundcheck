@@ -120,7 +120,7 @@ RSpec.describe FeedItemCreator do
             .with(feedable: tweet,
                   created_at: tweet.tweeted_at,
                   user: tweet.user)
-            subject.create
+          subject.create
         end
       end
 

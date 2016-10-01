@@ -30,7 +30,7 @@ RSpec.describe SessionCreator do
       subject.create
     end
 
-    it 'returns the signed in user 'do
+    it 'returns the signed in user ' do
       expect(subject.create).to eq user
     end
 
