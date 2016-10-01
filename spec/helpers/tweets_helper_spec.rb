@@ -152,7 +152,7 @@ RSpec.describe TweetsHelper do
       it 'returns unchanged text' do
         expect(helper.link_recommender(text)) .to eq(
           'Love this album, thanks ' \
-          '<a href="/reviewers/trent_reznor/feed">@trent_reznor</a>!'
+          '<a class="recommender" href="/reviewers/trent_reznor/feed">@trent_reznor</a>!'
         )
       end
     end
@@ -163,8 +163,8 @@ RSpec.describe TweetsHelper do
       it 'returns unchanged text' do
         expect(helper.link_recommender(text)) .to eq(
           'Love this album, thanks ' \
-          '<a href="/reviewers/trent_reznor/feed">@trent_reznor</a> and ' \
-          '<a href="/reviewers/robin_finck/feed">@robin_finck</a>!'
+          '<a class="recommender" href="/reviewers/trent_reznor/feed">@trent_reznor</a> and ' \
+          '<a class="recommender" href="/reviewers/robin_finck/feed">@robin_finck</a>!'
         )
       end
     end

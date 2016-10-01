@@ -20,6 +20,6 @@ class TweetReview < ApplicationRecord
 
   def set_album_id
     return unless listen_url
-    self.album_source_id = AlbumIdFetcher.new(listen_source).fetch
+    self.album_source_id ||= AlbumIdFetcher.new(listen_source).fetch
   end
 end

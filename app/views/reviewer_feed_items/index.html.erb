@@ -31,40 +31,42 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <div class="row">
-    <h4 class="sidebar-title columns">Summary</h4>
-  </div>
-  <div class="row">
-    <div class="stat-label columns">
-      Total Reviews
+  <div id="reviewer_stats">
+    <div class="row">
+      <h4 class="sidebar-title columns">Summary</h4>
     </div>
-  </div>
-  <div class="row">
-    <div class="stat columns">
-      <%= @stats.total_reviews %>
-      <div class="separator"></div>
+    <div class="row">
+      <div class="stat-label columns">
+        Total Reviews
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="stat-label columns">
-      Average Rating
+    <div class="row">
+      <div id="total_reviews_stat" class="stat columns">
+        <%= @stats.total_reviews %>
+        <div class="separator"></div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="stat columns">
-      <%= @stats.average_rating %>
-      <div class="separator"></div>
+    <div class="row">
+      <div class="stat-label columns">
+        Average Rating
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="stat-label columns">
-      Longest Streak
+    <div class="row">
+      <div id="average_rating_stat" class="stat columns">
+        <%= @stats.average_rating %>
+        <div class="separator"></div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="stat columns">
-      <%= @stats.longest_streak %> days
-      <div class="separator"></div>
+    <div class="row">
+      <div class="stat-label columns">
+        Longest Streak
+      </div>
+    </div>
+    <div class="row">
+      <div id="longest_streak_stat" class="stat columns">
+        <%= @stats.longest_streak %> days
+        <div class="separator"></div>
+      </div>
     </div>
   </div>
 <% end %>

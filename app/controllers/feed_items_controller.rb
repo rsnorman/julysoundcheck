@@ -13,9 +13,9 @@ class FeedItemsController < ApplicationController
   end
 
   def create_new_feed_items
-    Rails.cache.fetch 'tweet-archiver', expires_in: 5.minutes do
-      Archiver::TweetArchiver.archive
-    end
+    # Rails.cache.fetch 'tweet-archiver', expires_in: 5.minutes do
+    #   Archiver::TweetArchiver.archive
+    # end
   rescue Exception => exception
     Rollbar.error(exception)
   end

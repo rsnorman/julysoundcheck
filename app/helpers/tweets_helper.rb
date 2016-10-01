@@ -9,13 +9,15 @@ module TweetsHelper
 
   def can_edit?(tweet)
     return false unless twitter_user
-    return true if twitter_user.screen_name == ENV['ADMIN_TWITTER_SCREEN_NAME']
+    return true if is_admin_screen_name?(twitter_user.screen_name)
     tweet.screen_name == twitter_user.screen_name
   end
 
   def link_recommender(tweet_text)
     tweet_text.gsub(/@\w+/) do |screen_name|
-      link_to screen_name, reviewer_path(screen_name.gsub('@', ''))
+      link_to(screen_name,
+              reviewer_path(screen_name.gsub('@', '')),
+              class: 'recommender')
     end
   end
 
@@ -28,5 +30,12 @@ module TweetsHelper
       .map do |tweet|
         JulySoundcheckTweet.new(tweet)
       end
+  end
+
+  private
+
+  def is_admin_screen_name?(screen_name)
+    screen_name == ENV['ADMIN_TWITTER_SCREEN_NAME'] ||
+      screen_name == ENV['TEST_ADMIN_TWITTER_SCREEN_NAME']
   end
 end

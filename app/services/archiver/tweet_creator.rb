@@ -6,10 +6,10 @@ module Archiver
     end
 
     def create
-      Tweet.create!(@parser.parse(@twitter_tweet)).tap do |tweet|
-        FeedItemCreator.new(tweet).create
-        TweetUserCreator.new(tweet).create
-      end
+      tweet = Tweet.new(@parser.parse(@twitter_tweet))
+      TweetUserCreator.new(tweet).create
+      tweet.save
+      FeedItemCreator.new(tweet).create
     end
   end
 end

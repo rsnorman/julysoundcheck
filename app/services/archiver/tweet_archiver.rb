@@ -23,7 +23,7 @@ module Archiver
     private
 
     def since_id
-      @archived_tweets.first.tweet_id
+      @archived_tweets.first.try(:tweet_id)
     end
 
     def client

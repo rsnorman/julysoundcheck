@@ -1,9 +1,9 @@
 class JulySoundcheckTweetReview
   attr_reader :tweet, :tweet_review, :reply_tweet, :user, :feed_item
 
-  delegate :text, :id, to: :tweet
+  delegate :text, to: :tweet
   delegate :profile_image_uri, to: :user
-  delegate :rating, :artist, :album, :listen_url, :genre, :album_of_the_month, to: :tweet_review
+  delegate :id, :rating, :artist, :album, :listen_url, :genre, :album_of_the_month, to: :tweet_review
   delegate :description, to: :rating, prefix: true
 
   def initialize(tweet_review, feed_item)

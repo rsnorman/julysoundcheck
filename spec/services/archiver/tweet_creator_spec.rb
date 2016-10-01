@@ -18,7 +18,8 @@ RSpec.describe Archiver::TweetCreator do
         .to receive(:new)
         .with(tweet)
         .and_return(tweet_user_creator)
-      allow(Tweet).to receive(:create!).and_return(tweet)
+      allow(Tweet).to receive(:new).and_return(tweet)
+      allow(tweet).to receive(:save)
       allow(feed_item_creator).to receive(:create)
       allow(tweet_user_creator).to receive(:create)
     end
@@ -27,9 +28,10 @@ RSpec.describe Archiver::TweetCreator do
 
     it 'creates a tweet' do
       expect(Tweet)
-        .to receive(:create!)
+        .to receive(:new)
         .with(text: 'My fav artist')
         .and_return(tweet)
+      expect(tweet).to receive(:save)
       subject.create
     end
 

@@ -1,6 +1,10 @@
 module SheetSync
   class Worksheet
-    SHEET_KEY = ENV['GOOGLE_SHEET_KEY'].freeze
+    SHEET_KEY = if Rails.env.test?
+                  ENV['TEST_GOOGLE_SHEET_KEY'].freeze
+                else
+                  ENV['GOOGLE_SHEET_KEY'].freeze
+                end
 
     GOOGLE_DRIVE_CREDS_FILEPATH = './config/google_drive.json'.freeze
 
@@ -28,6 +32,13 @@ module SheetSync
         else
           block.call(row, index)
         end
+      end
+    end
+
+    def clear!
+      raise 'Worksheet can only be cleared in test environment' unless Rails.env.test?
+      each_row do |row|
+        row.delete
       end
     end
 
