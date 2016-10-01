@@ -35,6 +35,13 @@ module SheetSync
       end
     end
 
+    def clear!
+      raise 'Worksheet can only be cleared in test environment' unless Rails.env.test?
+      each_row do |row|
+        row.delete
+      end
+    end
+
     def value(row_index, column_index)
       sheet[row_index, column_index]
     end

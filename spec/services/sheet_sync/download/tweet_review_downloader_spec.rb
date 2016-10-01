@@ -1,5 +1,6 @@
 require 'spec_helper'
 require './app/services/sheet_sync/download/tweet_review_downloader'
+require './app/services/sheet_sync/download/reviewer_finder'
 
 RSpec.describe SheetSync::Download::TweetReviewDownloader do
   describe '#download' do
@@ -7,7 +8,7 @@ RSpec.describe SheetSync::Download::TweetReviewDownloader do
       double('ReviewSyncerClass').tap do |rsc|
         allow(rsc)
           .to receive(:new)
-          .with(type: :tweet_review)
+          .with(type: :tweet_review, reviewer_finder: reviewer_finder)
           .and_return(review_syncer)
       end
     end
@@ -40,6 +41,12 @@ RSpec.describe SheetSync::Download::TweetReviewDownloader do
       end
     end
     let(:review_tweet_finder) { double('ReviewTweetFinder', find: review_tweet) }
+    let(:reviewer_finder) { double('ReviwerFinder') }
+    let(:reviewer_finder_class) do
+      double('ReviewerFinderClass').tap do |rfc|
+        allow(rfc).to receive(:new).with(row).and_return(reviewer_finder)
+      end
+    end
 
     let(:review_tweet) { double('ReviewTweet') }
     let(:row) { double('SheetRow') }
@@ -49,7 +56,8 @@ RSpec.describe SheetSync::Download::TweetReviewDownloader do
       described_class.new(row, row_parser: row_parser_class,
                                review_syncer: review_syncer_class,
                                sync_policy: sync_policy_class,
-                               review_tweet_finder: review_tweet_finder_class)
+                               review_tweet_finder: review_tweet_finder_class,
+                               reviewer_finder: reviewer_finder_class)
     end
 
     it 'syncs review' do

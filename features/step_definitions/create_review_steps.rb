@@ -1,5 +1,5 @@
 Given(/^I have a JulySoundcheck tweet with rating$/) do
-  @tweet = FactoryGirl.create(:tweet, :feed_item, :review, tweet_id: '123456789', user: @user)
+  @tweet = FactoryGirl.create(:tweet, :feed_item, :review, tweet_id: '781681048220536832', user: @user)
 end
 
 When(/^I edit the tweet$/) do

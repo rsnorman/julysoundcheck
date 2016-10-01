@@ -10,6 +10,7 @@ VCR.configure do |c|
   c.default_cassette_options = {
     :match_requests_on => [:method, :host, :path]
   }
+  # :re_record_interval => 0,
 end
 
 VCR.cucumber_tags do |t|

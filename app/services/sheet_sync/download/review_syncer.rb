@@ -11,9 +11,7 @@ module SheetSync
       end
 
       def sync(review_attributes)
-        user = user_for(review_attributes[:reviewer])
         review = user_review_for(user, review_attributes)
-
         if review
           review.update!(review_attributes)
         else
@@ -24,8 +22,8 @@ module SheetSync
 
       private
 
-      def user_for(reviewer)
-        @reviewer_finder.find(reviewer)
+      def user
+        @user ||= @reviewer_finder.find
       end
 
       def user_review_for(user, review_attributes)
