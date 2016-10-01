@@ -9,14 +9,14 @@ module SheetSync
     GOOGLE_DRIVE_CREDS_FILEPATH = './config/google_drive.json'.freeze
 
     GOOGLE_DRIVE_CREDS = {
-      "client_id": ENV['GOOGLE_CLIENT_ID'],
-      "client_secret": ENV['GOOGLE_CLIENT_SECRET'],
-      "scope": [
-        "https://www.googleapis.com/auth/drive",
-        "https://spreadsheets.google.com/feeds/"
+      'client_id': ENV['GOOGLE_CLIENT_ID'],
+      'client_secret': ENV['GOOGLE_CLIENT_SECRET'],
+      'scope': [
+        'https://www.googleapis.com/auth/drive',
+        'https://spreadsheets.google.com/feeds/'
       ],
-      "refresh_token": ENV['GOOGLE_REFRESH_TOKEN']
-    }
+      'refresh_token': ENV['GOOGLE_REFRESH_TOKEN']
+    }.freeze
 
     delegate :save, to: :sheet
 
@@ -28,18 +28,16 @@ module SheetSync
       (2..sheet.num_rows).each_with_index do |row_index, index|
         row = SheetRow.new(self, row_index)
         if block.arity == 1
-          block.call(row)
+          yield(row)
         else
-          block.call(row, index)
+          yield(row, index)
         end
       end
     end
 
     def clear!
       raise 'Worksheet can only be cleared in test environment' unless Rails.env.test?
-      each_row do |row|
-        row.delete
-      end
+      each_row(&:delete)
     end
 
     def value(row_index, column_index)
@@ -72,7 +70,7 @@ module SheetSync
     # encapsulating in its own object since this class should know nothing
     # about creating google credential files
     def google_creds_filepath
-      unless File.exists?(GOOGLE_DRIVE_CREDS_FILEPATH)
+      unless File.exist?(GOOGLE_DRIVE_CREDS_FILEPATH)
         File.open(GOOGLE_DRIVE_CREDS_FILEPATH, 'wb') do |f|
           f << GOOGLE_DRIVE_CREDS.to_json
         end

@@ -1,0 +1,127 @@
+Rails:
+  Enabled: true
+AllCops:
+  TargetRubyVersion: 2.2
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+
+# Offense count: 3
+Lint/RescueException:
+  Exclude:
+    - 'app/controllers/feed_items_controller.rb'
+    - 'app/services/archiver/tweet_archiver.rb'
+    - 'app/services/sheet_sync/download/sheet_reader.rb'
+
+# Offense count: 1
+Lint/ShadowingOuterLocalVariable:
+  Exclude:
+    - 'app/services/archiver/old_tweet_archiver.rb'
+
+# Offense count: 1
+Lint/UselessAssignment:
+  Exclude:
+    - 'app/services/archiver/tweet_user_creator.rb'
+
+# Offense count: 5
+Metrics/AbcSize:
+  Max: 29
+
+# Offense count: 106
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
+# URISchemes: http, https
+Metrics/LineLength:
+  Max: 163
+
+# Offense count: 5
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 15
+
+# Offense count: 1
+# Configuration parameters: CountKeywordArgs.
+Metrics/ParameterLists:
+  Max: 6
+
+# Offense count: 1
+Metrics/PerceivedComplexity:
+  Max: 8
+
+# Offense count: 1
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: strict, flexible
+Rails/Date:
+  Exclude:
+    - 'app/services/sheet_sync/download/review_row_parser.rb'
+
+# Offense count: 2
+# Configuration parameters: Include.
+# Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
+Rails/Output:
+  Exclude:
+    - 'app/services/sheet_sync/download/sheet_reader.rb'
+
+# Offense count: 1
+Rails/OutputSafety:
+  Exclude:
+    - 'app/helpers/tweet_reviews_helper.rb'
+
+# Offense count: 8
+Style/AccessorMethodName:
+  Exclude:
+    - 'features/support/page_objects/edit_review.rb'
+    - 'features/support/page_objects/new_review.rb'
+
+# Offense count: 66
+Style/Documentation:
+  Enabled: false
+
+# Offense count: 2
+Style/DoubleNegation:
+  Exclude:
+    - 'app/presenters/july_soundcheck_tweet.rb'
+    - 'app/presenters/july_soundcheck_tweet_review.rb'
+
+# Offense count: 1
+# Configuration parameters: MinBodyLength.
+Style/GuardClause:
+  Exclude:
+    - 'app/helpers/concerns/twitter_user.rb'
+
+# Offense count: 1
+Style/MultilineBlockChain:
+  Exclude:
+    - 'app/services/archiver/old_tweet_archiver.rb'
+
+# Offense count: 2
+Style/OpMethod:
+  Exclude:
+    - 'app/value_objects/listen_source.rb'
+    - 'app/value_objects/rating.rb'
+
+# Offense count: 12
+# Configuration parameters: NamePrefix, NamePrefixBlacklist, NameWhitelist.
+# NamePrefix: is_, has_, have_
+# NamePrefixBlacklist: is_, has_, have_
+# NameWhitelist: is_a?
+Style/PredicateName:
+  Exclude:
+    - 'spec/**/*'
+    - 'app/helpers/tweets_helper.rb'
+    - 'features/support/page_objects/album_player_section.rb'
+    - 'features/support/page_objects/home.rb'
+    - 'features/support/page_objects/recent_tweets_section.rb'
+    - 'features/support/page_objects/tweet_review_section.rb'
+    - 'features/support/page_objects/tweet_section.rb'
+
+# Offense count: 1
+# Configuration parameters: Methods.
+# Methods: {"reduce"=>["a", "e"]}, {"inject"=>["a", "e"]}
+Style/SingleLineBlockParams:
+  Exclude:
+    - 'app/services/archiver/tweet_updater.rb'
