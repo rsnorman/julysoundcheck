@@ -4,6 +4,7 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+RAILS_ENV='test'
 require 'cucumber/rails'
 require 'site_prism'
 require 'capybara/mechanize/cucumber'
