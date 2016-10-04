@@ -1,3 +1,5 @@
+require './lib/error_logger'
+
 module Archiver
   class TweetArchiver
     def self.archive
@@ -15,7 +17,7 @@ module Archiver
             TweetCreator.new(tweet).create
           end
         rescue Exception => exception
-          Rollbar.error(exception, tweet_id: tweet.id, tweet_text: tweet.text)
+          ErrorLogger.log(exception, tweet_id: tweet.id, tweet_text: tweet.text)
         end
       end
     end

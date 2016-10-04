@@ -14,4 +14,10 @@ class ReviewSection < SitePrism::Section
   def reviewed_on?(datetime)
     reviewed_on.has_content? datetime.to_date.to_formatted_s(:long_ordinal)
   end
+
+  def has_review_text?(review)
+    return false unless review_text
+    text = review.is_a?(String) ? review : review.text
+    review_text.has_content?(text)
+  end
 end

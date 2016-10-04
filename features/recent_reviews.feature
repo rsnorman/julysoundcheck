@@ -25,4 +25,4 @@ Feature: View JulySoundcheck Reviews
     Given a second page of reviews exist
     When I visit the home page
     And I click "2" in the pagination links
-    Then I see the second page of tweets
+    Then I see the second page of reviews

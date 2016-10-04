@@ -159,5 +159,26 @@ RSpec.describe SheetSync::Uploader do
         subject.upload(tweet_review)
       end
     end
+
+    context 'with no tweet' do
+      before do
+        allow(tweet_review).to receive(:tweet).and_return nil
+        allow(tweet_review).to receive(:text).and_return 'Great album!'
+        allow(tweet_review)
+          .to receive(:reviewed_at)
+          .and_return Time.current - 3.days
+      end
+
+      it 'sets review directly from review text' do
+        expect(new_row).to receive(:review=).with('Great album!')
+        subject.upload(tweet_review)
+      end
+
+      it 'sets date reviewed from reviewed_at' do
+        expect(new_row).to receive(:date_reviewed=)
+          .with((Time.current - 3.days).strftime('%b/%e/%Y'))
+        subject.upload(tweet_review)
+      end
+    end
   end
 end

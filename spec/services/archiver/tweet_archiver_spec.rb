@@ -48,8 +48,8 @@ RSpec.describe Archiver::TweetArchiver do
       end
 
       it 'logs error' do
-        expect(Rollbar)
-          .to receive(:error)
+        expect(ErrorLogger)
+          .to receive(:log)
           .with(exception, tweet_id: tweet.id, tweet_text: tweet.text)
         subject.archive
       end
