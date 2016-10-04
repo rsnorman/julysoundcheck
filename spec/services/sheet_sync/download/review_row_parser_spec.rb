@@ -10,7 +10,6 @@ RSpec.describe SheetSync::Download::ReviewRowParser do
                          source: '=HYPERLINK("http://spotify.com/12345","Spotify")',
                          review: review,
                          aotm: aotm,
-                         reviewer: 'Kevin Morby',
                          date_reviewed: date_reviewed).as_null_object
     end
     let(:review) { 'Punchy indie rock!' }
@@ -57,10 +56,6 @@ RSpec.describe SheetSync::Download::ReviewRowParser do
 
     it 'returns album_of_the_month attribute' do
       expect(subject.parse).to include(album_of_the_month: false)
-    end
-
-    it 'returns reviewer attribute' do
-      expect(subject.parse).to include(reviewer: 'Kevin Morby')
     end
 
     context 'with album of the month cell containing text' do

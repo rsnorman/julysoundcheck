@@ -119,9 +119,9 @@ Given(/^a second page of reviews exist$/) do
 end
 
 When(/^I click "([^"]*)" in the pagination links$/) do |page_number|
-  @home_page.pagination.go_to_page(page_number)
+  @home_page = @home_page.pagination.go_to_page(page_number)
 end
 
-Then(/^I see the second page of tweets$/) do
-  expect(@home_page.reviews.first).to have_review_text Tweet.first
+Then(/^I see the second page of reviews$/) do
+  expect(@home_page.reviews.first).to have_review_text TweetReview.first
 end

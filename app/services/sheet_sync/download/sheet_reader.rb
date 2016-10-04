@@ -1,3 +1,5 @@
+require './lib/error_logger'
+
 module SheetSync
   module Download
     class SheetReader
@@ -19,7 +21,7 @@ module SheetSync
             downloader_for(row).download
           rescue Exception => exception
             puts "Failed on #{row.artist} - #{row.album} #{exception}" if @verbose
-            Rollbar.error(exception, artist: row.artist, album: row.album)
+            ErrorLogger.log(exception, artist: row.artist, album: row.album)
           end
         end
       end

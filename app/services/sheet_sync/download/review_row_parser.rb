@@ -15,8 +15,7 @@ module SheetSync
           rating: @rating_score_convertor.from_score(row.rating).value,
           text: row.review,
           reviewed_at: reviewed_at,
-          album_of_the_month: !row.aotm.blank?,
-          reviewer: row.reviewer
+          album_of_the_month: !row.aotm.blank?
         }.keep_if { |_attr_name, attr_value| !attr_value.nil? && attr_value != '' }
       end
 

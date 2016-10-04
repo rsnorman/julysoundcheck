@@ -1,3 +1,5 @@
+require './lib/error_logger'
+
 class FeedItemsController < ApplicationController
   before_action :create_new_feed_items, only: :index
   before_action :set_feed_items, only: :index
@@ -17,6 +19,6 @@ class FeedItemsController < ApplicationController
     #   Archiver::TweetArchiver.archive
     # end
   rescue Exception => exception
-    Rollbar.error(exception)
+    ErrorLogger.log(exception)
   end
 end
