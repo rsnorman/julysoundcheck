@@ -2,8 +2,8 @@ module SheetSync
   module Download
     class TweetReviewRowParser
       def initialize(row, review_tweet: nil,
-                          rating_score_convertor: Rating)
-        fail ArgumentError, 'Review tweet cannot be nil' unless review_tweet
+                     rating_score_convertor: Rating)
+        raise ArgumentError, 'Review tweet cannot be nil' unless review_tweet
         @row = row
         @review_tweet = review_tweet
         @rating_score_convertor = rating_score_convertor

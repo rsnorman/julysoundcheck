@@ -13,8 +13,6 @@ class AlbumIdFetcher
       youtube_album_id
     when :soundcloud
       soundcloud_album_id
-    else
-      nil
     end
   end
 

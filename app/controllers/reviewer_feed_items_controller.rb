@@ -12,11 +12,11 @@ class ReviewerFeedItemsController < ApplicationController
   end
 
   def set_feed_items
-    @feed_items = FeedItem.none.page(1) and return unless @user
+    (@feed_items = FeedItem.none.page(1)) && return unless @user
     @feed_items = FeedItem
-      .where(user: @user)
-      .order(created_at: :desc)
-      .page(params[:page])
+                  .where(user: @user)
+                  .order(created_at: :desc)
+                  .page(params[:page])
   end
 
   def set_review_stats

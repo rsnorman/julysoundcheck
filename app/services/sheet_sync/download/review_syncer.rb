@@ -4,7 +4,7 @@ module SheetSync
       def initialize(type: :tweet_review,
                      reviewer_finder: nil,
                      feed_item_creator: FeedItemCreator)
-        fail ArgumentError, 'Must pass :reviewer_finder' unless reviewer_finder
+        raise ArgumentError, 'Must pass :reviewer_finder' unless reviewer_finder
         @type = type
         @reviewer_finder = reviewer_finder
         @feed_item_creator = feed_item_creator

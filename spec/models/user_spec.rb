@@ -5,7 +5,6 @@ RSpec.describe User do
   it { should have_many(:tweet_reviews) }
   it { should have_many(:feed_items) }
 
-
   describe '#name' do
     subject { described_class.new(name: 'John Frusciante') }
 

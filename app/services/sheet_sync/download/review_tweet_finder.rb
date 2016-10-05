@@ -2,7 +2,7 @@ module SheetSync
   module Download
     class ReviewTweetFinder
       def initialize(row, twitter_client: TwitterClient.instance,
-                          tweet_creator: Archiver::TweetCreator)
+                     tweet_creator: Archiver::TweetCreator)
         @row = row
         @twitter_client = twitter_client
         @tweet_creator = tweet_creator

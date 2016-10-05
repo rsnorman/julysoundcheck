@@ -6,7 +6,6 @@ RSpec.describe TweetReviewsHelper do
       expect(helper.rating_options).to include('-- Choose Rating --' => nil)
     end
 
-
     Rating::SCORES.each_pair do |score, value|
       it "includes option for #{score}" do
         expect(helper.rating_options)

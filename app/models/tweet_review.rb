@@ -3,7 +3,7 @@ class TweetReview < ApplicationRecord
   belongs_to :user
   has_one :feed_item, as: :feedable
 
-  validates :album, uniqueness: {scope: [:artist, :user_id]}
+  validates :album, uniqueness: { scope: [:artist, :user_id] }
 
   before_save :set_album_id
 

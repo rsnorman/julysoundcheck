@@ -54,7 +54,7 @@ RSpec.describe FeedItemsHelper do
         allow(helper).to receive(:feedable_type).and_return('Tweet')
       end
 
-     it 'returns tweet key with presenter value' do
+      it 'returns tweet key with presenter value' do
         expect(helper.feed_item_locals(feed_item)).to eq(tweet: presenter)
       end
     end
@@ -66,7 +66,7 @@ RSpec.describe FeedItemsHelper do
         allow(helper).to receive(:feedable_type).and_return('Review')
       end
 
-     it 'returns tweet key with presenter value' do
+      it 'returns tweet key with presenter value' do
         expect(helper.feed_item_locals(feed_item)).to eq(review: presenter)
       end
     end
@@ -78,7 +78,7 @@ RSpec.describe FeedItemsHelper do
         allow(helper).to receive(:feedable_type).and_return('TweetReview')
       end
 
-     it 'returns tweet key with presenter value' do
+      it 'returns tweet key with presenter value' do
         expect(helper.feed_item_locals(feed_item))
           .to eq(tweet_review: presenter)
       end

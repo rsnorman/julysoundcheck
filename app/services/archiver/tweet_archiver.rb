@@ -13,9 +13,7 @@ module Archiver
     def archive
       client.search('#julysoundcheck', since_id: since_id).to_a.reverse.map do |tweet|
         begin
-          unless tweet.retweet?
-            TweetCreator.new(tweet).create
-          end
+          TweetCreator.new(tweet).create unless tweet.retweet?
         rescue Exception => exception
           ErrorLogger.log(exception, tweet_id: tweet.id, tweet_text: tweet.text)
         end

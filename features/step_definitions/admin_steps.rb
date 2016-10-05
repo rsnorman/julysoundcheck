@@ -1,6 +1,6 @@
 Given(/^I am signed in as admin through Twitter$/) do
   @admin = FactoryGirl.create(:user, twitter_screen_name: ENV['TEST_TWITTER_SCREEN_NAME'],
-                                    twitter_id: ENV['TEST_TWITTER_ID'])
+                                     twitter_id: ENV['TEST_TWITTER_ID'])
   page.set_rack_session(access_token: ENV['TEST_TWITTER_ACCESS_TOKEN'],
                         access_token_secret: ENV['TEST_TWITTER_ACCESS_TOKEN_SECRET'])
 end

@@ -27,7 +27,7 @@ module SheetSync
       end
     end
 
-    alias_method :tweet, :review
+    alias tweet review
 
     attr_reader :row_index
 
@@ -36,8 +36,8 @@ module SheetSync
       @row_index = row_index
     end
 
-    def delete
-      ATTRIBUTE_COLUMNS.each_pair do |attr, column_index|
+    def delete(*_args)
+      ATTRIBUTE_COLUMNS.each_pair do |_attr, column_index|
         @worksheet.set_value(row_index, column_index, nil)
       end
     end

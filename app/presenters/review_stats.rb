@@ -32,7 +32,7 @@ class ReviewStats
 
   def review_days
     reviews.collect do |tr|
-        tr.tweet.try(:reply).try(:tweeted_at) ||
+      tr.tweet.try(:reply).try(:tweeted_at) ||
         tr.tweet.try(:tweeted_at) ||
         tr.reviewed_at ||
         tr.created_at

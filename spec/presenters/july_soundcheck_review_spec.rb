@@ -17,7 +17,6 @@ RSpec.describe JulySoundcheckReview do
   it { is_expected.to delegate_method(:album_of_the_month).to(:review) }
   it { is_expected.to delegate_method(:description).to(:rating).with_prefix }
 
-
   describe '#text' do
     let(:review_text) { 'Great album!' }
 

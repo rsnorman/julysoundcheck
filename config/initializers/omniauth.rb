@@ -6,6 +6,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   #   warn 'with the command: CONSUMER_KEY=abc CONSUMER_SECRET=123 rails server'
   #   warn '*' * 80
   # else
-    provider :twitter, 'ycSAqKivZAibjwACUYsx9zYm7', 'dwGi1IpCwtWug4uHyTsTEqZ9feKX94Inyzu6IpbH3KXy80bqFn'
+  provider :twitter, 'ycSAqKivZAibjwACUYsx9zYm7', 'dwGi1IpCwtWug4uHyTsTEqZ9feKX94Inyzu6IpbH3KXy80bqFn'
   # end
 end

@@ -15,10 +15,10 @@ RSpec.describe Rating do
 
     it 'returns all values with same score number' do
       expect(subject).to eq([
-        described_class::SCORES['1-'],
-        described_class::SCORES['1'],
-        described_class::SCORES['1+']
-      ])
+                              described_class::SCORES['1-'],
+                              described_class::SCORES['1'],
+                              described_class::SCORES['1+']
+                            ])
     end
   end
 

@@ -15,7 +15,9 @@ module SheetSync
       row = review_row_for(tweet_review) || worksheet.build_row
       row.artist = tweet_review.artist
       row.album = tweet_review.album
-      row.source = "=HYPERLINK(\"#{tweet_review.listen_url}\",\"#{tweet_review.listen_source.source.to_s.titleize}\")"
+      row.source =
+        "=HYPERLINK(\"#{tweet_review.listen_url}\"," \
+        "\"#{tweet_review.listen_source.source.to_s.titleize}\")"
       row.review = review_text(tweet_review)
       row.reviewer = reviewer(tweet_review)
       row.date_reviewed = reviewed_on(tweet_review)
@@ -31,14 +33,12 @@ module SheetSync
 
     def tweet_link(tweet_review)
       return unless (tweet = tweet_review.tweet)
-      tweet = tweet_review.tweet
       tweet_id = tweet.reply ? tweet.reply.tweet_id : tweet.tweet_id
       "https://www.twitter.com/#{tweet.user.twitter_screen_name}/status/#{tweet_id}"
     end
 
     def tweet_text(tweet_review)
       return unless (tweet = tweet_review.tweet)
-      tweet = tweet.reply if tweet.reply
       tweet.text.gsub('"', '""')
     end
 

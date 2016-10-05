@@ -45,7 +45,10 @@ class TweetReviewsController < ApplicationController
   def tweet_review_params
     params
       .require(:tweet_review)
-      .permit(:tweet_id, :twitter_status_id, :rating, :artist, :album, :listen_url, :genre, :album_of_the_month).tap do |p|
+      .permit(
+        :tweet_id, :twitter_status_id, :rating, :artist, :album,
+        :listen_url, :genre, :album_of_the_month
+      ).tap do |p|
         p[:user] = Tweet.find(p[:tweet_id]).user
       end
   end

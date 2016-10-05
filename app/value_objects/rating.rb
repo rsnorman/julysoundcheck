@@ -39,11 +39,11 @@ class Rating
   attr_reader :value
 
   def self.from_score(score)
-    self.new(SCORES[score])
+    new(SCORES[score])
   end
 
   def self.values_from_score(score_group)
-    SCORES.dup.keep_if { |score, value| score[0] == score_group }.values
+    SCORES.dup.keep_if { |score, _value| score[0] == score_group }.values
   end
 
   def initialize(value)
