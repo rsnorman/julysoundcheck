@@ -35,16 +35,20 @@ RSpec.describe Archiver::TweetUserCreator do
 
       context 'with user not created' do
         let(:new_user) { double('NewUser') }
+        let(:random_password) { SecureRandom.uuid }
 
         before do
           allow(User).to receive(:find_by).and_return nil
           allow(User)
-            .to receive(:create)
+            .to receive(:create!)
             .with(twitter_name: twitter_user.name,
                   twitter_screen_name: twitter_user.screen_name,
                   twitter_id: twitter_user.id,
-                  profile_image_uri: twitter_user.profile_image_uri)
+                  profile_image_uri: twitter_user.profile_image_uri,
+                  email: "julysoundcheck+#{twitter_user.screen_name}@gmail.com",
+                  password: random_password)
             .and_return(new_user)
+          allow(SecureRandom).to receive(:uuid).and_return(random_password)
         end
 
         it 'creates a new user and ties to tweet' do

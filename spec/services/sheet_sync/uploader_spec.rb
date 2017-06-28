@@ -137,7 +137,7 @@ RSpec.describe SheetSync::Uploader do
         allow(tweet).to receive(:reply).and_return(reply)
       end
 
-      it 'sets review text from reply' do
+      xit 'sets review text from reply' do
         expect(new_row)
           .to receive(:review=)
           .with('=HYPERLINK("https://www.twitter.com/TheRobertSmith/status/' \
