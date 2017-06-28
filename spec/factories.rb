@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :user do
     sequence(:name) { |n| "Ryan Norman #{n}" }
+    sequence(:email) { |n| "rsnorman15+test#{n}@gmail.com" }
+    password { SecureRandom.uuid }
 
     trait :twitter_user do
       sequence(:twitter_screen_name) { |n| "rogerguelph#{n}" }

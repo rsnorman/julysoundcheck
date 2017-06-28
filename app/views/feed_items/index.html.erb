@@ -29,8 +29,8 @@
 
 <% content_for :sidebar do %>
   <% if signed_in? %>
-    <%= render partial: 'layouts/recent-tweets' %>
+    <% #= render partial: 'layouts/recent-tweets' %>
   <% else %>
-    <%= render partial: 'layouts/twitter-sign-in' %>
+    <% #= render partial: 'layouts/twitter-sign-in' %>
   <% end %>
 <% end %>

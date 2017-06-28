@@ -10,9 +10,9 @@ class UsersController < ApplicationController
   private
 
   def user_path(user)
-    @user.twitter_screen_name ?
-      reviewer_path(@user.twitter_screen_name) :
-      reviewer_path(@user.id)
+    user.twitter_screen_name ?
+      reviewer_path(user.twitter_screen_name) :
+      reviewer_path(user.id)
   end
 
   def user_params

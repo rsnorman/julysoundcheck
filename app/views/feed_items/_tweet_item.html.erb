@@ -1,6 +1,6 @@
 <div id="tweet_<%= tweet.id %>" class="tweet-review tweet-item row">
   <div class="large-1 medium-2 small-2 columns">
-    <%= link_to reviewer_path(tweet.screen_name) do %>
+    <%= link_to user_path(tweet.user) do %>
       <img class='user-profile-image' align="left" src="<%= tweet.profile_image_uri %>" />
     <% end %>
   </div>
@@ -8,10 +8,10 @@
     <div class="tweet-title row">
       <div class="large-10 columns">
         <div class='user-name'>
-          <%= link_to tweet.user_name, reviewer_path(tweet.screen_name) %>
+          <%= link_to tweet.user_name, user_path(tweet.user) %>
         </div>
         <div class='twitter-username'>
-          <%= link_to "@#{tweet.screen_name}", reviewer_path(tweet.screen_name) %>
+          <%= link_to "@#{tweet.screen_name}", user_path(tweet.user) %>
         </div>
       </div>
       <div class="reviewed-on">

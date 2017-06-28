@@ -6,10 +6,16 @@ module ApplicationHelper
   end
 
   def current_user
-    @current_user ||= super() || User.find_by(twitter_id: twitter_user.id)
+    @current_user ||= super() || (twitter_user && User.find_by(twitter_id: twitter_user.id))
   end
 
   def twitter_user?
     !!twitter_user
+  end
+
+  def user_path(user)
+    user.twitter_screen_name ?
+      reviewer_path(user.twitter_screen_name) :
+      reviewer_path(user.id)
   end
 end

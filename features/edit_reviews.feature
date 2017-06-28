@@ -1,7 +1,7 @@
 @twitter_user
 Feature: Edit JulySoundcheck Reviews
   Background:
-    Given I am signed in through Twitter
+    Given I am signed in
 
   Scenario: Create review from tweet
     Given I have a JulySoundcheck tweet with rating

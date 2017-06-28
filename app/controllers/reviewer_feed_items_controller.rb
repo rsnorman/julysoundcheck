@@ -12,8 +12,8 @@ class ReviewerFeedItemsController < ApplicationController
       @user = User.find_by(twitter_screen_name: @screen_name)
       @user ||= User.find_by(slug: @screen_name)
       unless @user
-        @user ||= User.find(params[:screen_name])
-        @screen_name = @user.name || @user.email
+        @user ||= User.find_by_id(params[:screen_name])
+        @screen_name = @user && (@user.name || @user.email)
       end
     else
       @user = current_user
