@@ -40,6 +40,16 @@ header {
     padding-right: 23px;
     text-align: right;
     background-color: $color-primary-3;
+
+    a, button {
+      color: #ffffff;
+      font-weight: bold;
+      padding: 5px 10px;
+    }
+
+    button:hover {
+      text-decoration: underline;
+    }
   }
 
   a, button {

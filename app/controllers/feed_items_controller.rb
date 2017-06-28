@@ -1,6 +1,7 @@
 require './lib/error_logger'
 
 class FeedItemsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   before_action :create_new_feed_items, only: :index
   before_action :set_feed_items, only: :index
 

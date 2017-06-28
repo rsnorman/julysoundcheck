@@ -29,17 +29,16 @@
                     <a href="/profile">Profile</a>
                     <ul class="menu vertical">
                       <li>
-                        <%= form_tag '/signout', method: 'delete' do %>
-                          <button  id="sign_out">Sign Out</button>
-                        <% end %>
+                        <%= link_to 'Settings', settings_path %>
+                      </li>
+                      <li>
+                        <%= render partial: '/layouts/sign-out' %>
                       </li>
                     </ul>
                   </li>
                 <% else %>
                   <li>
-                    <%= form_tag '/auth/twitter', method: 'get' do %>
-                      <button id="sign_in">Sign In</button>
-                    <% end %>
+                    <%= link_to 'Sign In', new_user_session_path %>
                   </li>
                 <% end %>
               </ul>

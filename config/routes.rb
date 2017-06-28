@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :tweets, only: nil do
     resources :tweet_reviews, only: :new
   end
@@ -13,7 +14,9 @@ Rails.application.routes.draw do
 
   get '/auth/twitter/callback', to: 'sessions#create', as: 'callback'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
-  get '/profile', to: 'users#edit'
+
+  get '/profile', to: 'reviewer_feed_items#index'
+  get '/settings', to: 'users#edit'
 
   resources :users, only: :update
 
