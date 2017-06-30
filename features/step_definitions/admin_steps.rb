@@ -5,6 +5,11 @@ Given(/^I am signed in as admin through Twitter$/) do
                         access_token_secret: ENV['TEST_TWITTER_ACCESS_TOKEN_SECRET'])
 end
 
+Given(/^I am signed in as admin$/) do
+  @admin = FactoryGirl.create(:user, email: 'rsnorman15+julysoundcheck@gmail.com' )
+  login_as(@admin)
+end
+
 Given(/^a non-admin user exists$/) do
   @user = FactoryGirl.create(:user, :twitter_user)
 end

@@ -31,3 +31,8 @@ Given(/^I am signed in through Twitter$/) do
   page.set_rack_session(access_token: ENV['TEST_TWITTER_ACCESS_TOKEN'],
                         access_token_secret: ENV['TEST_TWITTER_ACCESS_TOKEN_SECRET'])
 end
+
+Given(/^I am signed in$/) do
+  @user = FactoryGirl.create(:user)
+  login_as(@user)
+end

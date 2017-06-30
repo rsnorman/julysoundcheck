@@ -25,7 +25,11 @@ RSpec.describe User do
   end
 
   describe 'before save' do
-    subject { described_class.new(name: 'John Frusciante') }
+    subject do
+      described_class.new(name: 'John Frusciante',
+                          email: 'jfrusc@gmail.com',
+                          password: SecureRandom.uuid)
+    end
 
     it 'sets the user slug' do
       expect { subject.save }

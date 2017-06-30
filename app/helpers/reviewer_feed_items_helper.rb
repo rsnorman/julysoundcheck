@@ -1,7 +1,7 @@
 module ReviewerFeedItemsHelper
   def user_name
     return "@#{@screen_name}" unless @user
-    @user.name || @user.screen_name
+    @user.name || @user.twitter_screen_name || @user.email
   end
 
   def twitter_profile?

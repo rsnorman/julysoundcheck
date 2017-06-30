@@ -2,7 +2,7 @@
 Feature: Album Of The Month
 
   Background:
-    Given I am signed in through Twitter
+    Given I am signed in
 
   Scenario: Mark review as Album of the Month
     Given I have a JulySoundcheck tweet review

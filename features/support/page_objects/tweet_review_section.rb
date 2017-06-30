@@ -21,7 +21,8 @@ class TweetReviewSection < SitePrism::Section
   end
 
   def has_profile_link_to?(user)
-    twitter_user_name[:href].end_with? "/reviewers/#{user.twitter_screen_name}/feed"
+    twitter_user_name[:href].end_with?("/reviewers/#{user.twitter_screen_name}/feed") ||
+      twitter_user_name[:href].end_with?("/reviewers/#{user.id}/feed")
   end
 
   def has_review_text?(tweet_review)

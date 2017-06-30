@@ -8,9 +8,22 @@ module TweetsHelper
   end
 
   def can_edit?(tweet)
-    return false unless twitter_user
-    return true if is_admin_screen_name?(twitter_user.screen_name)
-    tweet.screen_name == twitter_user.screen_name
+    return true if is_admin_user?
+    if twitter_user
+      tweet.screen_name == twitter_user.screen_name
+    elsif current_user
+      tweet.user.id == current_user.id
+    else
+      false
+    end
+  end
+
+  def is_admin_user?
+    if twitter_user
+      is_admin_screen_name?(twitter_user.screen_name)
+    elsif current_user
+      is_admin_email?(current_user.email)
+    end
   end
 
   def link_recommender(tweet_text)
@@ -37,5 +50,9 @@ module TweetsHelper
   def is_admin_screen_name?(screen_name)
     screen_name == ENV['ADMIN_TWITTER_SCREEN_NAME'] ||
       screen_name == ENV['TEST_ADMIN_TWITTER_SCREEN_NAME']
+  end
+
+  def is_admin_email?(email)
+    email == ENV['ADMIN_EMAIL'] || email == ENV['TEST_ADMIN_EMAIL']
   end
 end

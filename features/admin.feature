@@ -2,7 +2,7 @@
 Feature: Administrator
 
   Background:
-    Given I am signed in as admin through Twitter
+    Given I am signed in as admin
     And a non-admin user exists
 
   Scenario: Admin creates review from tweet

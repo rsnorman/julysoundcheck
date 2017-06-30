@@ -7,7 +7,7 @@
       <div class="large-10 columns">
         <div class='twitter-name'><%= @jsc_tweet.user_name %></div>
         <div class='twitter-username'>
-          <%= link_to "@#{@jsc_tweet.screen_name}", reviewer_path(@jsc_tweet.screen_name) %>
+          <%= link_to "@#{@jsc_tweet.screen_name}", reviewer_path(@jsc_tweet.user) %>
         </div>
       </div>
       <div class="reviewed-on">

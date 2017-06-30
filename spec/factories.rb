@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :user do
     sequence(:name) { |n| "Ryan Norman #{n}" }
+    sequence(:email) { |n| "rsnorman15+test#{n}@gmail.com" }
+    password { SecureRandom.uuid }
 
     trait :twitter_user do
       sequence(:twitter_screen_name) { |n| "rogerguelph#{n}" }
@@ -127,7 +129,7 @@ FactoryGirl.define do
         "The funky-ness of NAO's \"For All We Know\" elevates it above many recent R&B acts. Lovers of slow jams rejoice.",
         'Finish #JulySoundcheck with Amesoeurs s/t: sprinkling clean vox with atmospheric screaming was confusing but liked the strain of alt v metal',
         'If I had any Euro-trash friends, I’d play ZHU’s “Generationwhy” for them… fortunately I don’t know anyone from Europe. #JulySoundcheck',
-        "Checking out Locrian's \"Return To Annihilation\" per @mathyoumore's Blackgaze recommendation #JulySoundcheck"
+        "Checking out Locrian's \"Return To Annihilation\" per mathyoumore's Blackgaze recommendation #JulySoundcheck"
       ][n % 6]
     end
     tweeted_at { Time.current }

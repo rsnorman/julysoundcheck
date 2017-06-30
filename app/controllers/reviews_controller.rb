@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   before_action :set_reviews, only: :index
   before_action :set_review_feed_items, only: :index
 
