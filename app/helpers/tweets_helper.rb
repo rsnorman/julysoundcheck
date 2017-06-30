@@ -53,6 +53,7 @@ module TweetsHelper
   end
 
   def is_admin_email?(email)
+    puts [email, ENV['ADMIN_EMAIL'], ENV['TEST_ADMIN_EMAIL']].inspect
     email == ENV['ADMIN_EMAIL'] || email == ENV['TEST_ADMIN_EMAIL']
   end
 end
