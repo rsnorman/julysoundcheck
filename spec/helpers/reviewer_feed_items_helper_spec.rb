@@ -27,7 +27,7 @@ RSpec.describe ReviewerFeedItemsHelper do
     context 'with user without name' do
       before do
         allow(user).to receive(:name).and_return(nil)
-        allow(user).to receive(:screen_name).and_return('The Scott Weiland')
+        allow(user).to receive(:twitter_screen_name).and_return('The Scott Weiland')
       end
 
       it 'returns user screen name' do
