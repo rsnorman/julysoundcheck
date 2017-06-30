@@ -1,7 +1,7 @@
 <div id="tweet_<%= tweet.id %>" class="tweet-review tweet-item row">
   <div class="large-1 medium-2 small-2 columns">
     <%= link_to reviewer_path(tweet.user) do %>
-      <% if tweet.profile_image_uri %>
+      <% unless tweet.profile_image_uri.blank? %>
         <img class='user-profile-image' src="<%= tweet.profile_image_uri %>" />
       <% else %>
         <%= image_tag 'logo-medium.png', align: 'left', class: 'user-profile-image' %>
