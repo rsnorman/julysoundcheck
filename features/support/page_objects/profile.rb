@@ -13,4 +13,9 @@ class Profile < SitePrism::Page
   section :pagination, PaginationSection, '.pagination'
   section :reviewer_stats, ReviewStatsSection, '#reviewer_stats'
   element :twitter_profile_link, '#twitter_profile_link'
+  element :title, '#page_title h2'
+
+  def has_user?(user)
+    title.text == 'Ryan Norman Reviews'
+  end
 end
