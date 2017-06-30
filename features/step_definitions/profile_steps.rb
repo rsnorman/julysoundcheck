@@ -94,3 +94,11 @@ end
 Then(/^I see the second page of user's tweets$/) do
   expect(@profile_page).to have_css '#tweet_1'
 end
+
+Then(/^I see my profile page$/) do
+  expect(@profile_page).to have_user(@user.name || @user.twitter_screen_name || @user.email)
+end
+
+Then(/^I see my profile page with name "([^"]*)"$/) do |name|
+  expect(@profile_page).to have_user(name)
+end

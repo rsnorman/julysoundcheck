@@ -9,4 +9,9 @@ class Login < SitePrism::Page
     password_field.set password
     submit_button.click
   end
+
+  def go_to_sign_up
+    click_on 'Sign up'
+    Register.new
+  end
 end

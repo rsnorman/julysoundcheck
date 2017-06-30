@@ -15,7 +15,7 @@ class Profile < SitePrism::Page
   element :twitter_profile_link, '#twitter_profile_link'
   element :title, '#page_title h2'
 
-  def has_user?(user)
-    title.text == 'Ryan Norman Reviews'
+  def has_user?(name)
+    title.text == "#{name} Reviews"
   end
 end

@@ -11,10 +11,6 @@ When(/^I click the profile button$/) do
   @profile_page = @home_page.go_to_profile
 end
 
-Then(/^I see my profile page$/) do
-  expect(@profile_page).to have_user('Ryan Norman')
-end
-
 Given(/^a user exists for me$/) do
   @user = FactoryGirl.create(:user, email: 'rsnorman15@gmail.com',
                                     password: 'test1234',

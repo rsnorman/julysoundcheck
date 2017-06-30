@@ -1,6 +1,6 @@
 <div id="review_<%= review.id %>" class="tweet-review review-item row">
   <div class="large-1 medium-2 small-2 columns">
-    <%= link_to user_path(review.user) do %>
+    <%= link_to reviewer_path(review.user) do %>
       <% if review.twitter_account? %>
         <img class='user-profile-image' src="<%= review.profile_image_uri %>" />
       <% else %>
@@ -12,11 +12,11 @@
     <div class="tweet-title row">
       <div class="large-10 columns">
         <div class='user-name'>
-          <%= link_to review.user_name, user_path(review.user) %>
+          <%= link_to review.user_name, reviewer_path(review.user) %>
         </div>
         <% if review.twitter_account? %>
           <div class='twitter-username'>
-            <%= link_to "@#{review.screen_name}", user_path(review.user) %>
+            <%= link_to "@#{review.screen_name}", reviewer_path(review.user) %>
           </div>
         <% end %>
       </div>

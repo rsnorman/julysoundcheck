@@ -3,17 +3,10 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    redirect_to user_path(@user),
-                notice: 'You profile was updated successfully'
+    redirect_to profile_path, notice: 'You profile was updated successfully'
   end
 
   private
-
-  def user_path(user)
-    user.twitter_screen_name ?
-      reviewer_path(user.twitter_screen_name) :
-      reviewer_path(user.id)
-  end
 
   def user_params
     params.require(:user).permit(:name)

@@ -13,9 +13,10 @@ module ApplicationHelper
     !!twitter_user
   end
 
-  def user_path(user)
+  def reviewer_path(user)
+    return super(user) if user.is_a?(String)
     user.twitter_screen_name ?
-      reviewer_path(user.twitter_screen_name) :
-      reviewer_path(user.id)
+      super(user.twitter_screen_name) :
+      super(user.id)
   end
 end
